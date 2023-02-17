@@ -37,18 +37,20 @@ cat "$FILEMAP" | while read line; do
 
     case "$1" in
         "pull")
-            if ! [ -f "$src" ]; then
+            if ! [ -f "$src" ] && ! [ -d "$src" ]; then
                 continue
             fi
 
-            cp -vb "$src" "$dst"
+            mkdir -p $(realpath $(basename "$dst"))
+            cp -vbr "$src" "$dst"
             ;;
         "push")
-            if ! [ -f "$dst" ]; then
+            if ! [ -f "$dst" ] && ! [ -d "$dst" ]; then
                 continue
             fi
 
-            cp -vb "$dst" "$src"
+            mkdir -p $(realpath $(basename "$src"))
+            cp -vbr "$dst" "$src"
     esac
 done
 

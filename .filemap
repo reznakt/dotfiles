@@ -3,3 +3,5 @@ bash/.inputrc ~/.inputrc
 
 neovim/init.vim ~/.config/nvim/init.vim
 
+scripts/ ~/scripts
+
