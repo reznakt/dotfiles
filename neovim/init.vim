@@ -74,7 +74,7 @@ endif
 
 " install vim-plug if not found
 if empty(glob($HOME . '/.nvim/autoload/plug.vim'))
-  silent !curl -fLo $HOME . '/.nvim/autoload/plug.vim' --create-dirs
+  silent !curl -fLo ~/.nvim/autoload/plug.vim --create-dirs
     \ 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 endif
 
