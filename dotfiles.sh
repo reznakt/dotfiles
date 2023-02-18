@@ -20,6 +20,17 @@ if ! [ "$1" = "pull" ] && ! [ "$1" = "push" ]; then
 fi
 
 
+if ! [ -f "$FILEMAP" ]; then
+    error "unable to find filemap at '$FILEMAP'"
+fi
+
+
+rules=0
+copied=0
+skipped=0
+failed=0
+
+
 cat "$FILEMAP" | while read line; do
     if [ -z "$line" ]; then
         continue
@@ -32,25 +43,32 @@ cat "$FILEMAP" | while read line; do
         error "unsupported format in $FILEMAP ($line)"
     fi
 
+    rules=$((rules + 1))
+
     src="${src/#\~/$HOME}"
     dst="${dst/#\~/$HOME}"
 
-    case "$1" in
-        "pull")
-            if ! [ -f "$src" ] && ! [ -d "$src" ]; then
-                continue
-            fi
+    if [ "$1" = "push" ]; then
+        tmp="$dst"
+        dst="$src"
+        src="$tmp"
+    fi
 
-            mkdir -p $(realpath $(basename "$dst"))
-            cp -vbr "$src" "$dst"
-            ;;
-        "push")
-            if ! [ -f "$dst" ] && ! [ -d "$dst" ]; then
-                continue
-            fi
+    if ! [ -f "$src" ] && ! [ -d "$src" ]; then
+        skipped=$((skipped + 1))
+        continue
+    fi
 
-            mkdir -p $(realpath $(basename "$src"))
-            cp -vbr "$dst" "$src"
-    esac
+    mkdir -p $(realpath $(basename "$dst")) && nofiles=$(cp -vbr "$src" "$dst" | wc -l)
+
+    if [ $? = 0 ]; then
+        copied=$((copied + nofiles))
+    else
+        failed=$((failed + 1))
+    fi
+
+   echo -en "\rrules $rules  copied $copied  skipped $skipped  failed $failed"
 done
+
+echo;
 
