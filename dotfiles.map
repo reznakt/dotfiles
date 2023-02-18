@@ -1,10 +1,14 @@
+# Bash
 bash/.bashrc ~/.bashrc
 bash/.inputrc ~/.inputrc
 
+# Neovim
 neovim/init.vim ~/.config/nvim/init.vim
 
+# Executable scripts
 script/ ~/.script
 
+# Miscellaneous
 misc/.mount_aisa.sh ~/.mount_aisa.sh
 misc/.mount_server.sh ~/.mount_server.sh
 
