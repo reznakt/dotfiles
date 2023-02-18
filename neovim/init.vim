@@ -33,7 +33,7 @@ set ignorecase
 set smartcase
 set noswapfile
 set nobackup
-set undodir=~/.vim/undodir
+set undodir=~/.nvim/undodir
 set undofile
 set incsearch
 set cursorline
