@@ -4,6 +4,7 @@ bash/.inputrc ~/.inputrc
 
 # Neovim
 neovim/init.vim ~/.config/nvim/init.vim
+neovim/coc-settings.json ~/.config/nvim/coc-settings.json
 
 # Executable scripts
 script/ ~/.script
