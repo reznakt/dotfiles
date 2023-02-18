@@ -3,7 +3,7 @@ bash/.inputrc ~/.inputrc
 
 neovim/init.vim ~/.config/nvim/init.vim
 
-scripts/ ~/scripts
+script/ ~/.script
 
 misc/.mount_aisa.sh ~/.mount_aisa.sh
 misc/.mount_server.sh ~/.mount_server.sh

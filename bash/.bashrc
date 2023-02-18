@@ -142,6 +142,9 @@ export PATH="$HOME/.local/bin:$PATH"
 export PNPM_HOME="$HOME/.local/share/pnpm"
 export PATH="$PNPM_HOME:$PATH"
 
+# add .script to PATH
+export PATH="$HOME/.script:$PATH"
+
 # clear all predefined aliases
 unalias -a
 
@@ -209,9 +212,6 @@ update-prompt
 
 # Aisa-specific
 if [ "$HOSTNAME" = "aisa.fi.muni.cz" ]; then
-    # add .script to PATH
-    export PATH="$HOME/.script:$PATH"
-
     # aliases
     alias kontr='/home/kontr/odevzdavam'
     
@@ -224,9 +224,6 @@ if [ "$HOSTNAME" = "aisa.fi.muni.cz" ]; then
 
 # Not on Aisa
 else
-    # add Aisa/.script to PATH
-    export PATH="$HOME/Aisa/.script:$PATH"
-
     # use apt-fast instead of apt
     if command -v "apt-fast" &> /dev/null; then
         alias apt='apt-fast'
