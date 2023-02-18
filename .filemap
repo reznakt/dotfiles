@@ -5,3 +5,6 @@ neovim/init.vim ~/.config/nvim/init.vim
 
 scripts/ ~/scripts
 
+misc/.mount_aisa.sh ~/.mount_aisa.sh
+misc/.mount_server.sh ~/.mount_server.sh
+

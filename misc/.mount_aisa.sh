@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+
+while ! ping -c 1 google.com &> /dev/null; do sleep 1; done
+sshfs -o reconnect,ServerAliveInterval=15,ServerAliveCountMax=3 xreznak@aisa.fi.muni.cz:/home/xreznak ~/mnt/Aisa
