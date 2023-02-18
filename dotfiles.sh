@@ -2,6 +2,7 @@
 
 
 FILEMAP=".filemap"
+LOG=".dotfiles.log"
 
 
 function error() {
@@ -23,6 +24,9 @@ fi
 if ! [ -f "$FILEMAP" ]; then
     error "unable to find filemap at '$FILEMAP'"
 fi
+
+
+truncate --size 0 "$LOG"
 
 
 rules=0
@@ -59,9 +63,11 @@ cat "$FILEMAP" | while read line; do
         continue
     fi
 
-    mkdir -p $(realpath $(basename "$dst")) && nofiles=$(cp -vbr "$src" "$dst" | wc -l)
+    mkdir -p $(realpath $(basename "$dst")) && files=$(cp -vbr "$src" "$dst")
 
     if [ $? = 0 ]; then
+        echo "$files" >> "$LOG"
+        nofiles=$(echo "$files" | wc -l)
         copied=$((copied + nofiles))
     else
         failed=$((failed + 1))
