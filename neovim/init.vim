@@ -105,8 +105,8 @@ Plug 'kvngvikram/rightclick-macros'                         " right-click contex
 Plug 'nvim-lualine/lualine.nvim'                            " bottom status line
 Plug 'neoclide/coc.nvim', {'branch': 'release'}             " code completion, snippets, and other
 Plug 'airblade/vim-gitgutter'                               " git diff icons in the gutter
-Plug 'kaicataldo/material.vim', {'branch': 'main'}          " material theme
-Plug 'akinsho/toggleterm.nvim', {'tag' : 'v2.2.1'}          " toggle-able terminal
+Plug 'kaicataldo/material.vim'                              " material theme
+Plug 'akinsho/toggleterm.nvim'                              " toggle-able terminal
 Plug 'm-demare/hlargs.nvim'                                 " function argument highlighting for treesitter
 Plug 'sunjon/shade.nvim'                                    " darker inactive buffers
 
@@ -291,7 +291,7 @@ require('lualine').setup {
         },
 
         lualine_b = {
-            {'branch', icons_enabled = true, icon = '⎇  ' --[[, fmt = function(str) if str == nil or str == '' then return '' else return str .. ' ' end end]]},
+            {'branch', icons_enabled = true, icon = '⎇  '},
             'diff', 
             {'diagnostics', sources = {'coc'}, update_in_insert = true}
         },
@@ -333,10 +333,6 @@ require('lualine').setup {
 require('nvim-treesitter.configs').setup {
     ensure_installed = 'all',
     sync_install = false,
-    -- packages which cause problems and are therefore disabled
-    ignore_install = {'comment', 'dart', 'elm', 'foam', 'hack', 'haskell', 'javascript', 'kotlin', 'lalrpop', 'latex',
-                        'nix', 'norg', 'php', 'rst', 'svelte', 'tlaplus', 'tsx', 'typescript', 'vim', 'racket', 'pug',
-                        'julia', 'rnoweb', 'qmljs', 'awk', 't32', 'nickel'},
 
     highlight = {
         enable = true,
