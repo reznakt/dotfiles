@@ -109,6 +109,7 @@ Plug 'kaicataldo/material.vim'                              " material theme
 Plug 'akinsho/toggleterm.nvim'                              " toggle-able terminal
 Plug 'm-demare/hlargs.nvim'                                 " function argument highlighting for treesitter
 Plug 'sunjon/shade.nvim'                                    " darker inactive buffers
+Plug 'editorconfig/editorconfig-vim'                        " support for .editorconfig files
 
 call plug#end()
 
