@@ -63,7 +63,7 @@ cat "$FILEMAP" | while read line; do
         continue
     fi
 
-    mkdir -p $(realpath $(basename "$dst")) && files=$(cp -vbr "$src" "$dst")
+    mkdir -p $(dirname "$dst") && files=$(cp -vbr "$src" "$dst")
 
     if [ $? = 0 ]; then
         echo "$files" >> "$LOG"
