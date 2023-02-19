@@ -385,7 +385,7 @@ require('gitsigns').setup {
     current_line_blame = true
 }
 
--- use make to compule all treesitter parsers
+-- use make to compile all treesitter parsers
 for _, parser in ipairs(require('nvim-treesitter.parsers').get_parser_configs()) do
   parser.install_info.use_makefile = true
 end
