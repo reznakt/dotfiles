@@ -100,16 +100,26 @@ augroup END
 " start vim-plug plugin declarations
 call plug#begin($HOME . '/.nvim/plugged')
 
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " advanced language-dependent syntax highlighting
-Plug 'kvngvikram/rightclick-macros'                         " right-click context menu with copy, cut, paste and other options
-Plug 'nvim-lualine/lualine.nvim'                            " bottom status line
-Plug 'neoclide/coc.nvim', {'branch': 'release'}             " code completion, snippets, and other
-Plug 'airblade/vim-gitgutter'                               " git diff icons in the gutter
-Plug 'kaicataldo/material.vim'                              " material theme
-Plug 'akinsho/toggleterm.nvim'                              " toggle-able terminal
-Plug 'm-demare/hlargs.nvim'                                 " function argument highlighting for treesitter
-Plug 'sunjon/shade.nvim'                                    " darker inactive buffers
-Plug 'editorconfig/editorconfig-vim'                        " support for .editorconfig files
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}   " advanced language-dependent syntax highlighting
+Plug 'kvngvikram/rightclick-macros'                           " right-click context menu with copy, cut, paste and other options
+Plug 'nvim-lualine/lualine.nvim'                              " bottom status line
+Plug 'neoclide/coc.nvim', {'branch': 'release'}               " code completion, snippets, and other
+Plug 'kaicataldo/material.vim'                                " material theme
+Plug 'akinsho/toggleterm.nvim'                                " toggle-able terminal
+Plug 'm-demare/hlargs.nvim'                                   " function argument highlighting for treesitter
+Plug 'sunjon/shade.nvim'                                      " darker inactive buffers
+Plug 'editorconfig/editorconfig-vim'                          " support for .editorconfig files
+Plug 'nvim-tree/nvim-web-devicons'                            " filetype icons
+Plug 'romgrk/barbar.nvim'                                     " buffer tabs
+Plug 'lewis6991/gitsigns.nvim'                                " git diff lines in the gutter, blame and more
+Plug 'tpope/vim-sleuth'                                       " automatically determines indentation and other settings from environment
+Plug 'tpope/vim-fugitive'                                     " git commands
+Plug 'nvim-lua/plenary.nvim'                                  " required by octo.nvim
+Plug 'nvim-telescope/telescope.nvim'                          " required by octo.nvim
+Plug 'pwntester/octo.nvim'                                    " github-cli
+Plug 'vim-test/vim-test'                                      " required by vim-ultest
+Plug 'rcarriga/vim-ultest', {'do': ':UpdateRemotePlugins'}    " use testing frameworks like pytest and jest from neovim 
+Plug 'osyo-manga/vim-brightest'                               " highlight matching words
 
 call plug#end()
 
@@ -119,6 +129,8 @@ let g:coc_global_extensions = ['coc-pairs', 'coc-python', 'coc-vimlsp', 'coc-cla
 " select material darker theme
 let g:material_terminal_italics = 1 | let g:material_theme_style = 'darker' | colorscheme material
 
+" disable ultest deprecation notice
+let g:ultest_deprecation_notice = 0
 
 " ----------------------------------------------------------------- "
 "                          Key mappings                             "
@@ -274,6 +286,8 @@ lua << END
 -- initialize plugins which do not require configuration
 require('hlargs').setup()
 require('toggleterm').setup()
+require('gitsigns').setup()
+require("octo").setup()
 
 -- lualine setup
 require('lualine').setup {
@@ -364,6 +378,10 @@ require('shade').setup {
     brightness_down  = '<C-Down>',
     toggle           = '<Leader>s',
   }
+}
+
+require('gitsigns').setup {
+    current_line_blame = true
 }
 
 END
