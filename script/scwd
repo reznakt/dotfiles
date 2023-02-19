@@ -1,1 +1,4 @@
-bash/scwd.sh
+#!/usr/bin/env bash
+
+echo $(dirname "$(realpath "$0")")
+

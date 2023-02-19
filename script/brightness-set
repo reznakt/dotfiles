@@ -1,8 +1,0 @@
-#!/usr/bin/env bash
-
-# Scriptfile for brightness-set.py created at 2023/02/18 00:46:34
-
-
-SCRIPT="min/brightness-set.py"
-source scexec
-

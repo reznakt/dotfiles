@@ -1,1 +1,4 @@
-bash/scls.sh
+#!/usr/bin/env bash
+
+ls -p $(scwd) | grep -v "/"
+

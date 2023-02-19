@@ -1,1 +1,1 @@
-bash/getip.sh
+echo $(curl -s "ifconfig.me")

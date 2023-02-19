@@ -1,8 +1,0 @@
-#!/usr/bin/env bash
-
-# Scriptfile for prekontr.py created at 2023/02/18 00:46:36
-
-
-SCRIPT="min/prekontr.py"
-source scexec
-
