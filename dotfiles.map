@@ -7,7 +7,35 @@ neovim/init.vim ~/.config/nvim/init.vim
 neovim/coc-settings.json ~/.config/nvim/coc-settings.json
 
 # Executable scripts
-script/ ~/.script
+script/asm ~/.script/asm
+script/ccat ~/.script/ccat
+script/cheat ~/.script/cheat
+script/color-table ~/.script/color-table
+script/color-test ~/.script/color-test
+script/comp ~/.script/comp
+script/dadjoke ~/.script/dadjoke
+script/ds ~/.script/ds
+script/getip ~/.script/getip
+script/incsort ~/.script/incsort
+script/ipinfo ~/.script/ipinfo
+script/ixio ~/.script/ixio
+script/line ~/.script/line
+script/moon ~/.script/moon
+script/mtu ~/.script/mtu
+script/pb071-test ~/.script/pb071-test
+script/scedit ~/.script/scedit
+script/scinit ~/.script/scinit
+script/sclib ~/.script/sclib
+script/sclocate ~/.script/sclocate
+script/scls ~/.script/scls
+script/scnew ~/.script/scnew
+script/scrm ~/.script/scrm
+script/scsetup ~/.script/scsetup
+script/scwd ~/.script/scwd
+script/stop ~/.script/stop
+script/update ~/.script/update
+script/update-nvim ~/.script/update-nvim
+script/weather ~/.script/weather
 
 # Miscellaneous
 misc/.mount_aisa.sh ~/.mount_aisa.sh
