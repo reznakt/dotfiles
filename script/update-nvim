@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+
+COMMANDS="PlugUpgrade PlugUpdate TSUpdate"
+
+for cmd in $COMMANDS; do
+    echo -n "$cmd... "
+    nvim -c "$cmd | qa!" --headless
+    echo;
+done
+
