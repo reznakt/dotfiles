@@ -7,6 +7,8 @@ neovim/init.vim ~/.config/nvim/init.vim
 neovim/coc-settings.json ~/.config/nvim/coc-settings.json
 
 # Executable scripts
+script/.scdeps ~/.script/.scdeps
+script/.sctemplate ~/.script/.sctemplate
 script/asm ~/.script/asm
 script/ccat ~/.script/ccat
 script/cheat ~/.script/cheat
