@@ -100,7 +100,7 @@ augroup END
 " start vim-plug plugin declarations
 call plug#begin($HOME . '/.nvim/plugged')
 
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}   " advanced language-dependent syntax highlighting
+Plug 'nvim-treesitter/nvim-treesitter'                        " advanced language-dependent syntax highlighting
 Plug 'kvngvikram/rightclick-macros'                           " right-click context menu with copy, cut, paste and other options
 Plug 'nvim-lualine/lualine.nvim'                              " bottom status line
 Plug 'neoclide/coc.nvim', {'branch': 'release'}               " code completion, snippets, and other
