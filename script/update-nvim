@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 
-COMMANDS="PlugUpgrade PlugUpdate TSUpdate"
+COMMANDS="PlugUpgrade PlugUpdate CocUpdateSync TSUpdateSync"
 
 for cmd in $COMMANDS; do
     echo -n "$cmd... "
