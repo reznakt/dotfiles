@@ -197,6 +197,9 @@ shopt -s histappend
 # check window size after each command and update LINES and COLUMNS
 shopt -s checkwinsize
 
+# disable core files
+ulimit -c 0
+
 # list jobs before logout (only on SSH)
 if [ -n "$SSH_CONNECTION" ]; then
     shopt -s checkjobs
@@ -215,9 +218,6 @@ if [ "$HOSTNAME" = "aisa.fi.muni.cz" ]; then
     # aliases
     alias kontr='/home/kontr/odevzdavam'
     
-    # disable core files
-    ulimit -c 0
-
     # initialize module system and load modules
     source /packages/run/modules-2.0/init/bash 2> /dev/null
     update-modules
