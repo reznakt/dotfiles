@@ -5,7 +5,7 @@
 scset "SCCHWD"
 . scinit
 
-cd "bash"
+cd "bash" || exit
 
 if [ -z "$1" ]; then
     scfatal "expected at least 1 argument"
@@ -27,10 +27,10 @@ scinfo "generating skeleton..."
     cat .sctemplate
     pyfiglet "$1" | head -n -1 | ts "# "
     echo; echo;
-} > $SCPATH 2> /dev/null
+} > "$SCPATH" 2> /dev/null
 
 scinfo "updating scripts..."
 scupdate > /dev/null
 
-scedit $1
+scedit "$1"
 

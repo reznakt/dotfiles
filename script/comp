@@ -7,4 +7,5 @@ fi
 
 out=${1%.c}
 
-gcc -std=c99 -pedantic -Wall -Wextra -o $out $1 && ./$out
+gcc -std=c99 -pedantic -Wall -Wextra -o "$out" "$1" && "./$out"
+

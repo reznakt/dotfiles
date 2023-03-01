@@ -35,7 +35,7 @@ skipped=0
 failed=0
 
 
-cat $FILEMAP | while read line; do
+cat $FILEMAP | while read -r line; do
     if [ -z "$line" ] || echo "$line" | grep -qE "^(#|\/\/).*$"; then
         continue
     fi

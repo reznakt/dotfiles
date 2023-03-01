@@ -14,8 +14,8 @@ if isunset "$1"; then
 fi
 
 for i in {1..65535..1}; do
-	if ! ping -M do -s "$i" -c 1 -W 5 "$1" &> /dev/null; then
-        echo $(date +"%Y-%m-%d %H:%M:%S") $(($i + 28 - 1))
+	if ! ping -M "do" -s "$i" -c 1 -W 5 "$1" &> /dev/null; then
+        echo "$(date +"%Y-%m-%d %H:%M:%S")" $(("$i" + 28 - 1))
 		break
 	fi
 done

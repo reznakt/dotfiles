@@ -5,18 +5,19 @@
 scset "SCCHWD"
 . scinit
 
-cd "bash"
+cd "bash" || exit
 
 if [ ! -f .scdeps ]; then
     touch .scdeps
     exit 0
 fi
 
-export SCDEPS=$(cat .scdeps)
+SCDEPS=$(cat .scdeps)
+export SCDEPS
 
 for package in $SCDEPS; do
     echo "Installing prerequisite $package..."
-    sudo apt -qq install $package
+    sudo apt -qq install "$package"
     echo;
 done
 

@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 
-echo $(dirname "$(realpath "$0")")
+dirname "$(realpath "$0")"
 
