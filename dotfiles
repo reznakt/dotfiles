@@ -2,7 +2,7 @@
 
 
 FILEMAP="dotfiles.map"
-LOG="dotfiles.log"
+LOG=".dotfiles.log"
 
 
 function error() {
@@ -35,13 +35,13 @@ skipped=0
 failed=0
 
 
-cat "$FILEMAP" | while read line; do
+cat $FILEMAP | while read line; do
     if [ -z "$line" ] || echo "$line" | grep -qE "^(#|\/\/).*$"; then
         continue
     fi
 
-    src=$(echo $line | cut -s -d " " -f 1)
-    dst=$(echo $line | cut -s -d " " -f 2)
+    src=$(echo "$line" | cut -s -d " " -f 1)
+    dst=$(echo "$line" | cut -s -d " " -f 2)
 
     if [ -z "$src" ] || [ -z "$dst" ]; then
         error "unsupported format in $FILEMAP ($line)"
@@ -63,7 +63,7 @@ cat "$FILEMAP" | while read line; do
         continue
     fi
 
-    mkdir -p $(dirname "$dst") && files=$(cp -vbr "$src" "$dst")
+    mkdir -p "$(dirname "$dst")" && files=$(cp -vbr "$src" "$dst")
 
     if [ $? = 0 ]; then
         echo "$files" >> "$LOG"
