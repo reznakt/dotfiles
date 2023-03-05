@@ -160,9 +160,9 @@ alias grep='grep --color=auto'
 alias ls='ls --color=auto'
 
 # ls aliases
-alias la='ls -a'
+alias la='ls -A'
 alias ll='ls -oF --si --group-directories-first --time-style="+%Y-%m-%d %H:%M:%S"'
-alias lla='ll -a'
+alias lla='ll -A'
 
 # common aliases
 alias python='python3'
