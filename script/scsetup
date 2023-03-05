@@ -5,15 +5,12 @@
 scset "SCCHWD"
 . scinit
 
-cd "bash" || exit
-
 if [ ! -f .scdeps ]; then
     touch .scdeps
     exit 0
 fi
 
 SCDEPS=$(cat .scdeps)
-export SCDEPS
 
 for package in $SCDEPS; do
     echo "Installing prerequisite $package..."
