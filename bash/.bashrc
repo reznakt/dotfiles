@@ -224,7 +224,7 @@ if [ "$HOSTNAME" = "aisa.fi.muni.cz" ]; then
     alias kontr='/home/kontr/odevzdavam'
     
     # initialize module system and load modules
-    source /packages/run/modules-2.0/init/bash 2> /dev/null
+    . /packages/run/modules-2.0/init/bash 2> /dev/null
     update-modules
 
 # Not on Aisa
