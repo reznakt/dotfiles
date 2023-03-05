@@ -5,13 +5,12 @@
 scset "SCCHWD"
 . scinit
 
-cd "bash" || exit
 
 if [ -z "$1" ]; then
     scfatal "expected at least 1 argument"
 fi
 
-SCPATH="$1.sh"
+SCPATH="$1"
 
 if [ -f "$SCPATH" ]; then
     scfatal "script $1 already exists, use scedit"
@@ -29,8 +28,6 @@ scinfo "generating skeleton..."
     echo; echo;
 } > "$SCPATH" 2> /dev/null
 
-scinfo "updating scripts..."
-scupdate > /dev/null
-
+chmod +x "$1"
 scedit "$1"
 
