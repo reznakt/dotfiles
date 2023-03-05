@@ -44,7 +44,8 @@ cat $FILEMAP | while read -r line; do
     dst=$(echo "$line" | cut -s -d " " -f 2)
 
     if [ -z "$src" ] || [ -z "$dst" ]; then
-        error "unsupported format in $FILEMAP ($line)"
+        echo;
+        error "unsupported format in $FILEMAP:$(grep -n "^$line$" "$FILEMAP" | cut -d ":" -f1): '$line'"
     fi
 
     rules=$((rules + 1))
