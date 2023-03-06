@@ -23,6 +23,8 @@ script/ipinfo ~/.script/ipinfo
 script/ixio ~/.script/ixio
 script/line ~/.script/line
 script/moon ~/.script/moon
+script/mount-aisa ~/.script/mount-aisa
+script/mount-server ~/.script/mount-server
 script/mtu ~/.script/mtu
 script/pb071-test ~/.script/pb071-test
 script/scedit ~/.script/scedit
@@ -38,8 +40,4 @@ script/stop ~/.script/stop
 script/update ~/.script/update
 script/update-nvim ~/.script/update-nvim
 script/weather ~/.script/weather
-
-# Miscellaneous
-misc/.mount_aisa.sh ~/.mount_aisa.sh
-misc/.mount_server.sh ~/.mount_server.sh
 
