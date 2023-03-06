@@ -41,3 +41,6 @@ script/update ~/.script/update
 script/update-nvim ~/.script/update-nvim
 script/weather ~/.script/weather
 
+# Miscellaneous
+misc/.modules ~/.modules
+
