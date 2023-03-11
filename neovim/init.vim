@@ -126,7 +126,7 @@ Plug 'mg979/vim-visual-multi', {'branch': 'master'}           " multiple cursors
 call plug#end()
 
 " COC extensions
-let g:coc_global_extensions = ['coc-pairs', 'coc-python', 'coc-vimlsp', 'coc-clangd', 'coc-dot-complete', 'coc-snippets', 'coc-sh', 'coc-highlight', 'coc-prettier', 'coc-json', 'coc-yaml', 'coc-tsserver']
+let g:coc_global_extensions = ['coc-pairs', 'coc-python', 'coc-vimlsp', 'coc-clangd', 'coc-dot-complete', 'coc-snippets', 'coc-sh', 'coc-highlight', 'coc-prettier', 'coc-json', 'coc-yaml', 'coc-tsserver', 'coc-markdownlint', 'coc-eslint', 'coc-css', 'coc-html', 'coc-emmet', 'coc-git', 'coc-yank', 'coc-toml', 'coc-cmake']
 
 " select material darker theme
 let g:material_terminal_italics = 1 | let g:material_theme_style = 'darker' | colorscheme material
