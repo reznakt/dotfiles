@@ -120,6 +120,8 @@ Plug 'pwntester/octo.nvim'                                    " github-cli
 Plug 'vim-test/vim-test'                                      " required by vim-ultest
 Plug 'rcarriga/vim-ultest', {'do': ':UpdateRemotePlugins'}    " use testing frameworks like pytest and jest from neovim 
 Plug 'osyo-manga/vim-brightest'                               " highlight matching words
+Plug 'norcalli/nvim-colorizer.lua'                            " render RGB colors
+Plug 'mg979/vim-visual-multi', {'branch': 'master'}           " multiple cursors
 
 call plug#end()
 
@@ -288,6 +290,7 @@ require('hlargs').setup()
 require('toggleterm').setup()
 require('gitsigns').setup()
 require("octo").setup()
+require('colorizer').setup()
 
 -- lualine setup
 require('lualine').setup {
@@ -389,6 +392,7 @@ require('gitsigns').setup {
 for _, parser in ipairs(require('nvim-treesitter.parsers').get_parser_configs()) do
   parser.install_info.use_makefile = true
 end
+
 
 END
 
