@@ -47,7 +47,7 @@ set autoread
 set noshowmode
 set signcolumn=yes
 set backspace=indent,eol,start
-set updatetime=50 
+set updatetime=50
 
 " limit number of suggestions in COC
 set pumheight=20
@@ -122,6 +122,7 @@ Plug 'rcarriga/vim-ultest', {'do': ':UpdateRemotePlugins'}    " use testing fram
 Plug 'osyo-manga/vim-brightest'                               " highlight matching words
 Plug 'norcalli/nvim-colorizer.lua'                            " render RGB colors
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}           " multiple cursors
+Plug 'lukas-reineke/indent-blankline.nvim'                    " indent guides
 
 call plug#end()
 
@@ -133,6 +134,7 @@ let g:material_terminal_italics = 1 | let g:material_theme_style = 'darker' | co
 
 " disable ultest deprecation notice
 let g:ultest_deprecation_notice = 0
+
 
 " ----------------------------------------------------------------- "
 "                          Key mappings                             "
@@ -393,6 +395,10 @@ for _, parser in ipairs(require('nvim-treesitter.parsers').get_parser_configs())
   parser.install_info.use_makefile = true
 end
 
+-- indent guides setup
+require("indent_blankline").setup {
+    space_char_blankline = " ",
+}
 
 END
 
