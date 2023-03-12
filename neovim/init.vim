@@ -117,8 +117,6 @@ Plug 'tpope/vim-fugitive'                                     " git commands
 Plug 'nvim-lua/plenary.nvim'                                  " required by octo.nvim
 Plug 'nvim-telescope/telescope.nvim'                          " required by octo.nvim
 Plug 'pwntester/octo.nvim'                                    " github-cli
-Plug 'vim-test/vim-test'                                      " required by vim-ultest
-Plug 'rcarriga/vim-ultest', {'do': ':UpdateRemotePlugins'}    " use testing frameworks like pytest and jest from neovim 
 Plug 'osyo-manga/vim-brightest'                               " highlight matching words
 Plug 'norcalli/nvim-colorizer.lua'                            " render RGB colors
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}           " multiple cursors
