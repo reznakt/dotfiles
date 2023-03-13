@@ -38,6 +38,7 @@ script/scsetup ~/.script/scsetup
 script/scwd ~/.script/scwd
 script/stop ~/.script/stop
 script/update ~/.script/update
+script/update-dotfiles ~/.script/update-dotfiles
 script/update-nvim ~/.script/update-nvim
 script/weather ~/.script/weather
 

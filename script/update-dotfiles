@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+#                   _       _                 _       _    __ _ _           
+#   _   _ _ __   __| | __ _| |_ ___        __| | ___ | |_ / _(_) | ___  ___ 
+#  | | | | '_ \ / _` |/ _` | __/ _ \_____ / _` |/ _ \| __| |_| | |/ _ \/ __|
+#  | |_| | |_) | (_| | (_| | ||  __/_____| (_| | (_) | |_|  _| | |  __/\__ \
+#   \__,_| .__/ \__,_|\__,_|\__\___|      \__,_|\___/ \__|_| |_|_|\___||___/
+#        |_|                                                                
+
+
+. sclib
+
+scset "SCERR"
+. scinit
+
+
+REMOTE=https://github.com/reznakt/dotfiles.git
+TEMPDIR=$(mktemp -d)
+
+
+echo "fetching from $REMOTE..."
+
+git clone -q $REMOTE $TEMPDIR --depth=1
+
+cd $TEMPDIR || exit
+
+./dotfiles pull
+
+rm -rf $TEMPDIR
+
