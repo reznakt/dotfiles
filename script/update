@@ -16,6 +16,11 @@ if command -v apt &> /dev/null; then
 fi
 
 
+if command -v update-dotfiles &> /dev/null; then
+	update-dotfiles
+fi
+
+
 if isset $APTCMD; then
 	sudo $APTCMD update -y
 	sudo $APTCMD full-upgrade -y
@@ -42,5 +47,10 @@ fi
 
 if command -v pnpm &> /dev/null; then
 	pnpm update -g
+fi
+
+
+if command -v update-nvim &> /dev/null; then
+	update-nvim
 fi
 
