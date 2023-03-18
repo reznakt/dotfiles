@@ -16,6 +16,8 @@ if command -v update-dotfiles &> /dev/null; then
 	update-dotfiles
 fi
 
+echo;
+
 
 if command -v update-packages &> /dev/null; then
 	update-packages

@@ -4,7 +4,7 @@
 sudo true
 
 
-echo -e "\033[35mChecking for package managers\033[0m\n"
+echo -e "\033[35mChecking for package managers\033[0m"
 
 
 package_managers=("apt-fast" "apt" "yum" "pacman" "apk" "dnf" "zypper" "eopkg" "dnfdragora" "yay" "xbps-install" "brew" "port" "guix" "opkg" "ipkg" "entware" "npm" "pnpm" "flatpak")
