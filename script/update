@@ -7,13 +7,7 @@ scset "SCERR"
 . scinit
 
 
-if command -v apt-fast &> /dev/null; then
-	APTCMD="apt-fast"
-fi
-
-if command -v apt &> /dev/null; then
-	APTCMD="apt"
-fi
+sudo true
 
 
 if command -v update-dotfiles &> /dev/null; then
@@ -21,32 +15,8 @@ if command -v update-dotfiles &> /dev/null; then
 fi
 
 
-if isset $APTCMD; then
-	sudo $APTCMD update -y
-	sudo $APTCMD full-upgrade -y
-	sudo $APTCMD autoremove -y
-	sudo $APTCMD clean -y
-	sudo $APTCMD autoclean -y
-fi
-
-
-if command -v xbps-install &> /dev/null; then
-	sudo xbps-install -Suy
-fi
-
-
-if command -v flatpak &> /dev/null; then
-	sudo flatpak update -y
-fi
-
-
-if command -v npm &> /dev/null; then
-	sudo npm update -g --no-audit --no-fund
-fi
-
-
-if command -v pnpm &> /dev/null; then
-	pnpm update -g
+if command -v update-packages &> /dev/null; then
+	update-packages
 fi
 
 

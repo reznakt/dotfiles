@@ -1,0 +1,94 @@
+#!/usr/bin/env bash
+
+
+sudo true
+
+
+echo -e "\033[35mChecking for package managers\033[0m\n"
+
+
+package_managers=("apt-fast" "apt" "yum" "pacman" "apk" "dnf" "zypper" "eopkg" "dnfdragora" "yay" "xbps-install" "brew" "port" "guix" "opkg" "ipkg" "entware" "npm" "pnpm" "flatpak")
+available_package_managers=()
+
+
+for pm in "${package_managers[@]}"; do
+    if command -v "$pm" &> /dev/null; then
+        echo -e "\e[32m✔\e[0m $pm"
+        available_package_managers+=("$pm")
+    else
+        echo -e "\e[31m✘\e[0m $pm"
+    fi
+done
+
+
+for pm in "${available_package_managers[@]}"; do
+    echo -e "\n\033[35mUpdating packages using $pm...\033[0m"
+    case "$pm" in
+        "apt-fast")
+            sudo apt-fast update && sudo apt-fast upgrade -y
+            sudo apt-fast autoremove -y
+            sudo apt-fast clean -y
+            ;;
+        "apt")
+            sudo apt update && sudo apt upgrade -y
+            sudo apt autoremove -y
+            sudo apt clean -y
+            ;;
+        "yum")
+            sudo yum update -y
+            ;;
+        "pacman")
+            sudo pacman -Syu --noconfirm
+            ;;
+        "apk")
+            sudo apk update && sudo apk upgrade -U -a
+            ;;
+        "dnf")
+            sudo dnf upgrade -y
+            ;;
+        "zypper")
+            sudo zypper update -y
+            ;;
+        "eopkg")
+            sudo eopkg upgrade -y
+            ;;
+        "dnfdragora")
+            sudo dnfdragora-updater
+            ;;
+        "yay")
+            yay -Syu --noconfirm
+            ;;
+        "xbps-install")
+            sudo xbps-install -Suy
+            ;;
+        "brew")
+            brew update && brew upgrade
+            ;;
+        "port")
+            sudo port selfupdate && sudo port upgrade outdated
+            ;;
+        "guix")
+            guix pull && guix package -u
+            ;;
+        "opkg")
+            sudo opkg update && sudo opkg upgrade
+            ;;
+        "ipkg")
+            sudo ipkg update && sudo ipkg upgrade
+            ;;
+        "entware")
+            opkg update && opkg upgrade
+            ;;
+        "npm")
+            sudo npm update -g
+            ;;
+        "pnpm")
+            sudo pnpm update -g
+            pnpm update -g
+            ;;
+        "flatpak")
+            sudo flatpak update
+            ;;
+    esac
+done
+
