@@ -87,7 +87,7 @@ for pm in "${available_package_managers[@]}"; do
             pnpm update -g
             ;;
         "flatpak")
-            sudo flatpak update
+            sudo flatpak update -y
             ;;
     esac
 done
