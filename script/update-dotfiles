@@ -19,11 +19,11 @@ TEMPDIR=$(mktemp -d)
 
 echo "fetching from $REMOTE..."
 
-git clone -q $REMOTE $TEMPDIR --depth=1
+git clone -q $REMOTE "$TEMPDIR" --depth=1
 
-cd $TEMPDIR || exit
+cd "$TEMPDIR" || exit
 
 ./dotfiles pull
 
-rm -rf $TEMPDIR
+rm -rf "$TEMPDIR"
 
