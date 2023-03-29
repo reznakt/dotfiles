@@ -121,6 +121,7 @@ Plug 'osyo-manga/vim-brightest'                               " highlight matchi
 Plug 'norcalli/nvim-colorizer.lua'                            " render RGB colors
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}           " multiple cursors
 Plug 'lukas-reineke/indent-blankline.nvim'                    " indent guides
+Plug 'github/copilot.vim'                                     " Github Copilot (AI code completion)
 
 call plug#end()
 
