@@ -139,6 +139,9 @@ let g:ultest_deprecation_notice = 0
 "                          Key mappings                             "
 " ----------------------------------------------------------------- "
 
+" enable highlighting of all text using Ctrl+A
+nnoremap <C-a> ggVG
+
 " enable arrow keys in wildmenu
 set wildcharm=<C-Z>
 cnoremap <expr> <up> wildmenumode() ? "\<left>" : "\<up>"
