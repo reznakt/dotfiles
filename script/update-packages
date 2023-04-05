@@ -22,6 +22,11 @@ done
 
 
 for pm in "${available_package_managers[@]}"; do
+    # skip apt if apt-fast is available
+    if [[ "$pm" == "apt" ]] && [[ " ${available_package_managers[@]} " =~ "apt-fast" ]]; then
+        continue
+    fi
+
     echo -e "\n\033[35mUpdating packages using $pm...\033[0m"
     case "$pm" in
         "apt-fast")
