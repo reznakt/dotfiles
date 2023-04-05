@@ -7,7 +7,7 @@ sudo true
 echo -e "\033[35mChecking for package managers\033[0m"
 
 
-package_managers=("apt-fast" "apt" "yum" "pacman" "apk" "dnf" "zypper" "eopkg" "dnfdragora" "yay" "xbps-install" "brew" "port" "guix" "opkg" "ipkg" "entware" "npm" "pnpm" "flatpak")
+package_managers=("apt-fast" "apt" "xbps-install" "npm" "pnpm" "flatpak")
 available_package_managers=()
 
 
@@ -34,50 +34,8 @@ for pm in "${available_package_managers[@]}"; do
             sudo apt autoremove -y
             sudo apt clean -y
             ;;
-        "yum")
-            sudo yum update -y
-            ;;
-        "pacman")
-            sudo pacman -Syu --noconfirm
-            ;;
-        "apk")
-            sudo apk update && sudo apk upgrade -U -a
-            ;;
-        "dnf")
-            sudo dnf upgrade -y
-            ;;
-        "zypper")
-            sudo zypper update -y
-            ;;
-        "eopkg")
-            sudo eopkg upgrade -y
-            ;;
-        "dnfdragora")
-            sudo dnfdragora-updater
-            ;;
-        "yay")
-            yay -Syu --noconfirm
-            ;;
         "xbps-install")
             sudo xbps-install -Suy
-            ;;
-        "brew")
-            brew update && brew upgrade
-            ;;
-        "port")
-            sudo port selfupdate && sudo port upgrade outdated
-            ;;
-        "guix")
-            guix pull && guix package -u
-            ;;
-        "opkg")
-            sudo opkg update && sudo opkg upgrade
-            ;;
-        "ipkg")
-            sudo ipkg update && sudo ipkg upgrade
-            ;;
-        "entware")
-            opkg update && opkg upgrade
             ;;
         "npm")
             sudo npm update -g
