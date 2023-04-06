@@ -1,3 +1,7 @@
+# Dotfiles mapping configuration file
+# Usage: src dest [command]
+
+
 # Bash
 bash/.bashrc ~/.bashrc . ~/.bashrc
 bash/.inputrc ~/.inputrc
