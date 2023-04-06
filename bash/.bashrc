@@ -175,6 +175,7 @@ alias untar='tar -xvf'
 alias cc='gcc'
 alias ssh='ssh -kY 2> /dev/null'
 alias where='whereis'
+alias ip='ip --color=auto'
 
 
 # set default editor to neovim
