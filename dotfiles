@@ -33,15 +33,17 @@ rules=0
 copied=0
 skipped=0
 failed=0
+triggers=()
 
 
-cat $FILEMAP | while read -r line; do
+while read -r line; do
     if [ -z "$line" ] || echo "$line" | grep -qE "^(#|\/\/).*$"; then
         continue
     fi
 
     src=$(echo "$line" | cut -s -d " " -f 1)
     dst=$(echo "$line" | cut -s -d " " -f 2)
+    trigger=$(echo "$line" | cut -s -d " " -f 3-)
 
     if [ -z "$src" ] || [ -z "$dst" ]; then
         echo;
@@ -52,6 +54,7 @@ cat $FILEMAP | while read -r line; do
 
     src="${src/#\~/$HOME}"
     dst="${dst/#\~/$HOME}"
+    trigger="${trigger/#\~/$HOME}"
 
     if [ "$1" = "push" ]; then
         tmp="$dst"
@@ -70,12 +73,32 @@ cat $FILEMAP | while read -r line; do
         echo "$files" >> "$LOG"
         nofiles=$(echo "$files" | wc -l)
         copied=$((copied + nofiles))
+
+        if [ -n "$trigger" ]; then
+            triggers+=("$trigger")
+        fi
     else
         failed=$((failed + 1))
     fi
 
    echo -en "\rrules $rules  copied $copied  skipped $skipped  failed $failed"
-done
+done < "$FILEMAP"
+
 
 echo;
+
+
+if [ ${#triggers[@]} -gt 0 ]; then
+    echo -n "processing triggers... 0/${#triggers[@]}"
+
+    for i in "${!triggers[@]}"; do
+        if ! eval "${triggers[$i]}" > /dev/null 2>&1; then
+            echo;
+            error "failed to execute trigger '${triggers[$i]}'"
+        fi
+        echo -en "\rprocessing triggers... $((i + 1))/${#triggers[@]}"
+    done
+
+    echo;
+fi
 

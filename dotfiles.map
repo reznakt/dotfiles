@@ -1,5 +1,5 @@
 # Bash
-bash/.bashrc ~/.bashrc
+bash/.bashrc ~/.bashrc . ~/.bashrc
 bash/.inputrc ~/.inputrc
 
 # Neovim
@@ -44,5 +44,5 @@ script/update-nvim ~/.script/update-nvim
 script/weather ~/.script/weather
 
 # Miscellaneous
-misc/.modules ~/.modules
+misc/.modules ~/.modules command -v module >/dev/null 2>&1 && update-modules || true
 
