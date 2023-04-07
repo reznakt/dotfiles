@@ -3,7 +3,7 @@
 
 
 # Bash
-bash/.bashrc ~/.bashrc . ~/.bashrc
+bash/.bashrc ~/.bashrc eval $(tail ~/.bashrc -n +13)
 bash/.inputrc ~/.inputrc
 
 # Neovim
