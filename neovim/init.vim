@@ -100,28 +100,29 @@ augroup END
 " start vim-plug plugin declarations
 call plug#begin($HOME . '/.nvim/plugged')
 
-Plug 'nvim-treesitter/nvim-treesitter'                        " advanced language-dependent syntax highlighting
-Plug 'kvngvikram/rightclick-macros'                           " right-click context menu with copy, cut, paste and other options
-Plug 'nvim-lualine/lualine.nvim'                              " bottom status line
-Plug 'neoclide/coc.nvim', {'branch': 'release'}               " code completion, snippets, and other
-Plug 'kaicataldo/material.vim'                                " material theme
-Plug 'akinsho/toggleterm.nvim'                                " toggle-able terminal
-Plug 'm-demare/hlargs.nvim'                                   " function argument highlighting for treesitter
-Plug 'sunjon/shade.nvim'                                      " darker inactive buffers
-Plug 'editorconfig/editorconfig-vim'                          " support for .editorconfig files
-Plug 'nvim-tree/nvim-web-devicons'                            " filetype icons
-Plug 'romgrk/barbar.nvim'                                     " buffer tabs
-Plug 'lewis6991/gitsigns.nvim'                                " git diff lines in the gutter, blame and more
-Plug 'tpope/vim-sleuth'                                       " automatically determines indentation and other settings from environment
-Plug 'tpope/vim-fugitive'                                     " git commands
-Plug 'nvim-lua/plenary.nvim'                                  " required by octo.nvim
-Plug 'nvim-telescope/telescope.nvim'                          " required by octo.nvim
-Plug 'pwntester/octo.nvim'                                    " github-cli
-Plug 'osyo-manga/vim-brightest'                               " highlight matching words
-Plug 'norcalli/nvim-colorizer.lua'                            " render RGB colors
-Plug 'mg979/vim-visual-multi', {'branch': 'master'}           " multiple cursors
-Plug 'lukas-reineke/indent-blankline.nvim'                    " indent guides
-Plug 'github/copilot.vim'                                     " Github Copilot (AI code completion)
+Plug 'nvim-treesitter/nvim-treesitter'                                    " advanced language-dependent syntax highlighting
+Plug 'kvngvikram/rightclick-macros'                                       " right-click context menu with copy, cut, paste and other options
+Plug 'nvim-lualine/lualine.nvim'                                          " bottom status line
+Plug 'neoclide/coc.nvim', {'branch': 'release'}                           " code completion, snippets, and other
+Plug 'kaicataldo/material.vim'                                            " material theme
+Plug 'akinsho/toggleterm.nvim'                                            " toggle-able terminal
+Plug 'm-demare/hlargs.nvim'                                               " function argument highlighting for treesitter
+Plug 'sunjon/shade.nvim'                                                  " darker inactive buffers
+Plug 'editorconfig/editorconfig-vim'                                      " support for .editorconfig files
+Plug 'nvim-tree/nvim-web-devicons'                                        " filetype icons
+Plug 'romgrk/barbar.nvim'                                                 " buffer tabs
+Plug 'lewis6991/gitsigns.nvim'                                            " git diff lines in the gutter, blame and more
+Plug 'tpope/vim-sleuth'                                                   " automatically determines indentation and other settings from environment
+Plug 'tpope/vim-fugitive'                                                 " git commands
+Plug 'nvim-lua/plenary.nvim'                                              " required by octo.nvim
+Plug 'nvim-telescope/telescope.nvim'                                      " required by octo.nvim
+Plug 'pwntester/octo.nvim'                                                " github-cli
+Plug 'osyo-manga/vim-brightest'                                           " highlight matching words
+Plug 'norcalli/nvim-colorizer.lua'                                        " render RGB colors
+Plug 'mg979/vim-visual-multi', {'branch': 'master'}                       " multiple cursors
+Plug 'lukas-reineke/indent-blankline.nvim'                                " indent guides
+Plug 'github/copilot.vim'                                                 " Github Copilot (AI code completion)
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }   " live markdown preview in the browser
 
 call plug#end()
 
