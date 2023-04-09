@@ -23,7 +23,7 @@ done
 
 for pm in "${available_package_managers[@]}"; do
     # skip apt if apt-fast is available
-    if [[ "$pm" == "apt" ]] && [[ " ${available_package_managers[@]} " =~ "apt-fast" ]]; then
+    if [[ "$pm" == "apt" ]] && [[ " ${available_package_managers[*]} " =~ "apt-fast" ]]; then
         continue
     fi
 
