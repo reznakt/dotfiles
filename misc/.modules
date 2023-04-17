@@ -11,4 +11,3 @@ cmake
 git
 shellcheck-0.8.0
 clion
-nodejs-14.15.1
