@@ -2,8 +2,6 @@
 
 
 . sclib
-
-scset "SCERR"
 . scinit
 
 
