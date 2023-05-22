@@ -7,7 +7,7 @@ sudo true
 echo -e "\033[35mChecking for package managers\033[0m"
 
 
-package_managers=("apt" "xbps-install" "npm" "pnpm" "flatpak")
+package_managers=("apt" "xbps-install" "npm" "pnpm" "flatpak" "snap")
 available_package_managers=()
 
 
@@ -41,6 +41,9 @@ for pm in "${available_package_managers[@]}"; do
             ;;
         "flatpak")
             sudo flatpak update -y
+            ;;
+        "snap")
+            sudo snap refresh
             ;;
     esac
 done
