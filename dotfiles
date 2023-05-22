@@ -88,7 +88,7 @@ done < "$FILEMAP"
 echo;
 
 
-if [ ${#triggers[@]} -gt 0 ]; then
+if [ "$1" = "pull" ] && [ ${#triggers[@]} -gt 0 ]; then
     echo -n "processing triggers... 0/${#triggers[@]}"
 
     for i in "${!triggers[@]}"; do
