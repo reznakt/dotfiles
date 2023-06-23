@@ -109,12 +109,6 @@ function git() {
         return
     fi
 
-    if [ "$1" = "pull" ]; then 
-        shift 1
-        command git pull --rebase --stat --verbose --progress "$@"
-        return
-    fi
-    
     command git "$@"
 }
 
