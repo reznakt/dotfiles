@@ -170,6 +170,7 @@ alias cc='gcc'
 alias ssh='ssh -kY 2> /dev/null'
 alias where='whereis'
 alias ip='ip --color=auto'
+alias whois='whois -H'
 
 
 # set default editor to neovim
