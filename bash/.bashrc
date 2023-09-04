@@ -122,17 +122,6 @@ function pstree() {
 }
 
 
-# colored man pages
-LESS_TERMCAP_md=$(tput bold; tput setaf 4)   # primary - blue, bold
-LESS_TERMCAP_me=$(tput sgr0)                 # primary end - reset
-LESS_TERMCAP_us=$(tput bold; tput setaf 2)   # secondary - green, bold
-LESS_TERMCAP_ue=$(tput sgr0)                 # secondary end - reset
-LESS_TERMCAP_so=$(tput bold; tput setaf 1)   # status line - red, bold
-LESS_TERMCAP_se=$(tput rmso; tput sgr0)      # status line end - reset
-
-export LESS_TERMCAP_md LESS_TERMCAP_me LESS_TERMCAP_us LESS_TERMCAP_ue \
-    LESS_TERMCAP_so LESS_TERMCAP_se
-
 # prepend to PATH
 export PATH="/usr/sbin:/sbin:/usr/etc:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
@@ -171,6 +160,11 @@ alias ssh='ssh -kY 2> /dev/null'
 alias where='whereis'
 alias ip='ip --color=auto'
 alias whois='whois -H'
+alias bat='batcat'
+
+
+export BAT_THEME="TwoDark"
+export MANPAGER="sh -c 'col -bx | batcat -l man -p'"
 
 
 # set default editor to neovim
@@ -222,12 +216,5 @@ if [ "$HOSTNAME" = "aisa.fi.muni.cz" ]; then
     # initialize module system and load modules
     . /packages/run/modules-2.0/init/bash 2> /dev/null
     update-modules
-
-# Not on Aisa
-else
-    # use apt-fast instead of apt
-    if command -v "apt-fast" &> /dev/null; then
-        alias apt='apt-fast'
-    fi
 fi
 
