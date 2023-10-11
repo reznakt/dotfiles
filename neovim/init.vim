@@ -120,7 +120,7 @@ Plug 'pwntester/octo.nvim'                                                " gith
 Plug 'osyo-manga/vim-brightest'                                           " highlight matching words
 Plug 'norcalli/nvim-colorizer.lua'                                        " render RGB colors
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}                       " multiple cursors
-Plug 'lukas-reineke/indent-blankline.nvim'                                " indent guides
+Plug 'lukas-reineke/indent-blankline.nvim', {'tag': 'v2.20.8'}            " indent guides
 Plug 'github/copilot.vim'                                                 " Github Copilot (AI code completion)
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }   " live markdown preview in the browser
 
