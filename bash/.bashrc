@@ -160,7 +160,10 @@ alias ssh='ssh -kY 2> /dev/null'
 alias where='whereis'
 alias ip='ip --color=auto'
 alias whois='whois -H'
-alias bat='batcat'
+
+if command -v batcat &> /dev/null && ! command -v bat &> /dev/null; then
+    alias bat='batcat'
+fi
 
 
 export BAT_THEME="TwoDark"
