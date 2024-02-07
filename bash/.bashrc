@@ -148,7 +148,6 @@ alias ll='ls -oF --si --group-directories-first --time-style="+%Y-%m-%d %H:%M:%S
 alias lla='ll -A'
 
 # common aliases
-alias python='python3'
 alias ipython='ptipython --vi'
 alias ta='[ -z "$TMUX"  ] && { tmux attach || exec tmux new-session; clear; }'
 alias td='clear && tmux detach && clear'
