@@ -122,6 +122,17 @@ function pstree() {
 }
 
 
+# colored man pages
+LESS_TERMCAP_md=$(tput bold; tput setaf 4)   # primary - blue, bold
+LESS_TERMCAP_me=$(tput sgr0)                 # primary end - reset
+LESS_TERMCAP_us=$(tput bold; tput setaf 2)   # secondary - green, bold
+LESS_TERMCAP_ue=$(tput sgr0)                 # secondary end - reset
+LESS_TERMCAP_so=$(tput bold; tput setaf 1)   # status line - red, bold
+LESS_TERMCAP_se=$(tput rmso; tput sgr0)      # status line end - reset
+
+export LESS_TERMCAP_md LESS_TERMCAP_me LESS_TERMCAP_us LESS_TERMCAP_ue \
+    LESS_TERMCAP_so LESS_TERMCAP_se
+
 # prepend to PATH
 export PATH="/usr/sbin:/sbin:/usr/etc:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
@@ -159,14 +170,6 @@ alias ssh='ssh -kY 2> /dev/null'
 alias where='whereis'
 alias ip='ip --color=auto'
 alias whois='whois -H'
-
-if command -v batcat &> /dev/null && ! command -v bat &> /dev/null; then
-    alias bat='batcat'
-fi
-
-
-export BAT_THEME="TwoDark"
-export MANPAGER="sh -c 'col -bx | batcat -l man -p'"
 
 
 # set default editor to neovim
