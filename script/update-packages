@@ -30,7 +30,8 @@ for pm in "${available_package_managers[@]}"; do
             sudo apt clean -y
             ;;
         "xbps-install")
-            sudo xbps-install -Suy
+            sudo xbps-install -S && sudo xbps-install -uy xbps && sudo xbps-install -uy
+            sudo xbps-remove -ORoy
             ;;
         "npm")
             sudo npm update -g
