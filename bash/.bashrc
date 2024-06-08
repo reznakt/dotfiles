@@ -157,19 +157,13 @@ alias ls='ls --color=auto'
 alias la='ls -A'
 alias ll='ls -oF --si --group-directories-first --time-style="+%Y-%m-%d %H:%M:%S"'
 alias lla='ll -A'
-
-# common aliases
-alias ipython='ptipython --vi'
-alias ta='[ -z "$TMUX"  ] && { tmux attach || exec tmux new-session; clear; }'
-alias td='clear && tmux detach && clear'
-alias valgrind='colour-valgrind --tool=memcheck --leak-check=full --show-leak-kinds=all --track-origins=yes --show-reachable=yes --track-fds=yes -s'
-alias stackusage='colour-valgrind --tool=drd --show-stack-usage=yes'
-alias untar='tar -xvf'
-alias cc='gcc'
-alias ssh='ssh -kY 2> /dev/null'
-alias where='whereis'
 alias ip='ip --color=auto'
-alias whois='whois -H'
+
+# valgrind aliases
+if command -v colour-valgrind &> /dev/null; then
+    alias valgrind='colour-valgrind --tool=memcheck --leak-check=full --show-leak-kinds=all --track-origins=yes --show-reachable=yes --track-fds=yes -s'
+    alias stackusage='colour-valgrind --tool=drd --show-stack-usage=yes'
+fi
 
 
 # set default editor to neovim
@@ -215,9 +209,6 @@ update-prompt
 
 # Aisa-specific
 if [ "$HOSTNAME" = "aisa.fi.muni.cz" ]; then
-    # aliases
-    alias kontr='/home/kontr/odevzdavam'
-    
     # initialize module system and load modules
     . /packages/run/modules-2.0/init/bash 2> /dev/null
     update-modules
