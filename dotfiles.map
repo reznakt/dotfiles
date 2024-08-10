@@ -3,34 +3,14 @@
 
 
 # Bash
-bash/.bashrc ~/.bashrc eval $(tail ~/.bashrc -n +13)
-bash/.inputrc ~/.inputrc
+.bashrc ~/.bashrc eval $(tail ~/.bashrc -n +13)
+.inputrc ~/.inputrc
 
 # Neovim
-neovim/init.vim ~/.config/nvim/init.vim
-neovim/coc-settings.json ~/.config/nvim/coc-settings.json
+.config/nvim/init.vim ~/.config/nvim/init.vim
+.config/nvim/coc-settings.json ~/.config/nvim/coc-settings.json
 
 # Executable scripts
-script/.scdeps ~/.script/.scdeps
-script/.sctemplate ~/.script/.sctemplate
-script/asm ~/.script/asm
-script/ccat ~/.script/ccat
-script/cheat ~/.script/cheat
-script/color-table ~/.script/color-table
-script/color-test ~/.script/color-test
-script/comp ~/.script/comp
-script/dadjoke ~/.script/dadjoke
-script/ds ~/.script/ds
-script/getip ~/.script/getip
-script/incsort ~/.script/incsort
-script/ipinfo ~/.script/ipinfo
-script/ixio ~/.script/ixio
-script/line ~/.script/line
-script/moon ~/.script/moon
-script/mount-aisa ~/.script/mount-aisa
-script/mount-server ~/.script/mount-server
-script/mtu ~/.script/mtu
-script/pb071-test ~/.script/pb071-test
 script/scedit ~/.script/scedit
 script/scinit ~/.script/scinit
 script/sclib ~/.script/sclib
@@ -45,7 +25,6 @@ script/update ~/.script/update
 script/update-dotfiles ~/.script/update-dotfiles
 script/update-packages ~/.script/update-packages
 script/update-nvim ~/.script/update-nvim
-script/weather ~/.script/weather
 
 # Miscellaneous
 misc/.modules ~/.modules command -v module >/dev/null 2>&1 && update-modules || true

@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-
-curl -s -H "Accept: text/plain" https://icanhazdadjoke.com/
-echo;
-
