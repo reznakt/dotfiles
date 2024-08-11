@@ -158,6 +158,7 @@ alias la='ls -A'
 alias ll='ls -oF --si --group-directories-first --time-style="+%Y-%m-%d %H:%M:%S"'
 alias lla='ll -A'
 alias ip='ip --color=auto'
+alias update='topgrade'
 
 # valgrind aliases
 if command -v colour-valgrind &> /dev/null; then
