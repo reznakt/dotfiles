@@ -6,6 +6,14 @@ if [ -z "$PS1" ]; then
     return
 fi
 
+# source aliases
+if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases
+fi
+
+# set cursor to blinking underline
+echo -en "\033[3 q"
+
 # ANSI escape sequences for colors
 export COLOR_RESET='\e[0m'
 export COLOR_BLACK='\e[0;30m'
@@ -61,39 +69,6 @@ function update-prompt() {
     export PS1="\[\e[1m\]$PROMPT_COLOR\u@\h\[\e[0m\]:\[\e[1m\]\[\e[34m\]\w\[\e[0m\]\$ [\$(exit-code)] "
 }
 
-# restore cursor caret to blinking underline at nvim exit
-function nvim() {
-    command nvim "$@"
-    echo -en "\033[3 q"
-}
-
-# improved git log
-function git() {
-    if [ "$1" = "log" ]; then
-        shift 1
-        command git log \
-                --graph \
-                --abbrev-commit \
-                --decorate \
-                --format=format:"%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)" \
-                --all \
-                "$@"
-        return
-    fi
-
-    command git "$@"
-}
-
-# colored pstree
-function pstree() {
-    command pstree -U "$@" | sed '
-        s/[-a-zA-Z]\+/\x1B[32m&\x1B[0m/g
-        s/[{}]/\x1B[31m&\x1B[0m/g
-        s/[─┬─├─└│]/\x1B[34m&\x1B[0m/g
-    '
-}
-
-
 # colored man pages
 LESS_TERMCAP_md=$(tput bold; tput setaf 4)   # primary - blue, bold
 LESS_TERMCAP_me=$(tput sgr0)                 # primary end - reset
@@ -111,28 +86,11 @@ export PATH="$HOME/.local/bin:$PATH"
 # pnpm global store
 export PATH="$HOME/.local/share/pnpm:$PATH"
 
-# clear all predefined aliases
-unalias -a
-
-# enable colors on common commands
-alias egrep='egrep --color=auto'
-alias fgrep='fgrep --color=auto'
-alias grep='grep --color=auto'
-alias ls='ls --color=auto'
-
-# ls aliases
-alias la='ls -A'
-alias ll='ls -oF --si --group-directories-first --time-style="+%Y-%m-%d %H:%M:%S"'
-alias lla='ll -A'
-alias ip='ip --color=auto'
-alias update='topgrade'
-
 # valgrind aliases
 if command -v colour-valgrind &> /dev/null; then
     alias valgrind='colour-valgrind --tool=memcheck --leak-check=full --show-leak-kinds=all --track-origins=yes --show-reachable=yes --track-fds=yes -s'
     alias stackusage='colour-valgrind --tool=drd --show-stack-usage=yes'
 fi
-
 
 # set default editor to neovim
 export VISUAL="nvim"
