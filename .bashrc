@@ -1,15 +1,10 @@
 #!/usr/bin/env bash
 
-#     _               _              
-#    | |__   __ _ ___| |__  _ __ ___ 
-#    | '_ \ / _` / __| '_ \| '__/ __|
-#   _| |_) | (_| \__ \ | | | | | (__ 
-#  (_)_.__/ \__,_|___/_| |_|_|  \___|
-#                                    
-#
 
 # if not running interactively, don't do anything
-[ -z "$PS1" ] && return
+if [ -z "$PS1" ]; then
+    return
+fi
 
 # ANSI escape sequences for colors
 export COLOR_RESET='\e[0m'
@@ -66,29 +61,6 @@ function update-prompt() {
     export PS1="\[\e[1m\]$PROMPT_COLOR\u@\h\[\e[0m\]:\[\e[1m\]\[\e[34m\]\w\[\e[0m\]\$ [\$(exit-code)] "
 }
 
-# add modules
-function update-modules() {
-    for module in $(cat $HOME/.modules); do
-        module add "$module"
-    done
-}
-
-# adds module name to ~/.modules
-function module-add-permanent() {
-    if [ -z "$1" ]; then
-        echo "error: missing argument"
-        return 1
-    fi
-
-    if grep -q "^$1\$" ~/.modules; then
-        echo "error: module $1 already exists in ~/.modules"
-        return 1
-    else
-        echo "$1" >> "$HOME/.modules"
-        update-modules
-    fi
-}
-
 # restore cursor caret to blinking underline at nvim exit
 function nvim() {
     command nvim "$@"
@@ -134,15 +106,10 @@ export LESS_TERMCAP_md LESS_TERMCAP_me LESS_TERMCAP_us LESS_TERMCAP_ue \
     LESS_TERMCAP_so LESS_TERMCAP_se
 
 # prepend to PATH
-export PATH="/usr/sbin:/sbin:/usr/etc:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 
 # pnpm global store
-export PNPM_HOME="$HOME/.local/share/pnpm"
-export PATH="$PNPM_HOME:$PATH"
-
-# add .script to PATH
-export PATH="$HOME/.script:$PATH"
+export PATH="$HOME/.local/share/pnpm:$PATH"
 
 # clear all predefined aliases
 unalias -a
@@ -207,11 +174,4 @@ fi
 
 # set up shell prompt
 update-prompt
-
-# Aisa-specific
-if [ "$HOSTNAME" = "aisa.fi.muni.cz" ]; then
-    # initialize module system and load modules
-    . /packages/run/modules-2.0/init/bash 2> /dev/null
-    update-modules
-fi
 
