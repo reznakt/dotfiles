@@ -1,0 +1,23 @@
+import = [
+  "~/.config/alacritty/theme.toml"
+]
+
+[window]
+opacity = 0.5
+blur = true
+padding = { x = 5, y = 3 }
+dynamic_padding = true
+
+[scrolling]
+history = 100000
+
+[colors]
+transparent_background_colors = true
+
+[colors.primary]
+background = "#202020"
+
+[cursor.style]
+shape = "Underline"
+blinking = "On"
+
