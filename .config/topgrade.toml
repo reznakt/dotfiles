@@ -60,7 +60,7 @@ skip_notify = true
 # bashit_branch = "stable"
 
 # Run specific steps - same options as the command line flag
-only = ["system", "yadm", "flatpak", "gnome_shell_extensions", "pipx", "snap", "vim"]
+only = ["system", "yadm", "flatpak", "gnome_shell_extensions", "pipx", "snap"]
 
 # Whether to self update
 #
@@ -83,7 +83,7 @@ only = ["system", "yadm", "flatpak", "gnome_shell_extensions", "pipx", "snap", "
 # Commands to run after anything
 [post_commands]
 # "Emacs Snapshot" = "rm -rf ~/.emacs.d/elpa.bak && cp -rl ~/.emacs.d/elpa ~/.emacs.d/elpa.bak"
-"Clean XBPS packages and cache" = "command -v xbps-remove &> /dev/null && { set -x; sudo xbps-remove -OoR; } || echo 'XBPS not available, skipping...'"
+"Clean XBPS packages and cache" = "command -v xbps-remove &> /dev/null && { set -x; sudo xbps-remove -OoRy; } || echo 'XBPS not available, skipping...'"
 
 # Custom commands
 [commands]
