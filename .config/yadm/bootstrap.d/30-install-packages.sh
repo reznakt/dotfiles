@@ -18,6 +18,11 @@ if has "nvim" && ! has "rg"; then
   TO_INSTALL="$TO_INSTALL ripgrep"
 fi
 
+# minimal hyprland setup
+if has "Hyprland"; then
+  TO_INSTALL="$TO_INSTALL alacritty wofi"
+fi
+
 if [ -n "$TO_INSTALL" ]; then
   echo "Installing missing packages..."
   sudo upt update
