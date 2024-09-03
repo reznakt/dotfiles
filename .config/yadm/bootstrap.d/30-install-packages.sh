@@ -31,7 +31,7 @@ fi
 if has "Hyprland"; then
   add_package "wofi"
   add_package "alacritty"
-  add_package "waybar"
+  add_package "Waybar" "waybar"
   add_package "inotify-tools" "inotifywatch"
   add_package "brightnessctl"
   add_package "pavucontrol"
