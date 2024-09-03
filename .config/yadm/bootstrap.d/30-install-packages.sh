@@ -1,6 +1,5 @@
 #!/bin/bash
 
-PACKAGES="lsd topgrade"
 TO_INSTALL=""
 
 function has() {
@@ -20,11 +19,8 @@ function add_package() {
   fi
 }
 
-for package in $PACKAGES; do
-  if ! has "$package"; then
-    add_package "$package"
-  fi
-done
+add_package "lsd"
+add_package "topgrade"
 
 # ripgrep is required for searching with telescope.nvim
 if has "nvim"; then
@@ -35,6 +31,10 @@ fi
 if has "Hyprland"; then
   add_package "wofi"
   add_package "alacritty"
+  add_package "waybar"
+  add_package "inotify-tools" "inotifywatch"
+  add_package "brightnessctl"
+  add_package "pavucontrol"
 fi
 
 if [ -n "$TO_INSTALL" ]; then
