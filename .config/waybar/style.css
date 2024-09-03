@@ -15,11 +15,6 @@ window#waybar {
     font-weight: bold;
     font-family: "Ubuntu";
 }
-/*
-#workspaces {
-    padding: 0 5px;
-}
-*/
 
 #workspaces button {
     padding: 0 5px;
@@ -47,14 +42,8 @@ window#waybar {
     font-weight: bold;
 }
 
-#battery {
-}
-
 #battery icon {
     color: red;
-}
-
-#battery.charging {
 }
 
 @keyframes blink {
@@ -73,29 +62,23 @@ window#waybar {
     animation-direction: alternate;
 }
 
-#cpu {
-}
-
-#memory {
-}
-
-#network {
-}
-
 #network.disconnected {
     background: #f53c3c;
 }
 
-#pulseaudio {
+#backlight-slider slider {
+    background-image: none;
 }
 
-#pulseaudio.muted {
+#backlight-slider trough {
+    min-height: 3px;
+    min-width: 80px;
+    border-radius: 5px;
+    background-color: black;
 }
 
-#custom-spotify {
-    color: rgb(102, 220, 105);
-}
-
-#tray {
+#backlight-slider highlight {
+    border-radius: 5px;
+    background-color: white;
 }
 
