@@ -35,6 +35,8 @@ if has "Hyprland"; then
   add_package "inotify-tools" "inotifywatch"
   add_package "brightnessctl"
   add_package "pavucontrol"
+  add_package "hyprlock"
+  add_package "hypridle"
 fi
 
 if [ -n "$TO_INSTALL" ]; then
