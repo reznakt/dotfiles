@@ -4,7 +4,7 @@
     "height": 24,
     "modules-left": ["hyprland/workspaces", "custom/spotify"],
     "modules-center": ["hyprland/window"],
-    "modules-right": ["tray", "backlight/slider", "backlight", "pulseaudio", "network", "temperature", "cpu", "memory", "custom/gpu-usage", "battery", "clock"],
+    "modules-right": ["tray", "backlight/slider", "backlight", "pulseaudio", "network", "temperature", "cpu", "memory", "custom/gpu-usage", "battery", "clock", "custom/notification"],
     "tray": {
         "spacing": 10
     },
@@ -72,5 +72,25 @@
       "format": "GPU: {}%",
       "return-type": "",
       "interval": 2
+    },
+    "custom/notification": {
+      "tooltip": false,
+      "escape": true,
+      "format": "{} {icon}",
+      "format-icons": {
+        "notification": "󱅫",
+        "none": "",
+        "dnd-notification": " ",
+        "dnd-none": "󰂛",
+        "inhibited-notification": " ",
+        "inhibited-none": "",
+        "dnd-inhibited-notification": " ",
+        "dnd-inhibited-none": " "
+      },
+      "return-type": "json",
+      "exec-if": "which swaync-client",
+      "exec": "swaync-client -swb",
+      "on-click": "sleep 0.1 && swaync-client -t -sw",
+      "on-click-right": "sleep 0.1 && swaync-client -d -sw",
     }
 }
