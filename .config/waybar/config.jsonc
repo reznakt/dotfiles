@@ -27,7 +27,7 @@
     },
     "memory": {
         "interval": 2,
-        "format": "{used} GiB ({percentage}%) "
+        "format": "{used} GiB ({percentage}%) "
     },
     "battery": {
         "frequency": 10,
@@ -37,7 +37,7 @@
     "network": {
         "interval": 5,
         "format-wifi": "{essid} ({signalStrength}%) ",
-        "format-ethernet": "{ifname}: {ipaddr}/{cidr} ",
+        "format-ethernet": "{ifname}: {ipaddr}/{cidr} 󰈀",
         "format-disconnected": "Disconnected ⚠"
     },
     "pulseaudio": {
