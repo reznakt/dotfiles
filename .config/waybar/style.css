@@ -1,84 +1,133 @@
 * {
-    border: none;
-    border-radius: 0;
     font-family: "Ubuntu Nerd Font";
-    font-size: 13px;
-    min-height: 0;
+    font-size: 12px;
+    border-radius: 6px;
+    padding: 1px 0;
+    margin: 0 3px;
+    transition: all 0.3s ease;
 }
 
 window#waybar {
-    background: transparent;
-    color: white;
-}
-
-#window {
-    font-weight: bold;
-    font-family: "Ubuntu";
+    background: rgba(30, 30, 30, 0.5);
+    color: #ECEFF4;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.6);
 }
 
 #workspaces button {
-    padding: 0 5px;
-    background: transparent;
-    color: white;
-    border-top: 2px solid transparent;
+    background-color: transparent;
+    color: #81A1C1;
+    padding: 4px 8px;
+    border: 2px solid transparent;
+    font-weight: bold;
+    transition: color 0.3s, border-bottom 0.3s;
 }
 
 #workspaces button.focused {
-    color: #c9545d;
-    border-top: 2px solid #c9545d;
+    color: #A3BE8C;
+    border-bottom: 2px solid #A3BE8C;
 }
 
-#mode {
-    background: #64727D;
-    border-bottom: 3px solid white;
+#workspaces button:hover {
+    color: #88C0D0;
 }
 
 #clock, #battery, #cpu, #memory, #network, #pulseaudio, #custom-spotify, #tray, #mode {
-    padding: 0 3px;
-    margin: 0 2px;
+    background-color: rgba(46, 52, 64, 0.8);
+    color: #D8DEE9;
+    border-radius: 6px;
+    padding: 6px 10px;
+    margin: 0 6px;
+    box-shadow: inset 0px 0px 4px rgba(0, 0, 0, 0.3);
 }
 
 #clock {
     font-weight: bold;
+    background-color: #4C566A;
+    color: #EBCB8B;
 }
 
-#battery icon {
-    color: red;
+#cpu, #memory {
+    background-color: #5E81AC;
+    color: #ECEFF4;
 }
 
-@keyframes blink {
-    to {
-        background-color: #ffffff;
-        color: black;
-    }
+#cpu:hover, #memory:hover {
+    background-color: #88C0D0;
+    color: #2E3440;
+}
+
+#battery {
+    background-color: #A3BE8C;
+    color: #2E3440;
 }
 
 #battery.warning:not(.charging) {
-    color: white;
-    animation-name: blink;
-    animation-duration: 0.5s;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
+    color: #BF616A;
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        background-color: #BF616A;
+        color: white;
+    }
+    100% {
+        background-color: #A3BE8C;
+        color: #2E3440;
+    }
 }
 
 #network.disconnected {
-    background: #f53c3c;
+    background-color: #BF616A;
+    color: #ECEFF4;
+    font-weight: bold;
+}
+
+#pulseaudio {
+    background-color: #B48EAD;
+    color: #ECEFF4;
+}
+
+#pulseaudio:hover {
+    background-color: #D08770;
+    color: #2E3440;
 }
 
 #backlight-slider slider {
-    background-image: none;
+    background-image: linear-gradient(90deg, #5E81AC, #81A1C1);
+    min-height: 4px;
+    min-width: 70px;
+    border-radius: 4px;
 }
 
 #backlight-slider trough {
-    min-height: 3px;
-    min-width: 80px;
-    border-radius: 5px;
-    background-color: black;
+    background-color: #4C566A;
+    min-height: 4px;
+    border-radius: 4px;
 }
 
 #backlight-slider highlight {
-    border-radius: 5px;
-    background-color: white;
+    background-color: #88C0D0;
+    border-radius: 4px;
+}
+
+#custom-spotify {
+    background-color: #D08770;
+    color: #ECEFF4;
+}
+
+#custom-spotify:hover {
+    background-color: #A3BE8C;
+    color: #2E3440;
+}
+
+#tray {
+    background-color: rgba(46, 52, 64, 0.8);
+    padding: 4px 6px;
+    border-radius: 6px;
+}
+
+#tray .icon:hover {
+    color: #88C0D0;
 }
 
