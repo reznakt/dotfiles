@@ -39,6 +39,7 @@ if has "Hyprland"; then
   add_package "grim"
   add_package "slurp"
   add_package "wl-clipboard" "wl-copy"
+  add_package "SwayNotificationCenter", "swaync"
 fi
 
 if [ -n "$TO_INSTALL" ]; then
