@@ -36,6 +36,9 @@ if has "Hyprland"; then
   add_package "brightnessctl"
   add_package "hyprlock"
   add_package "hypridle"
+  add_package "grim"
+  add_package "slurp"
+  add_package "wl-clipboard" "wl-copy"
 fi
 
 if [ -n "$TO_INSTALL" ]; then
