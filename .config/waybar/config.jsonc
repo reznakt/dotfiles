@@ -3,7 +3,7 @@
     "position": "top",
     "height": 24,
     "modules-left": ["hyprland/workspaces", "custom/spotify"],
-    "modules-center": ["hyprland/window"],
+    "modules-center": ["custom/xwayland", "hyprland/window"],
     "modules-right": ["tray", "backlight/slider", "backlight", "pulseaudio", "network", "temperature", "cpu", "memory", "custom/gpu-usage", "battery", "clock", "custom/notification"],
     "tray": {
         "spacing": 10
@@ -92,5 +92,10 @@
       "exec": "swaync-client -swb",
       "on-click": "swaync-client -t -sw",
       "on-click-right": "swaync-client -d -sw",
+    },
+    "custom/xwayland": {
+      "format": "{}",
+      "exec": "[ $(hyprctl activewindow -j | jq '.xwayland') = 'true' ] && echo ''",
+      "interval": 1
     }
 }
