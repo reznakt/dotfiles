@@ -83,7 +83,7 @@ only = ["system", "yadm", "flatpak", "gnome_shell_extensions", "pipx", "snap"]
 # Commands to run after anything
 [post_commands]
 "Clean XBPS packages and cache" = "command -v xbps-remove &> /dev/null && { set -x; sudo xbps-remove -OoRy; } || echo 'XBPS not available, skipping...'"
-"Remove old kernels" = "command -v vkpurge &> /dev/null && vkpurge list | tac | tail -n +2 | xargs -r vkpurge rm || echo 'vkpurge not available, skipping...'" 
+"Remove old kernels" = "command -v vkpurge &> /dev/null && vkpurge list | tac | tail -n +2 | xargs -r sudo vkpurge rm || echo 'vkpurge not available, skipping...'" 
 
 # Custom commands
 [commands]
