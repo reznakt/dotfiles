@@ -41,6 +41,7 @@ if has "Hyprland"; then
   add_package "wl-clipboard" "wl-copy"
   add_package "SwayNotificationCenter" "swaync"
   add_package "jq"
+  add_package "socat"
 fi
 
 if [ -n "$TO_INSTALL" ]; then

@@ -96,7 +96,7 @@
   "custom/xwayland": {
     "format": "{}",
     "exec": "[ $(hyprctl activewindow -j | jq '.xwayland') = 'true' ] && echo ''",
-    "interval": 1
+    "signal": 1
   }
 }
 
