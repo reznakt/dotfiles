@@ -1,101 +1,102 @@
 {
-    "layer": "top",
-    "position": "top",
-    "height": 24,
-    "modules-left": ["hyprland/workspaces", "custom/spotify"],
-    "modules-center": ["custom/xwayland", "hyprland/window"],
-    "modules-right": ["tray", "backlight/slider", "backlight", "pulseaudio", "network", "temperature", "cpu", "memory", "custom/gpu-usage", "battery", "clock", "custom/notification"],
-    "tray": {
-        "spacing": 10
+  "layer": "top",
+  "position": "top",
+  "height": 24,
+  "modules-left": ["hyprland/workspaces", "custom/spotify"],
+  "modules-center": ["custom/xwayland", "hyprland/window"],
+  "modules-right": ["tray", "backlight/slider", "backlight", "pulseaudio", "network", "temperature", "cpu", "memory", "custom/gpu-usage", "battery", "clock", "custom/notification"],
+  "tray": {
+    "spacing": 10
+  },
+  "backlight/slider": {
+    "min": 0,
+    "max": 100,
+    "orientation": "horizontal"
+  },
+  "backlight": {
+    "device": "intel_backlight",
+    "format": "{percent}%",
+  },
+  "clock": {
+    "interval": 1,
+    "format": "{:%d. %m. %Y %H:%M:%S}"
+  },
+  "cpu": {
+    "interval": 2,
+    "format": "{avg_frequency} GHz ({usage}%) ",
+  },
+  "memory": {
+    "interval": 2,
+    "format": "{used} GiB ({percentage}%) "
+  },
+  "battery": {
+    "frequency": 10,
+    "format": "{capacity}% ({time} @ {power:0.2f}W) {icon}",
+    "format-icons": ["", "", "", "", ""]
+  },
+  "network": {
+    "interval": 5,
+    "format-wifi": "{essid} ({signalStrength}%) ",
+    "format-ethernet": "{ifname}: {ipaddr}/{cidr} 󰈀",
+    "format-disconnected": "Disconnected ⚠"
+  },
+  "pulseaudio": {
+    "format": "{volume}% {icon}",
+    "format-bluetooth": "{volume}% {icon}",
+    "format-muted": "",
+    "format-icons": {
+      "headphones": "",
+      "handsfree": "",
+      "headset": "",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": ["", ""]
     },
-    "backlight/slider": {
-      "min": 0,
-      "max": 100,
-      "orientation": "horizontal"
+    "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+  },
+  "custom/spotify": {
+    "format": " {}",
+    "max-length": 80,
+    "interval": 1,
+    "exec": "$HOME/.config/waybar/spotify.sh 2> /dev/null",
+    "exec-if": "pgrep spotify"
+  },
+   "temperature": {
+    "interval": 10,
+    "thermal-zone": 0,
+    "format": "{temperatureC}°C "
+  },
+  "custom/gpu-usage": {
+    "exec": "cat /sys/class/hwmon/hwmon2/device/gpu_busy_percent",
+    "format": "GPU: {}%",
+    "return-type": "",
+    "interval": 2
+  },
+  "custom/notification": {
+    "tooltip": false,
+    "escape": true,
+    "format": "{} {icon}",
+    "format-icons": {
+      "notification": "󱅫",
+      "none": "",
+      "dnd-notification": " ",
+      "dnd-none": "󰂛",
+      "inhibited-notification": " ",
+      "inhibited-none": "",
+      "dnd-inhibited-notification": " ",
+      "dnd-inhibited-none": " "
     },
-    "backlight": {
-      "device": "intel_backlight",
-      "format": "{percent}%",
-    },
-    "clock": {
-        "interval": 1,
-        "format": "{:%d. %m. %Y %H:%M:%S}"
-    },
-    "cpu": {
-        "interval": 2,
-        "format": "{avg_frequency} GHz ({usage}%) "
-    },
-    "memory": {
-        "interval": 2,
-        "format": "{used} GiB ({percentage}%) "
-    },
-    "battery": {
-        "frequency": 10,
-        "format": "{capacity}% ({time} @ {power:0.2f}W) {icon}",
-        "format-icons": ["", "", "", "", ""]
-    },
-    "network": {
-        "interval": 5,
-        "format-wifi": "{essid} ({signalStrength}%) ",
-        "format-ethernet": "{ifname}: {ipaddr}/{cidr} 󰈀",
-        "format-disconnected": "Disconnected ⚠"
-    },
-    "pulseaudio": {
-        "format": "{volume}% {icon}",
-        "format-bluetooth": "{volume}% {icon}",
-        "format-muted": "",
-        "format-icons": {
-            "headphones": "",
-            "handsfree": "",
-            "headset": "",
-            "phone": "",
-            "portable": "",
-            "car": "",
-            "default": ["", ""]
-        },
-        "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
-    },
-    "custom/spotify": {
-        "format": " {}",
-        "max-length": 80,
-        "interval": 1,
-        "exec": "$HOME/.config/waybar/spotify.sh 2> /dev/null",
-        "exec-if": "pgrep spotify"
-    },
-     "temperature": {
-      "interval": 10,
-      "thermal-zone": 0,
-      "format": "{temperatureC}°C "
-    },
-    "custom/gpu-usage": {
-      "exec": "cat /sys/class/hwmon/hwmon2/device/gpu_busy_percent",
-      "format": "GPU: {}%",
-      "return-type": "",
-      "interval": 2
-    },
-    "custom/notification": {
-      "tooltip": false,
-      "escape": true,
-      "format": "{} {icon}",
-      "format-icons": {
-        "notification": "󱅫",
-        "none": "",
-        "dnd-notification": " ",
-        "dnd-none": "󰂛",
-        "inhibited-notification": " ",
-        "inhibited-none": "",
-        "dnd-inhibited-notification": " ",
-        "dnd-inhibited-none": " "
-      },
-      "return-type": "json",
-      "exec-if": "which swaync-client",
-      "exec": "swaync-client -swb",
-      "on-click": "swaync-client -t -sw",
-      "on-click-right": "swaync-client -d -sw",
-    },
-    "custom/xwayland": {
-      "format": "{}",
-      "exec": "[ $(hyprctl activewindow -j | jq '.xwayland') = 'true' ] && echo ''",
-      "interval": 1
-    }
+    "return-type": "json",
+    "exec-if": "which swaync-client",
+    "exec": "swaync-client -swb",
+    "on-click": "swaync-client -t -sw",
+    "on-click-right": "swaync-client -d -sw",
+  },
+  "custom/xwayland": {
+    "format": "{}",
+    "exec": "[ $(hyprctl activewindow -j | jq '.xwayland') = 'true' ] && echo ''",
+    "interval": 1
+  }
 }
+
