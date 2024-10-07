@@ -93,24 +93,6 @@ window#waybar {
     color: #2E3440;
 }
 
-#backlight-slider slider {
-    background-image: linear-gradient(90deg, #5E81AC, #81A1C1);
-    min-height: 4px;
-    min-width: 70px;
-    border-radius: 4px;
-}
-
-#backlight-slider trough {
-    background-color: #4C566A;
-    min-height: 4px;
-    border-radius: 4px;
-}
-
-#backlight-slider highlight {
-    background-color: #88C0D0;
-    border-radius: 4px;
-}
-
 #custom-spotify {
     background-color: #D08770;
     color: #ECEFF4;

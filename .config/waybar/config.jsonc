@@ -4,18 +4,13 @@
   "height": 24,
   "modules-left": ["hyprland/workspaces", "custom/spotify"],
   "modules-center": ["custom/xwayland", "hyprland/window"],
-  "modules-right": ["tray", "backlight/slider", "backlight", "pulseaudio", "network", "temperature", "cpu", "memory", "custom/gpu-usage", "battery", "clock", "custom/notification"],
+  "modules-right": ["tray", "backlight", "pulseaudio", "network", "temperature", "cpu", "memory", "custom/gpu-usage", "battery", "clock", "custom/notification"],
   "tray": {
     "spacing": 10
   },
-  "backlight/slider": {
-    "min": 0,
-    "max": 100,
-    "orientation": "horizontal"
-  },
   "backlight": {
     "device": "intel_backlight",
-    "format": "{percent}%",
+    "format": "{percent}% 󰛨",
   },
   "clock": {
     "interval": 1,
@@ -38,7 +33,7 @@
     "interval": 5,
     "format-wifi": "{essid} ({signalStrength}%) ",
     "format-ethernet": "{ifname}: {ipaddr}/{cidr} 󰈀",
-    "format-disconnected": "Disconnected ⚠"
+    "format-disconnected": "Disconnected "
   },
   "pulseaudio": {
     "format": "{volume}% {icon}",
