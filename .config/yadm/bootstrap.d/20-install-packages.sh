@@ -42,6 +42,7 @@ if has "Hyprland"; then
   add_package "SwayNotificationCenter" "swaync"
   add_package "jq"
   add_package "socat"
+  add_package "hyprpicker"
 fi
 
 if [ -n "$TO_INSTALL" ]; then
