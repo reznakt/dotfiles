@@ -31,7 +31,7 @@ window#waybar {
     color: #88C0D0;
 }
 
-#clock, #battery, #cpu, #memory, #network, #pulseaudio, #custom-spotify, #tray, #mode {
+#clock, #battery, #cpu, #memory, #network, #wireplumber, #mpris, #tray, #mode {
     background-color: rgba(46, 52, 64, 0.8);
     color: #D8DEE9;
     border-radius: 6px;
@@ -83,24 +83,39 @@ window#waybar {
     font-weight: bold;
 }
 
-#pulseaudio {
+#wireplumber {
     background-color: #B48EAD;
     color: #ECEFF4;
 }
 
-#pulseaudio:hover {
+#wireplumber:hover {
     background-color: #D08770;
     color: #2E3440;
 }
 
-#custom-spotify {
-    background-color: #D08770;
-    color: #ECEFF4;
+#mpris {
+    background-color: #282E3A;
 }
 
-#custom-spotify:hover {
-    background-color: #A3BE8C;
-    color: #2E3440;
+#mpris:hover {
+  opacity: 0.8;
+}
+
+#mpris.firefox {
+    background-color: #FF7731;
+}
+
+#mpris.spotify {
+    background-color: #18C16A;
+    color: black;
+}
+
+#mpris.chromium {
+    background-color: #588DE2;
+}
+
+#mpris.vlc {
+    background-color: #EB7000;
 }
 
 #tray {
@@ -111,5 +126,9 @@ window#waybar {
 
 #tray .icon:hover {
     color: #88C0D0;
+}
+
+#custom-xwayland {
+  font-size: 16px;
 }
 
