@@ -54,7 +54,7 @@
     "format": " {}",
     "max-length": 80,
     "interval": 1,
-    "exec": "$HOME/.config/waybar/spotify.sh 2> /dev/null",
+    "exec": "$HOME/.config/waybar/custom/spotify.sh 2> /dev/null",
     "exec-if": "pgrep spotify"
   },
    "temperature": {
@@ -63,7 +63,7 @@
     "format": "{temperatureC}°C "
   },
   "custom/gpu-usage": {
-    "exec": "cat /sys/class/hwmon/hwmon2/device/gpu_busy_percent",
+    "exec": "$HOME/.config/waybar/custom/gpu-usage.sh 2> /dev/null",
     "format": "GPU: {}%",
     "return-type": "",
     "interval": 2
