@@ -31,7 +31,7 @@ window#waybar {
     color: #88C0D0;
 }
 
-#clock, #battery, #cpu, #memory, #network, #wireplumber, #mpris, #tray, #mode {
+#clock, #battery, #cpu, #memory, #network, #pulseaudio, #mpris, #tray, #mode {
     background-color: rgba(46, 52, 64, 0.8);
     color: #D8DEE9;
     border-radius: 6px;
@@ -83,12 +83,12 @@ window#waybar {
     font-weight: bold;
 }
 
-#wireplumber {
+#pulseaudio {
     background-color: #B48EAD;
     color: #ECEFF4;
 }
 
-#wireplumber:hover {
+#pulseaudio:hover {
     background-color: #D08770;
     color: #2E3440;
 }

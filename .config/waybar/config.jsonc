@@ -4,7 +4,7 @@
   "height": 24,
   "modules-left": ["hyprland/workspaces", "mpris", "gamemode", "privacy", "custom/xbps-updates", "custom/xwayland"],
   "modules-center": ["hyprland/window"],
-  "modules-right": ["tray", "backlight", "wireplumber", "network", "temperature", "cpu", "memory", "custom/gpu-usage", "battery", "clock", "custom/notification"],
+  "modules-right": ["tray", "backlight", "pulseaudio", "network", "temperature", "cpu", "memory", "custom/gpu-usage", "battery", "clock", "custom/notification"],
   "tray": {
     "spacing": 10
   },
@@ -96,7 +96,7 @@
     "tooltip-disconnected": " Disconnected",
     "tooltip-format": "{icon} {ifname}\n󰩟 address: {ipaddr}/{cidr}\n󰑩 gateway: {gwaddr}\n󰓅 bandwidth: {bandwidthDownBytes} 󰇚 {bandwidthUpBytes} 󰕒"
   },
-  "wireplumber": {
+  "pulseaudio": {
     "format": "{volume}% {icon}",
     "format-bluetooth": "{volume}% {icon}",
     "format-muted": "",
