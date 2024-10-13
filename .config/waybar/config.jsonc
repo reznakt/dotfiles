@@ -59,8 +59,8 @@
     },
     "artist-len": 15,
     "title-len": 45,
-    "on-scroll-up": "playerctl previous",
-    "on-scroll-down": "playerctl next"
+    "on-scroll-up": "playerctl next",
+    "on-scroll-down": "playerctl previous"
   },
   "backlight": {
     "device": "intel_backlight",
