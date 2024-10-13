@@ -44,6 +44,7 @@ if has "Hyprland"; then
   add_package "socat"
   add_package "hyprpicker"
   add_package "qt5ct"
+  add_package "qt6ct"
 fi
 
 if [ -n "$TO_INSTALL" ]; then
