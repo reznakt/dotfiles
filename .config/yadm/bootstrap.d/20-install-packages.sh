@@ -45,6 +45,7 @@ if has "Hyprland"; then
   add_package "hyprpicker"
   add_package "qt5ct"
   add_package "qt6ct"
+  add_package "kanshi"
 fi
 
 if [ -n "$TO_INSTALL" ]; then
