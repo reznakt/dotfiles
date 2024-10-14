@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 trap "killall waybar" EXIT
 

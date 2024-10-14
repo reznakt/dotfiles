@@ -118,6 +118,10 @@ window#waybar {
     background-color: #EB7000;
 }
 
+#mpris.mpv {
+    background-color: #400041;
+}
+
 #tray {
     background-color: rgba(46, 52, 64, 0.8);
     padding: 4px 6px;
