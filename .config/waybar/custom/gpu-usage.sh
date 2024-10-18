@@ -1,6 +1,6 @@
 #!/bin/sh
 
-AMD_GPU_FILE="/sys/class/hwmon/hwmon2/device/gpu_busy_percent"
+AMD_GPU_FILE="/sys/class/drm/card0/device/gpu_busy_percent"
 
 if [ -f "$AMD_GPU_FILE" ]; then # AMD
   cat "$AMD_GPU_FILE"
