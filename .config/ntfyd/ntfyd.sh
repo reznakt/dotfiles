@@ -53,7 +53,7 @@ ntfy subscribe "$SUBSCRIPTION_URL" | while read -r line; do
     "$message"
     "--urgency=$urgency"
     "--app-name=ntfy.sh"
-    "--icon=favicon.ico"
+    "--icon=$(dirname -- "$0")/icon.ico"
   )
 
   if [ "$click" != "null" ]; then
