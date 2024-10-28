@@ -1,0 +1,20 @@
+[user]
+	name = Tomáš Režňák
+	email = tomas.reznak@volny.cz
+	signingkey = /home/reznak/.ssh/id_ed25519.pub
+[gpg]
+	format = ssh
+[commit]
+	gpgSign = true
+[push]
+	autoSetupRemote = true
+[diff "lockb"]
+	textconv = bun
+	binary = true
+[core]
+	pager = git-split-diffs --color | less -+LFX
+[split-diffs]
+  syntax-highlighting-theme = material-theme-darker
+[init]
+  defaultBranch = main
+
