@@ -7,8 +7,8 @@ if [ -z "$PS1" ]; then
 fi
 
 # source aliases
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
+if [ -f "$HOME/.bash_aliases" ]; then
+    . "$HOME/.bash_aliases"
 fi
 
 # set cursor to blinking underline
@@ -34,7 +34,7 @@ export COLOR_LIGHT_GRAY='\e[0;37m'
 export COLOR_WHITE='\e[1;37m'
 
 # display a colored exit code of last process
-function exit-code() {
+exit_code() {
     local EXIT_CODE="$?"
 
     if [ "$EXIT_CODE" = "0" ]; then
@@ -47,7 +47,7 @@ function exit-code() {
 }
 
 # escape ansi color escape sequence for use in PS1
-function _ps-color() {
+_ps_color() {
     if [ -z "$1" ]; then
         echo "error: missing argument"
         return 1
@@ -57,16 +57,16 @@ function _ps-color() {
 }
 
 # update shell prompt
-function update-prompt() {
+update_prompt() {
     local PROMPT_COLOR
 
     if [ -n "$SSH_CONNECTION" ]; then
-        PROMPT_COLOR=$(_ps-color "$COLOR_LIGHT_RED")
+        PROMPT_COLOR=$(_ps_color "$COLOR_LIGHT_RED")
     else
-        PROMPT_COLOR=$(_ps-color "$COLOR_LIGHT_GREEN")
+        PROMPT_COLOR=$(_ps_color "$COLOR_LIGHT_GREEN")
     fi
 
-    export PS1="\[\e[1m\]$PROMPT_COLOR\u@\h\[\e[0m\]:\[\e[1m\]\[\e[34m\]\w\[\e[0m\]\$ [\$(exit-code)] "
+    export PS1="\[\e[1m\]$PROMPT_COLOR\u@\h\[\e[0m\]:\[\e[1m\]\[\e[34m\]\w\[\e[0m\]\$ [\$(exit_code)] "
 }
 
 # colored man pages
@@ -131,5 +131,5 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
 fi
 
 # set up shell prompt
-update-prompt
+update_prompt
 
