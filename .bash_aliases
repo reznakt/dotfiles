@@ -3,6 +3,7 @@ unalias -a
 unset -f ls
 unset -f pstree
 unset -f git
+unset -f nvim
 
 # use lsd instead of ls if available
 ls() {
@@ -37,6 +38,12 @@ function git() {
   fi
 
   command git "$@"
+}
+
+# restore cursor caret to blinking underline at nvim exit
+nvim() {
+  command nvim "$@"
+  echo -en "\033[3 q"
 }
 
 # enable colors for various commands
