@@ -1,12 +1,12 @@
-#!/bin/bash
+#!/bin/sh
 
 TO_INSTALL=""
 
-function has() {
-  command -v "$1" &> /dev/null
+has() {
+  command -v "$1" > /dev/null 2>&1
 }
 
-function add_package() {
+add_package() {
   package="$1"
   command="$2"
 
