@@ -17,10 +17,11 @@ local servers = {
   "marksman",
   "nginx_language_server",
   "pyright",
+  "rust_analyzer",
   "tailwindcss",
   "tsserver",
   "vimls",
-  "yamlls"
+  "yamlls",
 }
 
 for _, lsp in ipairs(servers) do
