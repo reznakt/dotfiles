@@ -13,6 +13,10 @@ return {
   {
     "github/copilot.vim",
     lazy = false
+  },
+  {
+    "wakatime/vim-wakatime",
+    lazy = false
   }
 }
 
