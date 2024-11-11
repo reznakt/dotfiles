@@ -105,7 +105,7 @@ window#waybar {
     background-color: #FF7731;
 }
 
-#mpris.spotify {
+#mpris.spotify, #mpris.spotifyd {
     background-color: #18C16A;
     color: black;
 }

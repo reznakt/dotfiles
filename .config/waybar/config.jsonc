@@ -47,6 +47,7 @@
     "player-icons": {
       "default": "🎵",
       "spotify": " ",
+      "spotifyd": " ",
       "firefox": "󰈹",
       "vlc": "󰕼",
       "chromium": "",
