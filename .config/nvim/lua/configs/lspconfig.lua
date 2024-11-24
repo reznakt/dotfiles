@@ -19,7 +19,6 @@ local servers = {
   "pyright",
   "rust_analyzer",
   "tailwindcss",
-  "tsserver",
   "vimls",
   "yamlls",
 }
