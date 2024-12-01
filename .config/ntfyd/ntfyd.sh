@@ -1,15 +1,5 @@
 #!/bin/bash
 
-priority_to_urgency() {
-  case "$1" in
-    5) echo "critical" ;;
-    4) echo "critical" ;;
-    2) echo "low" ;;
-    1) echo "low" ;;
-    *) echo "normal" ;;
-  esac
-}
-
 normalize_url() {
   if [[ ! "$1" =~ ^https?:// ]]; then
     echo "https://$1"
@@ -44,14 +34,13 @@ ntfy subscribe "$SUBSCRIPTION_URL" | while read -r line; do
 
   title=$(echo "$line" | jq -r '.title')
   message=$(echo "$line" | jq -r '.message')
-  priority=$(echo "$line" | jq -r '.priority')
-  urgency=$(priority_to_urgency "$priority")
   click=$(echo "$line" | jq -r '.click')
 
   argv=(
     "$title"
     "$message"
-    "--urgency=$urgency"
+    "--urgency=low"
+    "--expire-time=5000"
     "--app-name=ntfy.sh"
     "--icon=$(dirname -- "$0")/icon.ico"
   )
