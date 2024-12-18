@@ -1,7 +1,5 @@
 [general]
-import = [
-  "~/.config/alacritty/theme.toml"
-]
+import = ["theme.toml"]
 
 [window]
 opacity = 0.5
