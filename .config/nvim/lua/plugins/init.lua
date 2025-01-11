@@ -17,6 +17,10 @@ return {
   {
     "wakatime/vim-wakatime",
     lazy = false
-  }
+  },
+  {
+    "lark-parser/vim-lark-syntax",
+    lazy = false
+  },
 }
 
