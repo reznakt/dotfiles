@@ -5,6 +5,11 @@
   "modules-left": ["hyprland/workspaces", "mpris", "gamemode", "privacy", "custom/xwayland", "custom/xbps-updates"],
   "modules-center": ["hyprland/window"],
   "modules-right": ["tray", "backlight", "pulseaudio", "network", "temperature", "cpu", "memory", "custom/gpu-usage", "battery", "clock", "custom/notification"],
+  "hyprland/workspaces": {
+    "format": "{icon}",
+    "on-scroll-up": "hyprctl dispatch workspace e+1",
+    "on-scroll-down": "hyprctl dispatch workspace e-1"
+  },
   "tray": {
     "spacing": 10
   },
