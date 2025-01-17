@@ -82,6 +82,7 @@ export LESS_TERMCAP_md LESS_TERMCAP_me LESS_TERMCAP_us LESS_TERMCAP_ue \
 
 # prepend to PATH
 export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.scripts:$PATH"
 
 # pnpm global store
 export PATH="$HOME/.local/share/pnpm:$PATH"

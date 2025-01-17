@@ -7,7 +7,7 @@ trap 'trap - TERM && kill -- -$$' INT TERM EXIT
 while read -r url; do
   if [ -n "$url" ]; then
     echo "$url"
-    "$CONFIG_DIR/ntfyd.sh" "$url" &
+    ntfyd "$url" &
   fi
 done < "$CONFIG_DIR/config"
 

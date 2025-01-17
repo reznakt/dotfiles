@@ -42,7 +42,7 @@ ntfy subscribe "$SUBSCRIPTION_URL" | while read -r line; do
     "--urgency=low"
     "--expire-time=5000"
     "--app-name=ntfy.sh"
-    "--icon=$(dirname -- "$0")/icon.ico"
+    "--icon=$HOME/.config/ntfyd/icon.ico"
   )
 
   if [ "$click" != "null" ]; then

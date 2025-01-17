@@ -1,10 +1,11 @@
 #!/bin/sh
 
-trap "killall waybar" EXIT
+trap "pkill -9 waybar; exit 1" INT TERM EXIT
+trap "" RTMIN+1
 
 while true; do
   waybar &
   inotifywait -r -e create,modify,delete "$HOME/.config/waybar/"
-  killall waybar
+  pkill -9 waybar
 done
 
