@@ -11,7 +11,7 @@ normalize_url() {
 dispatch_notification() {
   local event
   event=$(notify-send "${@}")
-  
+
   if [ "$event" = "click" ]; then
     xdg-open "$(normalize_url "$click")"
   fi
@@ -51,4 +51,3 @@ ntfy subscribe "$SUBSCRIPTION_URL" | while read -r line; do
 
   dispatch_notification "${argv[@]}" &
 done
-

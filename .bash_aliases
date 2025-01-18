@@ -60,4 +60,3 @@ alias lla='ll -A'
 
 # misc
 alias update='topgrade'
-

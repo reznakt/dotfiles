@@ -15,4 +15,3 @@ if [ "$player_status" = "Playing" ]; then
 elif [ "$player_status" = "Paused" ]; then
   echo " $(current_track)"
 fi
-

@@ -5,4 +5,3 @@ local options = {
 }
 
 return options
-

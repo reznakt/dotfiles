@@ -11,4 +11,3 @@ prompt = Search...
 show = drun
 single_click = true
 term = alacritty
-

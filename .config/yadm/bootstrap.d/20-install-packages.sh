@@ -53,4 +53,3 @@ if [ -n "$TO_INSTALL" ]; then
   sudo upt update
   sudo upt install -y "$TO_INSTALL"
 fi
-

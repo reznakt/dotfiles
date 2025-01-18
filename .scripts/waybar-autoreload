@@ -8,4 +8,3 @@ while true; do
   inotifywait -r -e create,modify,delete "$HOME/.config/waybar/"
   pkill -9 waybar
 done
-

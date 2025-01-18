@@ -21,4 +21,3 @@ pkg_list=$(echo "$pkgs" | awk '{print}' ORS='\\n' | sed '$s/..$//')
 }
 EOF
 ) | tr '\n' ' '
-

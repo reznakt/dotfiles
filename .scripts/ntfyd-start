@@ -15,4 +15,3 @@ while true; do
   sleep 1
   wait
 done
-

@@ -20,4 +20,3 @@ elif ! [ "$(get_upt_version)" = "$UPT_VERSION" ]; then
   echo "Upgrading upt ($(get_upt_version) -> $UPT_VERSION)..."
   install_upt --force
 fi
-

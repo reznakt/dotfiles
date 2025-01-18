@@ -1,6 +1,3 @@
-#!/usr/bin/env bash
-
-
 # if not running interactively, don't do anything
 if [ -z "$PS1" ]; then
     return
@@ -133,4 +130,3 @@ fi
 
 # set up shell prompt
 update_prompt
-
