@@ -3,8 +3,12 @@
 trap "pkill -9 waybar; exit 1" INT TERM EXIT
 trap "" RTMIN+1
 
+# restart waybar on crash
 while true; do
-  waybar &
+  waybar
+done &
+
+while true; do
   inotifywait -r -e create,modify,delete "$HOME/.config/waybar/"
   pkill -9 waybar
 done
