@@ -40,6 +40,7 @@ ntfy subscribe "$SUBSCRIPTION_URL" | while read -r line; do
     "$title"
     "$message"
     "--urgency=low"
+    "--transient"
     "--expire-time=5000"
     "--app-name=ntfy.sh"
     "--icon=$HOME/.config/ntfyd/icon.ico"
