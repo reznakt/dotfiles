@@ -1,0 +1,19 @@
+#!/bin/sh
+
+if [ $# -ne 1 ]; then
+    echo "Usage: $0 <layout>" 1>&2
+    exit 1
+fi 
+
+HYPR_CONF_DIR=$HOME/.config/hypr
+MONITORS_DIR="monitors"
+
+cd "$HYPR_CONF_DIR" || exit 1
+
+if [ ! -f $MONITORS_DIR/"$1.conf" ]; then
+    echo "Layout $1 not found in $HYPR_CONF_DIR/$MONITORS_DIR" 1>&2
+    exit 1
+fi
+
+ln -sf $MONITORS_DIR/"$1.conf" monitors.conf
+
