@@ -56,25 +56,13 @@ window#waybar {
     color: #2E3440;
 }
 
-#battery {
+#battery.charging {
     background-color: #A3BE8C;
     color: #2E3440;
 }
 
-#battery.warning:not(.charging) {
-    color: #BF616A;
-    animation: pulse 1s infinite;
-}
-
-@keyframes pulse {
-    0% {
-        background-color: #BF616A;
-        color: white;
-    }
-    100% {
-        background-color: #A3BE8C;
-        color: #2E3440;
-    }
+#battery.discharging.critical {
+    background-color: #FF0000;
 }
 
 #network.disconnected {

@@ -100,7 +100,10 @@
   "battery": {
     "frequency": 10,
     "format": "{capacity}% ({time} @ {power:0.2f}W) {icon}",
-    "format-icons": ["", "", "", "", ""]
+    "format-icons": ["", "", "", "", ""],
+    "states": {
+      "critical": 5
+    }
   },
   "network": {
     "interval": 5,
