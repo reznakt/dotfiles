@@ -22,4 +22,8 @@ return {
     "lark-parser/vim-lark-syntax",
     lazy = false
   },
+  {
+    "hrsh7th/nvim-cmp",
+    enabled = false
+  }
 }
