@@ -44,7 +44,7 @@
     "format": "{}  ",
     "return-type": "json",
     "tooltip": true,
-    "interval": 60,
+    "interval": 600,
     "exec": "~/.config/waybar/custom/xbps-updates.sh"
   },
   "mpris": {
