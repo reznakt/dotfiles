@@ -5,7 +5,9 @@
 [gpg]
 	format = ssh
 [commit]
-	gpgSign = true
+  gpgSign = true
+[pull]
+  rebase = true
 [push]
 	autoSetupRemote = true
 [diff "lockb"]
