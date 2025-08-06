@@ -73,24 +73,6 @@
     };
   };
 
-  systemd = {
-    services = {
-      systemd-udev-settle.enable = false;
-      systemd-journald.serviceConfig.SystemMaxUse = "50M";
-      NetworkManager-wait-online.enable = false;
-    };
-
-    user = {
-      extraConfig = ''
-        DefaultEnvironment="PATH=/run/current-system/sw/bin:/etc/profiles/per-user/%i/bin"
-      '';
-    };
-
-    extraConfig = ''
-      DefaultTimeoutStopSec=20s
-    '';
-  };
-
   fileSystems."/".options = [
     "noatime"
     "x-systemd.device-timeout=0"
@@ -437,6 +419,12 @@
   };
 
   systemd = {
+    services = {
+      systemd-udev-settle.enable = false;
+      systemd-journald.serviceConfig.SystemMaxUse = "50M";
+      NetworkManager-wait-online.enable = false;
+    };
+
     user.services = {
       mpris-proxy = {
         description = "Mpris proxy";
@@ -446,12 +434,6 @@
         ];
         wantedBy = [ "default.target" ];
         serviceConfig.ExecStart = "${pkgs.bluez}/bin/mpris-proxy";
-      };
-
-      waybar = {
-        environment = {
-          PATH = lib.mkForce "/run/current-system/sw/bin:/etc/profiles/per-user/%i/bin";
-        };
       };
     };
   };
