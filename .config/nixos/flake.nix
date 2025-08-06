@@ -8,26 +8,27 @@
     };
   };
 
-  outputs = inputs@{ nixpkgs, home-manager, ... }: {
-    nixosConfigurations = {
-      "DESKTOP-I09770C" = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [
-          ./configuration.nix
-          ./hardware-configuration.nix
+  outputs =
+    inputs@{ nixpkgs, home-manager, ... }:
+    {
+      nixosConfigurations = {
+        "DESKTOP-I09770C" = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [
+            ./configuration.nix
+            ./hardware-configuration.nix
 
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
 
-            home-manager.users = {
-              reznak = import ./home.nix;
-            };
-          }
-        ];
+              home-manager.users = {
+                reznak = import ./home.nix;
+              };
+            }
+          ];
+        };
       };
     };
-  };
 }
-
