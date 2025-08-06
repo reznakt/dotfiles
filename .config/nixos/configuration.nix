@@ -138,34 +138,6 @@
       "gamemode"
     ];
     shell = pkgs.zsh;
-    packages = with pkgs; [
-      bluemail
-      brightnessctl
-      btop-rocm
-      caprine
-      fastfetch
-      ghostty
-      grim
-      heroic
-      hyprpicker
-      insomnia
-      labymod-launcher
-      lsd
-      lunar-client
-      nixfmt-rfc-style
-      playerctl
-      pwvucontrol
-      ripgrep
-      signal-desktop
-      slurp
-      spotify
-      swaynotificationcenter
-      vscode-fhs
-      walker
-      webcord
-      wl-clipboard
-      yadm
-    ];
   };
 
   nixpkgs = {
@@ -181,35 +153,17 @@
   };
 
   environment.systemPackages = with pkgs; [
-    adwaita-icon-theme
-    bc
     curl
-    desktop-file-utils
-    fzf
     gcc
-    gnome-themes-extra
-    go
-    inotify-tools
-    jq
     kbd
     libnotify
-    libsForQt5.qt5ct
-    lurk
     man-pages
     man-pages-posix
-    mpv
-    pnpm
-    poetry
-    pre-commit
+    mpv # TODO: move to user packages
     psmisc
     python313
-    qt6ct
-    tmux
-    ungoogled-chromium
     unzip
-    virtualenv
     wget
-    zsh-powerlevel10k
   ];
 
   programs.waybar.enable = true;
