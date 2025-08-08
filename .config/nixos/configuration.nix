@@ -24,7 +24,6 @@
         configurationLimit = 30;
         gfxmodeEfi = "1920x1080";
       };
-
     };
 
     kernelParams = [
@@ -44,8 +43,6 @@
     };
 
     initrd = {
-      luks.devices."luks-8ab404cd-daef-44f7-aeb7-608652583c50".device =
-        "/dev/disk/by-uuid/8ab404cd-daef-44f7-aeb7-608652583c50";
       verbose = false;
       compressor = "cat";
 
@@ -79,7 +76,6 @@
   ];
 
   networking = {
-    hostName = "DESKTOP-I09770C";
     networkmanager.enable = true;
     nftables.enable = true;
     firewall.enable = true;

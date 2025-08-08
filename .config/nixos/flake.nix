@@ -20,11 +20,30 @@
 
             home-manager.nixosModules.home-manager
             {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
+              home-manager = {
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                users = {
+                  reznak = import ./home.nix;
+                };
+              };
+            }
+          ];
+        };
+        "probook-455-g8" = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [
+            ./configuration.nix
+            ./hardware-configuration.nix
 
-              home-manager.users = {
-                reznak = import ./home.nix;
+            home-manager.nixosModules.home-manager
+            {
+              home-manager = {
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                users = {
+                  reznak = import ./home.nix;
+                };
               };
             }
           ];
