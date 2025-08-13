@@ -17,6 +17,7 @@
           modules = [
             ./configuration.nix
             ./hardware-configuration.nix
+            ./machines/DESKTOP-I09770C.nix
 
             home-manager.nixosModules.home-manager
             {
@@ -35,6 +36,7 @@
           modules = [
             ./configuration.nix
             ./hardware-configuration.nix
+            ./machines/probook-455-g8.nix
 
             home-manager.nixosModules.home-manager
             {
