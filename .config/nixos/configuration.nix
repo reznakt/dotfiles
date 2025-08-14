@@ -33,10 +33,6 @@
       "rd.systemd_show_status=auto"
     ];
 
-    kernel.sysctl = {
-      "vm.swappiness" = 0;
-    };
-
     plymouth = {
       enable = true;
       theme = "spinner";
