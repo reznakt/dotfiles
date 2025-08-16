@@ -335,7 +335,6 @@
 
   security = {
     rtkit.enable = true;
-    sudo.wheelNeedsPassword = false;
     polkit.enable = true;
     pam.services.greetd.enableGnomeKeyring = true;
     pam.services.hyprlock.enableGnomeKeyring = true;

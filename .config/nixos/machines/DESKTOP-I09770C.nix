@@ -12,4 +12,5 @@
   boot.kernel.sysctl = {
     "vm.swappiness" = 0;
   };
+  security.sudo.wheelNeedsPassword = false;
 }
