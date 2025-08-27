@@ -56,4 +56,34 @@
       zsh-powerlevel10k
     ];
   };
+
+  programs.yazi = {
+    enable = true;
+    enableZshIntegration = true;
+    plugins = with pkgs.yaziPlugins; {
+      rsync = rsync;
+      chmod = chmod;
+      git = git;
+      sudo = sudo;
+      ouch = ouch;
+      glow = glow;
+      diff = diff;
+      duckdb = duckdb;
+      bypass = bypass;
+      mediainfo = mediainfo;
+      full-border = full-border;
+      rich-preview = rich-preview;
+    };
+  };
+
+  services.hyprpolkitagent.enable = true;
+
+  services.udiskie = {
+    enable = true;
+    settings = {
+      program_options = {
+        file_manager = "${pkgs.yazi}/bin/yazi";
+      };
+    };
+  };
 }

@@ -293,6 +293,8 @@
   services.preload.enable = true;
   services.systembus-notify.enable = true;
   services.tlp.enable = true;
+  services.udisks2.enable = true;
+  services.gvfs.enable = true;
 
   services.greetd = {
     enable = true;
