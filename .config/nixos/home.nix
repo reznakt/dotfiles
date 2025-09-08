@@ -37,6 +37,8 @@
       pnpm
       poetry
       pre-commit
+      proton-pass
+      protonvpn-gui
       pwvucontrol
       qt6ct
       ripgrep
