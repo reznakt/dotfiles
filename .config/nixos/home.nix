@@ -31,6 +31,7 @@
       lsd
       lunar-client
       lurk
+      lutris
       nixfmt-rfc-style
       nodejs # for neovim copilot plugin
       playerctl
