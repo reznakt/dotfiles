@@ -6,10 +6,20 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    vscode-extensions = {
+      url = "github:nix-community/nix-vscode-extensions";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
-    inputs@{ nixpkgs, home-manager, ... }:
+    inputs@{
+      nixpkgs,
+      home-manager,
+      vscode-extensions,
+      ...
+    }:
     {
       nixosConfigurations = {
         "DESKTOP-I09770C" = nixpkgs.lib.nixosSystem {
@@ -18,6 +28,8 @@
             ./configuration.nix
             ./hardware-configuration.nix
             ./machines/DESKTOP-I09770C.nix
+
+            { nixpkgs.overlays = [ vscode-extensions.overlays.default ]; }
 
             home-manager.nixosModules.home-manager
             {
@@ -37,6 +49,8 @@
             ./configuration.nix
             ./hardware-configuration.nix
             ./machines/probook-455-g8.nix
+
+            { nixpkgs.overlays = [ vscode-extensions.overlays.default ]; }
 
             home-manager.nixosModules.home-manager
             {
