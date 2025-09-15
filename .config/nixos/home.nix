@@ -43,7 +43,6 @@
       pwvucontrol
       qt6ct
       ripgrep
-      ripgrep
       signal-desktop
       slurp
       spotify
