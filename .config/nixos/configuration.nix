@@ -188,36 +188,6 @@
     vimAlias = true;
   };
 
-  programs.firefox = {
-    enable = true;
-    wrapperConfig = {
-      pipewireSupport = true;
-    };
-    preferences = {
-      "accessibility.force_disabled" = 1;
-      "browser.aboutConfig.showWarning" = false;
-      "browser.cache.disk.enable" = false;
-      "browser.cache.memory.enable" = true;
-      "browser.sessionstore.resume_from_crash" = false;
-      "browser.theme.content-theme" = 0;
-      "browser.translations.enable" = false;
-      "browser.urlbar.trimHttps" = false;
-      "browser.urlbar.trimURLs" = false;
-      "browser.vpn_promo.enabled" = false;
-      "extensions.activeThemeID" = "firefox-compact-dark@mozilla.org";
-      "extensions.pocket.enabled" = false;
-      "general.autoScroll" = true;
-      "general.smoothScroll" = true;
-    };
-    autoConfig = ''
-      pref("findbar.highlightAll", true);
-      pref("font.name.monospace.x-western", "UbuntuMono Nerd Font Mono");
-      pref("font.name.sans-serif.x-western", "UbuntuSans Nerd Font");
-      pref("font.name.serif.x-western", "Ubuntu Nerd Font");
-      pref("full-screen-api.warning.timeout", 0);
-    '';
-  };
-
   programs.steam = {
     enable = true;
     remotePlay.openFirewall = true;
