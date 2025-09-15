@@ -4,7 +4,6 @@
   pkgs,
   ...
 }:
-
 {
   imports = [ ./hardware-configuration.nix ];
 
@@ -44,9 +43,7 @@
 
       systemd = {
         enable = true;
-        extraBin = {
-          setleds = "${pkgs.kbd}/bin/setleds";
-        };
+        extraBin.setleds = "${pkgs.kbd}/bin/setleds";
 
         services.setleds = {
           description = "Set keyboard LEDs on TTYs";
@@ -79,23 +76,19 @@
 
   time.timeZone = "Europe/Prague";
 
-  i18n.defaultLocale = "en_US.UTF-8";
-
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "cs_CZ.UTF-8";
-    LC_IDENTIFICATION = "cs_CZ.UTF-8";
-    LC_MEASUREMENT = "cs_CZ.UTF-8";
-    LC_MONETARY = "cs_CZ.UTF-8";
-    LC_NAME = "cs_CZ.UTF-8";
-    LC_NUMERIC = "cs_CZ.UTF-8";
-    LC_PAPER = "cs_CZ.UTF-8";
-    LC_TELEPHONE = "cs_CZ.UTF-8";
-    LC_TIME = "cs_CZ.UTF-8";
-  };
-
-  services.xserver.xkb = {
-    layout = "cz";
-    variant = "";
+  i18n = {
+    defaultLocale = "en_US.UTF-8";
+    extraLocaleSettings = {
+      LC_ADDRESS = "cs_CZ.UTF-8";
+      LC_IDENTIFICATION = "cs_CZ.UTF-8";
+      LC_MEASUREMENT = "cs_CZ.UTF-8";
+      LC_MONETARY = "cs_CZ.UTF-8";
+      LC_NAME = "cs_CZ.UTF-8";
+      LC_NUMERIC = "cs_CZ.UTF-8";
+      LC_PAPER = "cs_CZ.UTF-8";
+      LC_TELEPHONE = "cs_CZ.UTF-8";
+      LC_TIME = "cs_CZ.UTF-8";
+    };
   };
 
   console.useXkbConfig = true;
@@ -116,7 +109,6 @@
 
   nixpkgs = {
     config.allowUnfree = true;
-
     overlays = [
       (self: super: {
         mpv = super.mpv.override {
@@ -140,177 +132,187 @@
     wget
   ];
 
-  programs.waybar.enable = true;
-  programs.gamescope.enable = true;
-  programs.nix-ld.enable = true;
+  programs = {
+    waybar.enable = true;
+    gamescope.enable = true;
+    nix-ld.enable = true;
 
-  programs.nh = {
-    enable = true;
-    flake = "/etc/nixos/";
-  };
+    nh = {
+      enable = true;
+      flake = "/etc/nixos/";
+    };
 
-  programs.gamemode = {
-    enable = true;
+    gamemode = {
+      enable = true;
+      settings = {
+        general = {
+          renice = 10;
+          softrealtime = "on";
+        };
 
-    settings = {
-      general = {
-        renice = 10;
-        softrealtime = "on";
-      };
+        gpu = {
+          apply_gpu_optimisations = "accept-responsibility";
+          gpu_device = 1;
+          amd_performance_level = "high";
+        };
 
-      gpu = {
-        apply_gpu_optimisations = "accept-responsibility";
-        gpu_device = 1;
-        amd_performance_level = "high";
-      };
-
-      custom = {
-        start = "notify-send -u low -e -a 'Gamemode' 'Gamemode' 'Optimizations activated'";
-        end = "notify-send -u low -e -a 'Gamemode' 'Gamemode' 'Optimizations deactivated'";
+        custom = {
+          start = "notify-send -u low -e -a 'Gamemode' 'Gamemode' 'Optimizations activated'";
+          end = "notify-send -u low -e -a 'Gamemode' 'Gamemode' 'Optimizations deactivated'";
+        };
       };
     };
-  };
 
-  programs.hyprland = {
-    enable = true;
-    withUWSM = true;
-  };
-
-  programs.git = {
-    enable = true;
-    lfs.enable = true;
-  };
-
-  programs.neovim = {
-    enable = true;
-    defaultEditor = true;
-    viAlias = true;
-    vimAlias = true;
-  };
-
-  programs.steam = {
-    enable = true;
-    remotePlay.openFirewall = true;
-    dedicatedServer.openFirewall = true;
-    localNetworkGameTransfers.openFirewall = true;
-  };
-
-  programs.zsh = {
-    enable = true;
-    enableCompletion = true;
-    enableBashCompletion = true;
-    syntaxHighlighting.enable = true;
-    vteIntegration = true;
-
-    autosuggestions = {
+    hyprland = {
       enable = true;
-      strategy = [
-        "history"
-        "completion"
+      withUWSM = true;
+    };
+
+    git = {
+      enable = true;
+      lfs.enable = true;
+    };
+
+    neovim = {
+      enable = true;
+      defaultEditor = true;
+      viAlias = true;
+      vimAlias = true;
+    };
+
+    steam = {
+      enable = true;
+      remotePlay.openFirewall = true;
+      dedicatedServer.openFirewall = true;
+      localNetworkGameTransfers.openFirewall = true;
+    };
+
+    zsh = {
+      enable = true;
+      enableCompletion = true;
+      enableBashCompletion = true;
+      syntaxHighlighting.enable = true;
+      vteIntegration = true;
+
+      autosuggestions = {
+        enable = true;
+        strategy = [
+          "history"
+          "completion"
+        ];
+      };
+
+      promptInit = ''
+        source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
+      '';
+
+      ohMyZsh = {
+        enable = true;
+        plugins = [
+          "bun"
+          "colored-man-pages"
+          "dirhistory"
+          "fancy-ctrl-z"
+          "git"
+          "git-auto-fetch"
+          "history"
+          "npm"
+          "pip"
+          "poetry"
+          "poetry-env"
+          "rust"
+          "safe-paste"
+          "zsh-interactive-cd"
+        ];
+      };
+
+      shellAliases = {
+        strace = "lurk";
+        ls = "lsd";
+        ll = "ls -l";
+        la = "ls -A";
+        lla = "ll -A";
+      };
+
+      histSize = 10000;
+      histFile = "$HOME/.zsh_history";
+      setOptions = [
+        "APPENDHISTORY"
+        "EXTENDED_HISTORY"
+        "HIST_IGNORE_ALL_DUPS"
+        "INC_APPEND_HISTORY"
+        "SHARE_HISTORY"
       ];
     };
-
-    promptInit = ''
-      source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
-    '';
-
-    ohMyZsh = {
-      enable = true;
-      plugins = [
-        "bun"
-        "colored-man-pages"
-        "dirhistory"
-        "fancy-ctrl-z"
-        "git"
-        "git-auto-fetch"
-        "history"
-        "npm"
-        "pip"
-        "poetry"
-        "poetry-env"
-        "rust"
-        "safe-paste"
-        "zsh-interactive-cd"
-      ];
-    };
-
-    shellAliases = {
-      strace = "lurk";
-      ls = "lsd";
-      ll = "ls -l";
-      la = "ls -A";
-      lla = "ll -A";
-    };
-
-    histSize = 10000;
-    histFile = "$HOME/.zsh_history";
-    setOptions = [
-      "APPENDHISTORY"
-      "EXTENDED_HISTORY"
-      "HIST_IGNORE_ALL_DUPS"
-      "INC_APPEND_HISTORY"
-      "SHARE_HISTORY"
-    ];
   };
 
   virtualisation.docker.enable = true;
 
-  services.fstrim.enable = true;
-  services.fwupd.enable = true;
-  services.gnome.gnome-keyring.enable = true;
-  services.openssh.enable = true;
-  services.playerctld.enable = true;
-  services.preload.enable = true;
-  services.systembus-notify.enable = true;
-  services.tlp.enable = true;
-  services.udisks2.enable = true;
-  services.gvfs.enable = true;
-  services.invidious.enable = true;
+  services = {
+    fstrim.enable = true;
+    fwupd.enable = true;
+    gnome.gnome-keyring.enable = true;
+    openssh.enable = true;
+    playerctld.enable = true;
+    preload.enable = true;
+    systembus-notify.enable = true;
+    tlp.enable = true;
+    udisks2.enable = true;
+    gvfs.enable = true;
+    invidious.enable = true;
 
-  services.greetd = {
-    enable = true;
-    settings = rec {
-      initial_session = {
-        command = "uwsm start hyprland-uwsm.desktop";
-        user = "reznak";
-      };
-      default_session = initial_session;
+    earlyoom = {
+      enable = true;
+      enableNotifications = true;
     };
-  };
 
-  services.kmscon = {
-    enable = true;
-    fonts = [
-      {
-        name = "JetBrainsMono Nerd Font";
-        package = pkgs.nerd-fonts.jetbrains-mono;
-      }
-    ];
-    extraConfig = "font-size=10";
-    hwRender = true;
-    useXkbConfig = true;
-  };
+    greetd = {
+      enable = true;
+      settings = rec {
+        initial_session = {
+          command = "uwsm start hyprland-uwsm.desktop";
+          user = "reznak";
+        };
+        default_session = initial_session;
+      };
+    };
 
-  services.earlyoom = {
-    enable = true;
-    enableNotifications = true;
-  };
+    kmscon = {
+      enable = true;
+      fonts = [
+        {
+          name = "JetBrainsMono Nerd Font";
+          package = pkgs.nerd-fonts.jetbrains-mono;
+        }
+      ];
+      extraConfig = "font-size=10";
+      hwRender = true;
+      useXkbConfig = true;
+    };
 
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    audio.enable = true;
-    wireplumber.enable = true;
-    jack.enable = true;
+    pipewire = {
+      enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
+      audio.enable = true;
+      wireplumber.enable = true;
+      jack.enable = true;
+    };
+
+    xserver.xkb = {
+      layout = "cz";
+      variant = "";
+    };
   };
 
   security = {
     rtkit.enable = true;
     polkit.enable = true;
-    pam.services.greetd.enableGnomeKeyring = true;
-    pam.services.hyprlock.enableGnomeKeyring = true;
+    pam.services = {
+      greetd.enableGnomeKeyring = true;
+      hyprlock.enableGnomeKeyring = true;
+    };
   };
 
   nix = {
@@ -321,20 +323,16 @@
       ];
       auto-optimise-store = true;
     };
-
     optimise = {
       automatic = true;
       dates = "daily";
     };
-
     gc = {
       automatic = true;
       dates = "daily";
       options = "--delete-older-than 30d";
     };
-
     distributedBuilds = false;
-
     buildMachines = [
       {
         hostName = "nixremote";
@@ -372,12 +370,10 @@
       powerOnBoot = true;
       settings.General.Experimental = true;
     };
-
     graphics = {
       enable = true;
       enable32Bit = true;
     };
-
     cpu.amd.updateMicrocode = true;
     amdgpu.initrd.enable = true;
   };
@@ -388,7 +384,6 @@
       systemd-journald.serviceConfig.SystemMaxUse = "50M";
       NetworkManager-wait-online.enable = false;
     };
-
     user.services = {
       mpris-proxy = {
         description = "Mpris proxy";
