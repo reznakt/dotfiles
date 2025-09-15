@@ -265,6 +265,7 @@
   services.tlp.enable = true;
   services.udisks2.enable = true;
   services.gvfs.enable = true;
+  services.invidious.enable = true;
 
   services.greetd = {
     enable = true;

@@ -170,6 +170,34 @@
         "webgl.disabled" = true;
       };
     };
+
+    freetube = {
+      enable = true;
+      settings = {
+        "app.closeToTray" = true;
+        "app.minimizeToTray" = true;
+        "app.startupBehavior" = "continue-where-left-off";
+        "app.theme" = "dark";
+        "backendFallback" = false;
+        "backendPreference" = "local";
+        "baseTheme" = "catppuccinMocha";
+        "checkForBlogPosts" = false;
+        "checkForUpdates" = false;
+        "defaultQuality" = "2160";
+        "externalLinkHandling" = "openLinkAfterPrompt";
+        "generalAutoLoadMorePaginatedItemsEnabled" = true;
+        "hideHeaderLogo" = true;
+        "mainColor" = "Blue";
+        "player.defaultQuality" = "high";
+        "player.hardwareAcceleration" = true;
+        "region" = "CZ";
+        "useDeArrowThumbnails" = true;
+        "useDeArrowTitles" = true;
+        "useRssFeeds" = true;
+        "useSponsorBlock" = true;
+        "videoVolumeMouseScroll" = false;
+      };
+    };
   };
 
   services.hyprpolkitagent.enable = true;
