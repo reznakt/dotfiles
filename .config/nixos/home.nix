@@ -152,6 +152,8 @@
         "browser.vpn_promo.enabled" = false;
         "extensions.activeThemeID" = "firefox-compact-dark@mozilla.org";
         "extensions.pocket.enabled" = false;
+        "extensions.update.autoUpdateDefault" = true;
+        "extensions.update.enabled" = true;
         "findbar.highlightAll" = true;
         "font.name.monospace.x-western" = "UbuntuMono Nerd Font Mono";
         "font.name.sans-serif.x-western" = "UbuntuSans Nerd Font";
@@ -159,14 +161,13 @@
         "full-screen-api.warning.timeout" = 0;
         "general.autoScroll" = true;
         "general.smoothScroll" = true;
-        "extensions.update.autoUpdateDefault" = true;
-        "extensions.update.enabled" = true;
         "identity.fxaccounts.enabled" = true;
+        "pdfjs.viewerCssTheme" = 2;
+        "privacy.donottrackheader.enabled" = true;
+        "privacy.fingerprintingProtection" = true;
         "privacy.resistFingerprinting" = true;
         "security.OCSP.enable" = true;
         "webgl.disabled" = true;
-        "privacy.donottrackheader.enabled" = true;
-        "privacy.fingerprintingProtection" = true;
       };
     };
   };
