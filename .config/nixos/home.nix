@@ -54,6 +54,17 @@
       wl-clipboard
       yadm
       zsh-powerlevel10k
+      (
+        let
+          cplex-with-installer = cplex.override {
+            releasePath = ./cplex.bin;
+          };
+        in
+        cplex-with-installer.overrideAttrs (old: {
+          preInstall = "mkdir -p $out/doc $out/license";
+          buildInputs = old.buildInputs ++ [ curl ];
+        })
+      )
     ];
   };
 
