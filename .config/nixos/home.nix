@@ -211,4 +211,16 @@
       };
     };
   };
+
+  services.hyprpaper = {
+    enable = true;
+    settings =
+      let
+        wallpaper = "~/.wallpaper.jpg";
+      in
+      {
+        preload = [ wallpaper ];
+        wallpaper = [ ", ${wallpaper}" ];
+      };
+  };
 }
