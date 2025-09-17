@@ -23,9 +23,13 @@
     })
   ];
 
-  security.pam.services.hyprlock.fprintAuth = true;
-  security.pam.services.login.fprintAuth = true;
-  security.pam.services.sudo.fprintAuth = true;
+  security.pam.services = {
+    hyprlock.fprintAuth = true;
+    login.fprintAuth = true;
+    polkit-1.fprintAuth = true;
+    su.fprintAuth = true;
+    sudo.fprintAuth = true;
+  };
 
   systemd.services.fprintd = {
     wantedBy = [ "multi-user.target" ];

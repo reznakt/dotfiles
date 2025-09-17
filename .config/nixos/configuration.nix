@@ -309,9 +309,29 @@
   security = {
     rtkit.enable = true;
     polkit.enable = true;
-    pam.services = {
-      greetd.enableGnomeKeyring = true;
-      hyprlock.enableGnomeKeyring = true;
+
+    pam = {
+      u2f = {
+        enable = true;
+        settings = {
+          authfile = "/etc/u2f-keys";
+          cue = true;
+        };
+      };
+
+      services = {
+        login.u2fAuth = true;
+        polkit-1.u2fAuth = true;
+        su.u2fAuth = true;
+        sudo.u2fAuth = true;
+
+        greetd.enableGnomeKeyring = true;
+
+        hyprlock = {
+          enableGnomeKeyring = true;
+          u2fAuth = true;
+        };
+      };
     };
   };
 
