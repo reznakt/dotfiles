@@ -107,16 +107,7 @@
     shell = pkgs.zsh;
   };
 
-  nixpkgs = {
-    config.allowUnfree = true;
-    overlays = [
-      (self: super: {
-        mpv = super.mpv.override {
-          scripts = [ self.mpvScripts.mpris ];
-        };
-      })
-    ];
-  };
+  nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
     curl
@@ -125,7 +116,6 @@
     libnotify
     man-pages
     man-pages-posix
-    mpv # TODO: move to user packages
     psmisc
     python313
     unzip

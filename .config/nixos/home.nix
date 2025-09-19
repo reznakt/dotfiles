@@ -211,6 +211,11 @@
         "videoVolumeMouseScroll" = false;
       };
     };
+
+    mpv = {
+      enable = true;
+      scripts = with pkgs.mpvScripts; [ mpris ];
+    };
   };
 
   services.hyprpolkitagent.enable = true;
