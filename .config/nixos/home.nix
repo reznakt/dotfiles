@@ -34,6 +34,7 @@
       lutris
       nixfmt-rfc-style
       nodejs # for neovim copilot plugin
+      obsidian
       octaveFull
       playerctl
       pnpm
@@ -219,6 +220,7 @@
   };
 
   services.hyprpolkitagent.enable = true;
+  services.syncthing.enable = true;
 
   services.udiskie = {
     enable = true;
