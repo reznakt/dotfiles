@@ -219,27 +219,29 @@
     };
   };
 
-  services.hyprpolkitagent.enable = true;
-  services.syncthing.enable = true;
+  services = {
+    hyprpolkitagent.enable = true;
+    syncthing.enable = true;
 
-  services.udiskie = {
-    enable = true;
-    settings = {
-      program_options = {
-        file_manager = "${pkgs.yazi}/bin/yazi";
+    udiskie = {
+      enable = true;
+      settings = {
+        program_options = {
+          file_manager = "${pkgs.yazi}/bin/yazi";
+        };
       };
     };
-  };
 
-  services.hyprpaper = {
-    enable = true;
-    settings =
-      let
-        wallpaper = "~/.wallpaper.jpg";
-      in
-      {
-        preload = [ wallpaper ];
-        wallpaper = [ ", ${wallpaper}" ];
-      };
+    hyprpaper = {
+      enable = true;
+      settings =
+        let
+          wallpaper = "~/.wallpaper.jpg";
+        in
+        {
+          preload = [ wallpaper ];
+          wallpaper = [ ", ${wallpaper}" ];
+        };
+    };
   };
 }
