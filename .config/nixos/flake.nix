@@ -22,12 +22,12 @@
     }:
     {
       nixosConfigurations = {
-        "DESKTOP-I09770C" = nixpkgs.lib.nixosSystem {
+        desktop = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
             ./configuration.nix
             ./hardware-configuration.nix
-            ./machines/DESKTOP-I09770C.nix
+            ./machines/desktop.nix
 
             { nixpkgs.overlays = [ vscode-extensions.overlays.default ]; }
 
@@ -43,12 +43,12 @@
             }
           ];
         };
-        "probook-455-g8" = nixpkgs.lib.nixosSystem {
+        laptop = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
             ./configuration.nix
             ./hardware-configuration.nix
-            ./machines/probook-455-g8.nix
+            ./machines/laptop.nix
 
             { nixpkgs.overlays = [ vscode-extensions.overlays.default ]; }
 
