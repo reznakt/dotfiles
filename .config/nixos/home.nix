@@ -34,6 +34,7 @@
       lutris
       nixfmt-rfc-style
       nodejs # for neovim copilot plugin
+      octaveFull
       playerctl
       pnpm
       poetry
