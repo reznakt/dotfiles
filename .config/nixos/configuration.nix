@@ -134,7 +134,7 @@
       flake = "/etc/nixos/";
       clean = {
         enable = true;
-        extraArgs = "--delete-older-than 30d";
+        extraArgs = "--keep-since 30d";
       };
     };
 
