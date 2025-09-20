@@ -130,6 +130,10 @@
     nh = {
       enable = true;
       flake = "/etc/nixos/";
+      clean = {
+        enable = true;
+        extraArgs = "--delete-older-than 30d";
+      };
     };
 
     gamemode = {
@@ -339,11 +343,6 @@
     optimise = {
       automatic = true;
       dates = "daily";
-    };
-    gc = {
-      automatic = true;
-      dates = "daily";
-      options = "--delete-older-than 30d";
     };
     distributedBuilds = false;
     buildMachines = [
