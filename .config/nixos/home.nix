@@ -8,6 +8,7 @@
 
     packages = with pkgs; [
       adwaita-icon-theme
+      androidenv.androidPkgs.platform-tools
       bc
       bluemail
       brightnessctl

@@ -103,6 +103,7 @@
       "audio"
       "docker"
       "gamemode"
+      "adbusers"
     ];
     shell = pkgs.zsh;
   };
@@ -126,6 +127,7 @@
     waybar.enable = true;
     gamescope.enable = true;
     nix-ld.enable = true;
+    adb.enable = true;
 
     nh = {
       enable = true;
