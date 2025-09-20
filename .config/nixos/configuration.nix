@@ -344,23 +344,6 @@
       automatic = true;
       dates = "daily";
     };
-    distributedBuilds = false;
-    buildMachines = [
-      {
-        hostName = "nixremote";
-        system = "x86_64-linux";
-        protocol = "ssh-ng";
-        maxJobs = 1;
-        speedFactor = 1;
-        supportedFeatures = [
-          "nixos-test"
-          "benchmark"
-          "big-parallel"
-          "kvm"
-        ];
-        mandatoryFeatures = [ ];
-      }
-    ];
   };
 
   fonts = {
