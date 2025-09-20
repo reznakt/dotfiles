@@ -8,7 +8,7 @@
   imports = [ ./hardware-configuration.nix ];
 
   boot = {
-    kernelPackages = pkgs.linuxPackages;
+    kernelPackages = pkgs.linuxPackages_latest;
     consoleLogLevel = 3;
 
     loader = {
