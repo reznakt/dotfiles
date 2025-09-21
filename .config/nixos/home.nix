@@ -104,10 +104,12 @@
           with pkgs.vscode-extensions;
           [
             aaron-bond.better-comments
+            arrterian.nix-env-selector
             charliermarsh.ruff
             editorconfig.editorconfig
             github.copilot
             github.copilot-chat
+            jnoortheen.nix-ide
             k--kato.intellij-idea-keybindings
             ms-python.debugpy
             ms-python.python
@@ -121,7 +123,6 @@
             t3dotgg.vsc-material-theme-but-i-wont-sue-you
             usernamehw.errorlens
             vscode-icons-team.vscode-icons
-            jnoortheen.nix-ide
             yoavbls.pretty-ts-errors
           ]
         );
