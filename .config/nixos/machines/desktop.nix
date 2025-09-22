@@ -18,4 +18,9 @@
   };
 
   security.sudo.wheelNeedsPassword = false;
+
+  hardware = {
+    cpu.intel.updateMicrocode = true;
+    amdgpu.initrd.enable = true;
+  };
 }

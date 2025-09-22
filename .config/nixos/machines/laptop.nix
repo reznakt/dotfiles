@@ -39,4 +39,15 @@
 
   services.fprintd.enable = true;
   programs.hyprlock.enable = true;
+
+  hardware = {
+    bluetooth = {
+      enable = true;
+      powerOnBoot = true;
+      settings.General.Experimental = true;
+    };
+
+    cpu.amd.updateMicrocode = true;
+    amdgpu.initrd.enable = true;
+  };
 }

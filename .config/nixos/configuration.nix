@@ -97,13 +97,13 @@
     isNormalUser = true;
     description = "Tomáš Režňák";
     extraGroups = [
-      "networkmanager"
-      "wheel"
-      "video"
+      "adbusers"
       "audio"
       "docker"
       "gamemode"
-      "adbusers"
+      "networkmanager"
+      "video"
+      "wheel"
     ];
     shell = pkgs.zsh;
   };
@@ -124,10 +124,10 @@
   ];
 
   programs = {
-    waybar.enable = true;
+    adb.enable = true;
     gamescope.enable = true;
     nix-ld.enable = true;
-    adb.enable = true;
+    waybar.enable = true;
 
     nh = {
       enable = true;
@@ -209,13 +209,13 @@
           "colored-man-pages"
           "dirhistory"
           "fancy-ctrl-z"
-          "git"
           "git-auto-fetch"
+          "git"
           "history"
           "npm"
           "pip"
-          "poetry"
           "poetry-env"
+          "poetry"
           "rust"
           "safe-paste"
           "zsh-interactive-cd"
@@ -251,14 +251,14 @@
     fstrim.enable = true;
     fwupd.enable = true;
     gnome.gnome-keyring.enable = true;
+    gvfs.enable = true;
+    invidious.enable = true;
     openssh.enable = true;
     playerctld.enable = true;
     preload.enable = true;
     systembus-notify.enable = true;
     tlp.enable = true;
     udisks2.enable = true;
-    gvfs.enable = true;
-    invidious.enable = true;
 
     earlyoom = {
       enable = true;
@@ -361,18 +361,9 @@
       ++ builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts);
   };
 
-  hardware = {
-    bluetooth = {
-      enable = true;
-      powerOnBoot = true;
-      settings.General.Experimental = true;
-    };
-    graphics = {
-      enable = true;
-      enable32Bit = true;
-    };
-    cpu.amd.updateMicrocode = true;
-    amdgpu.initrd.enable = true;
+  hardware.graphics = {
+    enable = true;
+    enable32Bit = true;
   };
 
   systemd = {
