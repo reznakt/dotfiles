@@ -14,56 +14,41 @@
   };
 
   outputs =
-    inputs@{
+    {
+      self,
       nixpkgs,
       home-manager,
       vscode-extensions,
       ...
     }:
+    let
+      mkSystem =
+        machineModule:
+        nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [
+            ./configuration.nix
+            ./hardware-configuration.nix
+
+            machineModule
+
+            { nixpkgs.overlays = [ vscode-extensions.overlays.default ]; }
+
+            home-manager.nixosModules.home-manager
+            {
+              home-manager = {
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                users.reznak = import ./home.nix;
+              };
+            }
+          ];
+        };
+    in
     {
       nixosConfigurations = {
-        desktop = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          modules = [
-            ./configuration.nix
-            ./hardware-configuration.nix
-            ./machines/desktop.nix
-
-            { nixpkgs.overlays = [ vscode-extensions.overlays.default ]; }
-
-            home-manager.nixosModules.home-manager
-            {
-              home-manager = {
-                useGlobalPkgs = true;
-                useUserPackages = true;
-                users = {
-                  reznak = import ./home.nix;
-                };
-              };
-            }
-          ];
-        };
-        laptop = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          modules = [
-            ./configuration.nix
-            ./hardware-configuration.nix
-            ./machines/laptop.nix
-
-            { nixpkgs.overlays = [ vscode-extensions.overlays.default ]; }
-
-            home-manager.nixosModules.home-manager
-            {
-              home-manager = {
-                useGlobalPkgs = true;
-                useUserPackages = true;
-                users = {
-                  reznak = import ./home.nix;
-                };
-              };
-            }
-          ];
-        };
+        desktop = mkSystem ./machines/desktop.nix;
+        laptop = mkSystem ./machines/laptop.nix;
       };
     };
 }
