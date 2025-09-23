@@ -147,7 +147,6 @@
           "workbench.colorTheme" = "Material Theme Darker";
           "workbench.iconTheme" = "vscode-icons";
           "workbench.list.smoothScrolling" = true;
-          "workbench.secondarySideBar.defaultVisibility" = "visible";
           "workbench.startupEditor" = "none";
         };
       };
