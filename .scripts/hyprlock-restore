@@ -1,4 +1,0 @@
-#!/bin/bash
-
-killall -KILL "hyprlock"
-hyprctl --instance 0 'dispatch exec hyprlock'
