@@ -158,13 +158,6 @@
       lfs.enable = true;
     };
 
-    neovim = {
-      enable = true;
-      defaultEditor = true;
-      viAlias = true;
-      vimAlias = true;
-    };
-
     steam = {
       enable = true;
       remotePlay.openFirewall = true;
