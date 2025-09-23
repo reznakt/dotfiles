@@ -21,6 +21,7 @@
       inotify-tools
       insomnia
       labymod-launcher
+      libnotify
       libsForQt5.qt5ct
       lunar-client
       lurk
@@ -239,6 +240,7 @@
       withPython3 = true;
       withRuby = true;
       extraPackages = with pkgs; [
+        gcc
         jq
         ripgrep
       ];

@@ -109,20 +109,7 @@
   };
 
   nixpkgs.config.allowUnfree = true;
-
-  environment.systemPackages = with pkgs; [
-    curl
-    gcc
-    kbd
-    libnotify
-    man-pages
-    man-pages-posix
-    psmisc
-    python313
-    unzip
-    wget
-    zsh-powerlevel10k
-  ];
+  environment.systemPackages = with pkgs; [ kbd ];
 
   programs = {
     adb.enable = true;
