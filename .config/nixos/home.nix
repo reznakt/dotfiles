@@ -133,6 +133,7 @@
           "terminal.integrated.cursorBlinking" = true;
           "terminal.integrated.fontLigatures.enabled" = true;
           "terminal.integrated.smoothScrolling" = true;
+          "terminal.integrated.stickyScroll.enabled" = false;
           "update.showReleaseNotes" = false;
           "vsicons.dontShowNewVersionMessage" = true;
           "workbench.colorTheme" = "Material Theme Darker";
