@@ -121,25 +121,23 @@
     python313
     unzip
     wget
+    zsh-powerlevel10k
   ];
 
   programs = {
     adb.enable = true;
+    waybar.enable = true;
     gamescope.enable = true;
     nix-ld.enable = true;
-    waybar.enable = true;
 
-    nh = {
+    hyprland = {
       enable = true;
-      flake = "/etc/nixos/";
-      clean = {
-        enable = true;
-        extraArgs = "--keep-since 30d";
-      };
+      withUWSM = true;
     };
 
     gamemode = {
       enable = true;
+
       settings = {
         general = {
           renice = 10;
@@ -159,9 +157,13 @@
       };
     };
 
-    hyprland = {
+    nh = {
       enable = true;
-      withUWSM = true;
+      flake = "/etc/nixos/";
+      clean = {
+        enable = true;
+        extraArgs = "--keep-since 30d";
+      };
     };
 
     git = {

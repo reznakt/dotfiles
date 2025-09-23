@@ -12,40 +12,28 @@
       bc
       bluemail
       brightnessctl
-      btop-rocm
       caprine
       desktop-file-utils
-      fastfetch
-      fd
-      fzf
-      ghostty
       gnome-themes-extra
-      go
       grim
       heroic
       hyprpicker
       inotify-tools
       insomnia
-      jq
       labymod-launcher
       libsForQt5.qt5ct
-      lsd
       lunar-client
       lurk
       lutris
       nixfmt-rfc-style
-      nodejs # for neovim copilot plugin
       obsidian
       octaveFull
       playerctl
-      pnpm
-      poetry
       pre-commit
       proton-pass
       protonvpn-gui
       pwvucontrol
       qt6ct
-      ripgrep
       signal-desktop
       slurp
       spotify
@@ -72,6 +60,9 @@
   };
 
   programs = {
+    fastfetch.enable = true;
+    go.enable = true;
+
     yazi = {
       enable = true;
       enableZshIntegration = true;
@@ -214,15 +205,64 @@
       };
     };
 
+    tmux = {
+      enable = true;
+      clock24 = true;
+      keyMode = "vi";
+      mouse = true;
+    };
+
+    lsd = {
+      enable = true;
+      enableZshIntegration = true;
+    };
+
     mpv = {
       enable = true;
       scripts = with pkgs.mpvScripts; [ mpris ];
     };
+
+    git = {
+      enable = true;
+      lfs.enable = true;
+      diff-so-fancy.enable = true;
+    };
+
+    neovim = {
+      enable = true;
+      defaultEditor = true;
+      viAlias = true;
+      vimAlias = true;
+      vimdiffAlias = true;
+      withNodeJs = true;
+      withPython3 = true;
+      withRuby = true;
+      extraPackages = with pkgs; [
+        jq
+        ripgrep
+      ];
+    };
+
+    btop = {
+      enable = true;
+      package = pkgs.btop-rocm;
+    };
+
+    ghostty = {
+      enable = true;
+      enableZshIntegration = true;
+      installBatSyntax = true;
+      installVimSyntax = true;
+    };
   };
 
   services = {
+    gnome-keyring.enable = true;
+    hypridle.enable = true;
     hyprpolkitagent.enable = true;
+    playerctld.enable = true;
     syncthing.enable = true;
+    wluma.enable = true;
 
     udiskie = {
       enable = true;
