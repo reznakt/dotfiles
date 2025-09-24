@@ -270,7 +270,6 @@
 
   services = {
     gnome-keyring.enable = true;
-    hypridle.enable = true;
     hyprpolkitagent.enable = true;
     playerctld.enable = true;
     syncthing.enable = true;
