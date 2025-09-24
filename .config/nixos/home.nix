@@ -6,58 +6,67 @@
     homeDirectory = "/home/reznak";
     stateVersion = "25.05";
 
-    packages = with pkgs; [
-      adwaita-icon-theme
-      androidenv.androidPkgs.platform-tools
-      bc
-      bluemail
-      brightnessctl
-      caprine
-      desktop-file-utils
-      gnome-themes-extra
-      grim
-      heroic
-      hyprpicker
-      inotify-tools
-      insomnia
-      labymod-launcher
-      libnotify
-      libsForQt5.qt5ct
-      lunar-client
-      lurk
-      lutris
-      nixfmt-rfc-style
-      obsidian
-      octaveFull
-      playerctl
-      pre-commit
-      proton-pass
-      protonvpn-gui
-      pwvucontrol
-      qt6ct
-      signal-desktop
-      slurp
-      spotify
-      swaynotificationcenter
-      tmux
-      virtualenv
-      walker
-      webcord
-      wl-clipboard
-      yadm
-      zsh-powerlevel10k
-      (
-        let
-          cplex-with-installer = cplex.override {
-            releasePath = ./cplex.bin;
-          };
-        in
-        cplex-with-installer.overrideAttrs (old: {
-          preInstall = "mkdir -p $out/doc $out/license";
-          buildInputs = old.buildInputs ++ [ curl ];
-        })
-      )
-    ];
+    packages =
+      with pkgs;
+      [
+        adwaita-icon-theme
+        androidenv.androidPkgs.platform-tools
+        bc
+        bluemail
+        brightnessctl
+        caprine
+        desktop-file-utils
+        gnome-themes-extra
+        grim
+        heroic
+        home-assistant-cli
+        hyprpicker
+        inotify-tools
+        insomnia
+        labymod-launcher
+        libnotify
+        libsForQt5.qt5ct
+        lunar-client
+        lurk
+        lutris
+        nixfmt-rfc-style
+        obsidian
+        octaveFull
+        playerctl
+        pre-commit
+        proton-pass
+        protonvpn-gui
+        pwvucontrol
+        qt6ct
+        signal-desktop
+        slurp
+        spotify
+        swaynotificationcenter
+        tmux
+        virtualenv
+        walker
+        webcord
+        wl-clipboard
+        yadm
+        zsh-powerlevel10k
+        (
+          let
+            cplex-with-installer = cplex.override {
+              releasePath = ./cplex.bin;
+            };
+          in
+          cplex-with-installer.overrideAttrs (old: {
+            preInstall = "mkdir -p $out/doc $out/license";
+            buildInputs = old.buildInputs ++ [ curl ];
+          })
+        )
+      ]
+      ++ map (
+        fileName:
+        pkgs.writeShellScriptBin (pkgs.lib.strings.removeSuffix ".sh" fileName) (
+          builtins.readFile (./scripts + "/${fileName}")
+        )
+      ) (builtins.attrNames (builtins.readDir ./scripts));
   };
 
   programs = {
