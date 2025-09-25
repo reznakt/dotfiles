@@ -1,10 +1,18 @@
-export HASS_TOKEN="$(get-secret hass_token)"
-export HASS_SERVER="$(get-secret hass_server)"
+HASS_TOKEN="$(get-secret hass_token)"
+HASS_SERVER="$(get-secret hass_server)"
+
+export HASS_TOKEN
+export HASS_SERVER
 
 toggle_lights() {
+  pids=""
+
   for device_id in "switch.light_a_socket_1" "switch.light_b_socket_1"; do
     hass-cli service call homeassistant.toggle --arguments entity_id="$device_id" > /dev/null &
+    pids="$pids $!"
   done
+
+  wait "$pids"
 }
 
 (
