@@ -109,7 +109,7 @@
   };
 
   nixpkgs.config.allowUnfree = true;
-  environment.systemPackages = with pkgs; [ kbd ];
+  environment.systemPackages = with pkgs; [ kbd fzf ];
 
   programs = {
     adb.enable = true;
