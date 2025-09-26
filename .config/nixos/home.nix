@@ -52,7 +52,7 @@
         (
           let
             cplex-with-installer = cplex.override {
-              releasePath = ./cplex.bin;
+              releasePath = ./assets/cplex.bin;
             };
           in
           cplex-with-installer.overrideAttrs (old: {
