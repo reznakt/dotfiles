@@ -73,6 +73,11 @@
     fastfetch.enable = true;
     go.enable = true;
 
+    chromium = {
+      enable = true;
+      package = pkgs.ungoogled-chromium;
+    };
+
     yazi = {
       enable = true;
       enableZshIntegration = true;
