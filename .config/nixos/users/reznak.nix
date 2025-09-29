@@ -1,9 +1,12 @@
 { config, pkgs, ... }:
 
+let
+  username = "reznak";
+in
 {
   home = {
-    username = "reznak";
-    homeDirectory = "/home/reznak";
+    username = username;
+    homeDirectory = "/home/${username}";
     stateVersion = "25.05";
 
     packages =
@@ -52,7 +55,7 @@
         (
           let
             cplex-with-installer = cplex.override {
-              releasePath = ./assets/cplex.bin;
+              releasePath = ../assets/cplex.bin;
             };
           in
           cplex-with-installer.overrideAttrs (old: {
@@ -64,9 +67,9 @@
       ++ map (
         fileName:
         pkgs.writeShellScriptBin (pkgs.lib.strings.removeSuffix ".sh" fileName) (
-          builtins.readFile (./scripts + "/${fileName}")
+          builtins.readFile (../scripts + "/${fileName}")
         )
-      ) (builtins.attrNames (builtins.readDir ./scripts));
+      ) (builtins.attrNames (builtins.readDir ../scripts));
   };
 
   programs = {

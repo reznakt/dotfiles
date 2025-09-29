@@ -93,23 +93,38 @@
 
   console.useXkbConfig = true;
 
-  users.users.reznak = {
-    isNormalUser = true;
-    description = "Tomáš Režňák";
-    extraGroups = [
-      "adbusers"
-      "audio"
-      "docker"
-      "gamemode"
-      "networkmanager"
-      "video"
-      "wheel"
-    ];
-    shell = pkgs.zsh;
+  users.users = {
+    reznak = {
+      isNormalUser = true;
+      description = "Tomáš Režňák";
+      extraGroups = [
+        "adbusers"
+        "audio"
+        "docker"
+        "gamemode"
+        "networkmanager"
+        "video"
+        "wheel"
+      ];
+      shell = pkgs.zsh;
+    };
+    reznaksr = {
+      isNormalUser = true;
+      description = "Tomáš Režňák, Sr.";
+      extraGroups = [
+        "audio"
+        "networkmanager"
+        "video"
+        "wheel"
+      ];
+    };
   };
 
   nixpkgs.config.allowUnfree = true;
-  environment.systemPackages = with pkgs; [ kbd fzf ];
+  environment.systemPackages = with pkgs; [
+    kbd
+    fzf
+  ];
 
   programs = {
     adb.enable = true;

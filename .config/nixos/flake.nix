@@ -39,7 +39,10 @@
               home-manager = {
                 useGlobalPkgs = true;
                 useUserPackages = true;
-                users.reznak = import ./home.nix;
+                users = {
+                  reznak = import ./users/reznak.nix;
+                  reznaksr = import ./users/reznaksr.nix;
+                };
               };
             }
           ];
