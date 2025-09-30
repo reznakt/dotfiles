@@ -30,5 +30,6 @@ in
   services = {
     desktopManager.gnome.enable = true;
     displayManager.gdm.enable = true;
+    gnome.gnome-keyring.enable = true;
   };
 }
