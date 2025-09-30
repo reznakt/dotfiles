@@ -20,7 +20,6 @@
         efiSupport = true;
         device = "nodev";
         theme = "${pkgs.catppuccin-grub}/";
-        configurationLimit = 30;
         gfxmodeEfi = "1920x1080";
       };
     };
