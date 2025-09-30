@@ -39,7 +39,6 @@
 
     initrd = {
       verbose = false;
-      compressor = "cat";
 
       systemd = {
         enable = true;
