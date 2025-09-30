@@ -92,34 +92,6 @@
   };
 
   console.useXkbConfig = true;
-
-  users.users = {
-    reznak = {
-      isNormalUser = true;
-      description = "Tomáš Režňák";
-      extraGroups = [
-        "adbusers"
-        "audio"
-        "docker"
-        "gamemode"
-        "networkmanager"
-        "video"
-        "wheel"
-      ];
-      shell = pkgs.zsh;
-    };
-    reznaksr = {
-      isNormalUser = true;
-      description = "Tomáš Režňák, Sr.";
-      extraGroups = [
-        "audio"
-        "networkmanager"
-        "video"
-        "wheel"
-      ];
-    };
-  };
-
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
     kbd
@@ -131,11 +103,6 @@
     waybar.enable = true;
     gamescope.enable = true;
     nix-ld.enable = true;
-
-    hyprland = {
-      enable = true;
-      withUWSM = true;
-    };
 
     gamemode = {
       enable = true;
@@ -254,23 +221,11 @@
     playerctld.enable = true;
     preload.enable = true;
     systembus-notify.enable = true;
-    tlp.enable = true;
     udisks2.enable = true;
 
     earlyoom = {
       enable = true;
       enableNotifications = true;
-    };
-
-    greetd = {
-      enable = true;
-      settings = rec {
-        initial_session = {
-          command = "uwsm start hyprland-uwsm.desktop";
-          user = "reznak";
-        };
-        default_session = initial_session;
-      };
     };
 
     kmscon = {
@@ -400,6 +355,11 @@
     menus.enable = true;
     mime.enable = true;
     icons.enable = true;
+  };
+
+  home-manager = {
+    useGlobalPkgs = true;
+    useUserPackages = true;
   };
 
   system = {

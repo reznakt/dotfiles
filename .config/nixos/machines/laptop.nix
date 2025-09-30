@@ -8,8 +8,15 @@
 {
   networking.hostName = "laptop";
 
-  boot.initrd.luks.devices."luks-1953300c-4e53-4b52-a258-34d0b2b175bb".device =
-    "/dev/disk/by-uuid/1953300c-4e53-4b52-a258-34d0b2b175bb";
+  boot = {
+    initrd.luks.devices."luks-1953300c-4e53-4b52-a258-34d0b2b175bb".device =
+      "/dev/disk/by-uuid/1953300c-4e53-4b52-a258-34d0b2b175bb";
+
+    loader = {
+      timeout = lib.mkForce (-1);
+      grub.default = 1;
+    };
+  };
 
   nixpkgs.overlays = [
     (final: prev: {
@@ -26,7 +33,7 @@
 
   security.pam.services = {
     hyprlock.fprintAuth = true;
-    login.fprintAuth = true;
+    #login.fprintAuth = true;
     polkit-1.fprintAuth = true;
     su.fprintAuth = true;
     sudo.fprintAuth = true;
