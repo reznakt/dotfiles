@@ -120,9 +120,11 @@ in
             github.copilot-chat
             jnoortheen.nix-ide
             k--kato.intellij-idea-keybindings
+            kchusap.opl
             ms-python.debugpy
             ms-python.python
             ms-python.vscode-pylance
+            ms-toolsai.datawrangler
             ms-toolsai.jupyter
             ms-toolsai.jupyter-keymap
             ms-toolsai.jupyter-renderers
