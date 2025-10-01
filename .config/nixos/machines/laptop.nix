@@ -33,7 +33,7 @@
 
   security.pam.services = {
     hyprlock.fprintAuth = true;
-    #login.fprintAuth = true;
+    login.fprintAuth = lib.mkForce true;
     polkit-1.fprintAuth = true;
     su.fprintAuth = true;
     sudo.fprintAuth = true;
