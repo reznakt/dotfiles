@@ -18,6 +18,7 @@ in
     ${username} = {
       isNormalUser = true;
       description = "Tomáš Režňák, Sr.";
+      hashedPasswordFile = config.sops.secrets."password-hash-${username}".path;
       extraGroups = [
         "audio"
         "networkmanager"

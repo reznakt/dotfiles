@@ -1,0 +1,7 @@
+keys: &keys
+  - age15hhcucut5p5pm9hzpjs6lrjsnwc7ccgsqr6hwed5f77clkpecdcstzy2z3 # laptop system
+  - age1f9cclgyjmf2693amgxh8jjl3x7vkd3c6h6grqtutcz4fvd4d5ghsrlcyg3 # laptop user
+creation_rules:
+  - path_regex: ^secrets\.yaml$
+    key_groups:
+      - age: *keys

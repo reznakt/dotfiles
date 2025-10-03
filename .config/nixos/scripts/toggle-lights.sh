@@ -1,5 +1,8 @@
-HASS_TOKEN="$(get-secret hass_token)"
-HASS_SERVER="$(get-secret hass_server)"
+set -e
+
+SECRETS_FILE="${HOME}/.config/nixos/secrets.yaml"
+HASS_TOKEN="$(sops --decrypt --extract '["hass-token"]' $SECRETS_FILE)"
+HASS_SERVER="$(sops --decrypt --extract '["hass-server"]' $SECRETS_FILE)"
 
 export HASS_TOKEN
 export HASS_SERVER
@@ -12,7 +15,7 @@ toggle_lights() {
     pids="$pids $!"
   done
 
-  wait "$pids"
+  wait $pids
 }
 
 (

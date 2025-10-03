@@ -13,6 +13,7 @@ in
       with pkgs;
       [
         adwaita-icon-theme
+        age
         androidenv.androidPkgs.platform-tools
         bc
         bluemail
@@ -43,7 +44,9 @@ in
         qt6ct
         signal-desktop
         slurp
+        sops
         spotify
+        ssh-to-age
         swaynotificationcenter
         tmux
         virtualenv

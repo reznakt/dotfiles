@@ -11,6 +11,11 @@
       url = "github:nix-community/nix-vscode-extensions";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -19,6 +24,7 @@
       nixpkgs,
       home-manager,
       vscode-extensions,
+      sops-nix,
       ...
     }:
     let
@@ -26,8 +32,9 @@
       sharedModules = [
         ./configuration.nix
         ./hardware-configuration.nix
-        { nixpkgs.overlays = [ vscode-extensions.overlays.default ]; }
         home-manager.nixosModules.home-manager
+        sops-nix.nixosModules.sops
+        { nixpkgs.overlays = [ vscode-extensions.overlays.default ]; }
         {
           home-manager = {
             useGlobalPkgs = true;

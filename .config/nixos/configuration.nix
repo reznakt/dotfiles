@@ -7,6 +7,20 @@
 {
   imports = [ ./hardware-configuration.nix ];
 
+  sops = {
+    defaultSopsFile = ./secrets.yaml;
+
+    age = {
+      keyFile = "/var/lib/sops-nix/key.txt";
+      generateKey = true;
+    };
+
+    secrets = {
+      password-hash-reznak.neededForUsers = true;
+      password-hash-reznaksr.neededForUsers = true;
+    };
+  };
+
   boot = {
     kernelPackages = pkgs.linuxPackages_latest;
     consoleLogLevel = 3;
@@ -87,6 +101,11 @@
       LC_TELEPHONE = "cs_CZ.UTF-8";
       LC_TIME = "cs_CZ.UTF-8";
     };
+  };
+
+  users = {
+    mutableUsers = false;
+    allowNoPasswordLogin = true;
   };
 
   console.useXkbConfig = true;
