@@ -12,7 +12,6 @@ in
 {
   system.nixos.tags = [ username ];
   home-manager.users.${username} = homeManagerModule;
-  environment.etc."specialisation".text = username;
 
   users.users = {
     ${username} = {
@@ -27,9 +26,27 @@ in
     };
   };
 
+  environment = {
+    etc."specialisation".text = username;
+    systemPackages = with pkgs.gnomeExtensions; [
+      appindicator
+      blur-my-shell
+      dash-to-dock
+    ];
+  };
+
+  programs = {
+    dconf.enable = true;
+  };
+
   services = {
     desktopManager.gnome.enable = true;
     displayManager.gdm.enable = true;
-    gnome.gnome-keyring.enable = true;
+
+    gnome = {
+      gnome-keyring.enable = true;
+      gnome-online-accounts.enable = true;
+      sushi.enable = true;
+    };
   };
 }
