@@ -14,7 +14,9 @@ in
   home-manager.users.${username} = homeManagerModule;
 
   environment = {
-    etc."specialisation".text = username;
+    etc."specialisation" = lib.mkIf (config.specialisation == { }) {
+      text = username;
+    };
 
     systemPackages = with pkgs; [
       kbd

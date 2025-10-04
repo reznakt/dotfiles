@@ -27,7 +27,10 @@ in
   };
 
   environment = {
-    etc."specialisation".text = username;
+    etc."specialisation" = lib.mkIf (config.specialisation == { }) {
+      text = username;
+    };
+
     systemPackages = with pkgs.gnomeExtensions; [
       appindicator
       blur-my-shell
