@@ -3,7 +3,7 @@
   config,
   pkgs,
   reznak,
-  isSpecialisation ? false,
+  isSpecialisation,
   ...
 }:
 let

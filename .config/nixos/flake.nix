@@ -50,6 +50,7 @@
 
           specialArgs = {
             reznak = import ./users/reznak.nix;
+            isSpecialisation = false;
           };
 
           modules = sharedModules ++ [
