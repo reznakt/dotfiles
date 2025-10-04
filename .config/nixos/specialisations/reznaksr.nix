@@ -3,6 +3,7 @@
   config,
   pkgs,
   reznaksr,
+  isSpecialisation ? false,
   ...
 }:
 let
@@ -27,8 +28,9 @@ in
   };
 
   environment = {
-    etc."specialisation" = lib.mkIf (config.specialisation == { }) {
+    etc.specialisation = lib.mkIf (isSpecialisation) {
       text = username;
+      mode = "0644";
     };
 
     systemPackages = with pkgs.gnomeExtensions; [

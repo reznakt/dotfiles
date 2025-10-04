@@ -3,6 +3,7 @@
   config,
   pkgs,
   reznak,
+  isSpecialisation ? false,
   ...
 }:
 let
@@ -14,8 +15,9 @@ in
   home-manager.users.${username} = homeManagerModule;
 
   environment = {
-    etc."specialisation" = lib.mkIf (config.specialisation == { }) {
+    etc.specialisation = lib.mkIf (isSpecialisation) {
       text = username;
+      mode = "0644";
     };
 
     systemPackages = with pkgs; [
