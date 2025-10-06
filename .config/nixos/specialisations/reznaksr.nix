@@ -53,5 +53,10 @@ in
       gnome-online-accounts.enable = true;
       sushi.enable = true;
     };
+
+    xserver.xkb = {
+      layout = "us";
+      variant = "";
+    };
   };
 }

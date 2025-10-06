@@ -49,11 +49,6 @@ in
     waybar.enable = true;
     gamescope.enable = true;
 
-    hyprland = {
-      enable = true;
-      withUWSM = true;
-    };
-
     gamemode = {
       enable = true;
 
@@ -168,11 +163,16 @@ in
       enable = true;
       settings = rec {
         initial_session = {
-          command = "uwsm start hyprland-uwsm.desktop";
+          command = "Hyprland";
           user = username;
         };
         default_session = initial_session;
       };
+    };
+
+    xserver.xkb = {
+      layout = "cz";
+      variant = "";
     };
   };
 

@@ -103,12 +103,16 @@
     };
   };
 
+  console = {
+    earlySetup = true;
+    useXkbConfig = true;
+  };
+
   users = {
     mutableUsers = false;
     allowNoPasswordLogin = true;
   };
 
-  console.useXkbConfig = true;
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [ kbd ];
 
@@ -154,11 +158,6 @@
       audio.enable = true;
       wireplumber.enable = true;
       jack.enable = true;
-    };
-
-    xserver.xkb = {
-      layout = "cz";
-      variant = "";
     };
   };
 

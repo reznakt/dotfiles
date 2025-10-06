@@ -46,6 +46,15 @@ in
       button-layout = "appmenu:minimize,maximize,close";
     };
 
+    "org/gnome/desktop/peripherals/keyboard" = {
+      numlock-state = true;
+    };
+
+    "org/gnome/desktop/input-sources" = {
+      sources = "[('xkb', 'us'), ('xkb', 'cz')]";
+      xkb-options = [ "grp:alt_shift_toggle" ];
+    };
+
     "org/gnome/shell" = {
       enabled-extensions = [
         "appindicatorsupport@rgcjonas.gmail.com"
