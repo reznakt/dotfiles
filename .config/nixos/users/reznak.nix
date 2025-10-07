@@ -53,6 +53,7 @@ in
         spotify
         ssh-to-age
         swaynotificationcenter
+        teams-for-linux
         tmux
         virtualenv
         walker
