@@ -56,6 +56,7 @@ in
         swaynotificationcenter
         teams-for-linux
         tmux
+        unzip
         virtualenv
         walker
         webcord
