@@ -100,6 +100,7 @@ in
           "exec-once = caprine"
           "exec-once = spotify"
           "exec-once = signal-desktop"
+          "exec-once = teams-for-linux --minimized"
 
           "permission = ${lib.getExe pkgs.grim}, screencopy, allow"
           "permission = ${lib.escapeRegex (lib.getExe config.programs.hyprlock.package)}, screencopy, allow"
