@@ -22,7 +22,6 @@ in
         age
         androidenv.androidPkgs.platform-tools
         bc
-        bluemail
         brightnessctl
         caprine
         desktop-file-utils
@@ -346,6 +345,13 @@ in
   programs = {
     fastfetch.enable = true;
     go.enable = true;
+
+    thunderbird = {
+      enable = true;
+      profiles.default = {
+        isDefault = true;
+      };
+    };
 
     chromium = {
       enable = true;
