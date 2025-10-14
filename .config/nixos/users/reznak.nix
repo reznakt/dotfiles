@@ -22,14 +22,11 @@ in
         age
         androidenv.androidPkgs.platform-tools
         bc
-        brightnessctl
         caprine
         desktop-file-utils
         gnome-themes-extra
-        grim
         heroic
         home-assistant-cli
-        hyprpicker
         inotify-tools
         insomnia
         labymod-launcher
@@ -41,23 +38,18 @@ in
         nixfmt-rfc-style
         obsidian
         octaveFull
-        playerctl
         pre-commit
         proton-pass
         protonvpn-gui
         pwvucontrol
         qt6ct
         signal-desktop
-        slurp
         sops
-        spotify
         ssh-to-age
-        swaynotificationcenter
         teams-for-linux
         tmux
         unzip
         virtualenv
-        walker
         webcord
         wl-clipboard
         yadm
@@ -91,16 +83,16 @@ in
 
       extraConfig = lib.concatStringsSep "\n" (
         [
-          "exec-once = hyprpm reload -n"
-          "exec-once = swaync"
           "exec-once = hyprland-events"
-          "exec-once = walker --gapplication-service"
-          "exec-once = steam -silent"
-          "exec-once = webcord --start-minimized"
-          "exec-once = caprine"
-          "exec-once = spotify"
-          "exec-once = signal-desktop"
-          "exec-once = teams-for-linux --minimized"
+
+          "exec-once = ${lib.getExe pkgs.swaynotificationcenter}"
+          "exec-once = ${lib.getExe pkgs.walker} --gapplication-service"
+          "exec-once = ${lib.getExe pkgs.steam} -silent"
+          "exec-once = ${lib.getExe pkgs.webcord} --start-minimized"
+          "exec-once = ${pkgs.caprine}/bin/caprine"
+          "exec-once = ${lib.getExe pkgs.spotify}"
+          "exec-once = ${lib.getExe pkgs.signal-desktop}"
+          "exec-once = ${lib.getExe pkgs.teams-for-linux} --minimized"
 
           "permission = ${lib.getExe pkgs.grim}, screencopy, allow"
           "permission = ${lib.escapeRegex (lib.getExe config.programs.hyprlock.package)}, screencopy, allow"
@@ -116,7 +108,7 @@ in
 
       settings =
         let
-          terminal = "ghostty";
+          terminal = "${lib.getExe pkgs.ghostty}";
           browser = "xdg-open http://";
           mainMod = "SUPER";
           monitorConfig = {
@@ -256,13 +248,13 @@ in
           bind = [
             "${mainMod}, C, killactive,"
             "${mainMod}, V, togglefloating,"
-            "${mainMod}, R, exec, walker --modules=applications,calc"
+            "${mainMod}, R, exec, ${lib.getExe pkgs.walker} --modules=applications,calc"
             "${mainMod}, F, fullscreen,"
             "${mainMod}, B, exec, ${browser}"
-            "${mainMod}, N, exec, swaync-client --toggle-panel --skip-wait"
-            "${mainMod} SHIFT, N, exec, swaync-client --close-all && swaync-client --close-panel"
+            "${mainMod}, N, exec, ${pkgs.swaynotificationcenter}/bin/swaync-client --toggle-panel --skip-wait"
+            "${mainMod} SHIFT, N, exec, ${pkgs.swaynotificationcenter}/bin/swaync-client --close-all && ${pkgs.swaynotificationcenter}/bin/swaync-client --close-panel"
             "${mainMod}, T, exec, toggle-lights"
-            "${mainMod}, L, exec, hyprlock"
+            "${mainMod}, L, exec, ${lib.getExe pkgs.hyprlock}"
 
             "${mainMod}, left, movefocus, l"
             "${mainMod}, right, movefocus, r"
@@ -300,22 +292,22 @@ in
             "${mainMod}, mouse_down, workspace, e+1"
             "${mainMod}, mouse_up, workspace, e-1"
 
-            ", Print, exec, pkill slurp || grim -g \"$(slurp -d)\" - | wl-copy"
-            "SHIFT, Print, exec, pkill hyprpicker || hyprpicker --autocopy --format=hex --no-fancy"
+            ", Print, exec, ${pkgs.psmisc}/bin/pkill ${lib.getExe pkgs.slurp} || ${lib.getExe pkgs.grim} -g \"$(${lib.getExe pkgs.slurp} -d)\" - | ${pkgs.wl-clipboard}/bin/wl-copy"
+            "SHIFT, Print, exec, ${pkgs.psmisc}/bin/pkill ${lib.getExe pkgs.hyprpicker} || ${lib.getExe pkgs.hyprpicker} --autocopy --format=hex --no-fancy"
           ];
 
           bindel = [
-            ", XF86AudioLowerVolume, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ 0 && wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
-            ", XF86AudioRaiseVolume, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ 0 && wpctl set-volume --limit 1.5 @DEFAULT_AUDIO_SINK@ 5%+"
-            ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
-            ", XF86MonBrightnessDown, exec, brightnessctl set 5%-"
-            ", XF86MonBrightnessUp, exec, brightnessctl set +5%"
+            ", XF86AudioLowerVolume, exec, ${pkgs.wireplumber}/bin/wpctl set-mute @DEFAULT_AUDIO_SINK@ 0 && ${pkgs.wireplumber}/bin/wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+            ", XF86AudioRaiseVolume, exec, ${pkgs.wireplumber}/bin/wpctl set-mute @DEFAULT_AUDIO_SINK@ 0 && ${pkgs.wireplumber}/bin/wpctl set-volume --limit 1.5 @DEFAULT_AUDIO_SINK@ 5%+"
+            ", XF86AudioMute, exec, ${pkgs.wireplumber}/bin/wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+            ", XF86MonBrightnessDown, exec, ${lib.getExe pkgs.brightnessctl} set 5%-"
+            ", XF86MonBrightnessUp, exec, ${lib.getExe pkgs.brightnessctl} set +5%"
           ];
 
           bindl = [
-            ", XF86AudioPlay, exec, playerctl play-pause"
-            ", XF86AudioPrev, exec, playerctl previous"
-            ", XF86AudioNext, exec, playerctl next"
+            ", XF86AudioPlay, exec, ${lib.getExe pkgs.playerctl} play-pause"
+            ", XF86AudioPrev, exec, ${lib.getExe pkgs.playerctl} previous"
+            ", XF86AudioNext, exec, ${lib.getExe pkgs.playerctl} next"
           ];
 
           bindm = [
