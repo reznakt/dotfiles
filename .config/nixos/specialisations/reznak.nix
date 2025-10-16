@@ -46,7 +46,6 @@ in
 
   programs = {
     adb.enable = true;
-    waybar.enable = true;
     gamescope.enable = true;
 
     gamemode = {

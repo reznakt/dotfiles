@@ -1,5 +1,3 @@
-#!/bin/sh
-
 spotify() {
   playerctl --player="spotify" "$@" 2> /dev/null
 }

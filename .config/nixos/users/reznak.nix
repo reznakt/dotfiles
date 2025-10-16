@@ -44,7 +44,9 @@ in
         pwvucontrol
         qt6ct
         signal-desktop
+        socat # for hyprland-events
         sops
+        spotify
         ssh-to-age
         teams-for-linux
         tmux
@@ -84,7 +86,6 @@ in
       extraConfig = lib.concatStringsSep "\n" (
         [
           "exec-once = hyprland-events"
-
           "exec-once = ${lib.getExe pkgs.swaynotificationcenter}"
           "exec-once = ${lib.getExe pkgs.walker} --gapplication-service"
           "exec-once = ${lib.getExe pkgs.steam} -silent"
@@ -109,7 +110,7 @@ in
       settings =
         let
           terminal = "${lib.getExe pkgs.ghostty}";
-          browser = "xdg-open http://";
+          browser = "${pkgs.xdg-utils}/bin/xdg-open http://";
           mainMod = "SUPER";
           monitorConfig = {
             laptop = [ "eDP-1, 1920x1080@60, 0x0, 1" ];
@@ -337,6 +338,355 @@ in
   programs = {
     fastfetch.enable = true;
     go.enable = true;
+
+    waybar = {
+      enable = true;
+
+      systemd = {
+        enable = true;
+        target = "graphical-session.target";
+      };
+
+      settings = {
+        mainBar = {
+          layer = "top";
+          position = "top";
+          height = 24;
+          modules-left = [
+            "hyprland/workspaces"
+            "mpris"
+            "gamemode"
+            "privacy"
+            "custom/xwayland"
+          ];
+          modules-center = [ "hyprland/window" ];
+          modules-right = [
+            "tray"
+            "backlight"
+            "pulseaudio"
+            "network"
+            "temperature"
+            "cpu"
+            "memory"
+            "custom/gpu-usage"
+            "battery"
+            "clock"
+            "custom/notification"
+          ];
+
+          "hyprland/workspaces" = {
+            format = "{icon}";
+            on-scroll-up = "${pkgs.hyprland}/bin/hyprctl dispatch workspace e+1";
+            on-scroll-down = "${pkgs.hyprland}/bin/hyprctl dispatch workspace e-1";
+          };
+
+          tray = {
+            spacing = 10;
+          };
+
+          gamemode = {
+            format-alt = "{glyph}";
+            icon-size = 16;
+          };
+
+          "hyprland/window" = {
+            icon = true;
+            icon-size = 16;
+            separate-outputs = true;
+            max-length = 45;
+          };
+
+          privacy = {
+            icon-spacing = 4;
+            icon-size = 14;
+            transition-duration = 250;
+            modules = [
+              {
+                type = "screenshare";
+                tooltip = true;
+                tooltip-icon-size = 24;
+              }
+              {
+                type = "audio-in";
+                tooltip = true;
+                tooltip-icon-size = 24;
+              }
+            ];
+          };
+
+          mpris = {
+            format = "{status_icon} {player_icon} {artist} – {title}";
+            player-icons = {
+              default = "🎵";
+              spotify = " ";
+              spotifyd = " ";
+              spotify_player = " ";
+              firefox = "󰈹";
+              vlc = "󰕼";
+              chromium = "";
+              mpv = "";
+            };
+            status-icons = {
+              playing = "";
+              paused = "";
+              stopped = "";
+            };
+            artist-len = 15;
+            title-len = 45;
+            on-scroll-up = "${lib.getExe pkgs.playerctl} next";
+            on-scroll-down = "${lib.getExe pkgs.playerctl} previous";
+          };
+
+          backlight = {
+            device = "intel_backlight";
+            format = "{percent}% 󰛨";
+          };
+
+          clock = {
+            interval = 1;
+            format = "{:%d/%m/%y %H:%M:%S}";
+            tooltip-format = "<tt>{calendar}</tt>";
+            calendar = {
+              mode = "month";
+              weeks-pos = "left";
+              format = {
+                months = "<span color='#ffead3'><b>{}</b></span>";
+                days = "<span color='#ecc6d9'><b>{}</b></span>";
+                weeks = "<span color='#99ffdd'><b>W{}</b></span>";
+                weekdays = "<span color='#ffcc66'><b>{}</b></span>";
+                today = "<span color='#ff6699'><b><u>{}</u></b></span>";
+              };
+            };
+          };
+
+          cpu = {
+            interval = 2;
+            format = "{avg_frequency} GHz ({usage}%) ";
+          };
+
+          memory = {
+            interval = 2;
+            format = "{used} GiB ({percentage}%) ";
+          };
+
+          battery = {
+            frequency = 10;
+            format = "{capacity}% ({time} @ {power:0.2f}W) {icon}";
+            format-icons = [
+              ""
+              ""
+              ""
+              ""
+              ""
+            ];
+            states = {
+              critical = 5;
+            };
+          };
+
+          network = {
+            interval = 5;
+            format-wifi = "{essid} {signalStrength}% {icon} ({bandwidthDownBytes} 󰇚 {bandwidthUpBytes} 󰕒)";
+            format-ethernet = "{ifname} {icon} ({bandwidthDownBytes} 󰇚 {bandwidthUpBytes} 󰕒)";
+            format-disconnected = "Disconnected {icon}";
+            format-icons = {
+              wifi = "";
+              ethernet = "󰈀";
+              disconnected = "";
+            };
+            tooltip-disconnected = " Disconnected";
+            tooltip-format = "{icon} {ifname}\n󰩟 address: {ipaddr}/{cidr}\n󰑩 gateway: {gwaddr}\n󰓅 bandwidth: {bandwidthDownBytes} 󰇚 {bandwidthUpBytes} 󰕒";
+          };
+
+          pulseaudio = {
+            format = "{volume}% {icon}";
+            format-bluetooth = "{volume}% {icon}";
+            format-muted = "";
+            format-icons = {
+              headphones = "";
+              handsfree = "";
+              headset = "";
+              phone = "";
+              portable = "";
+              car = "";
+              default = [
+                ""
+                ""
+              ];
+            };
+            on-click = "${pkgs.wireplumber}/bin/wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
+          };
+
+          temperature = {
+            interval = 10;
+            thermal-zone = 0;
+            format = "{temperatureC}°C ";
+          };
+
+          "custom/gpu-usage" = {
+            exec = "cat /sys/class/drm/card*/device/gpu_busy_percent 2> /dev/null | head -n 1";
+            format = "GPU: {}%";
+            return-type = "";
+            interval = 2;
+          };
+
+          "custom/notification" = {
+            tooltip = false;
+            escape = true;
+            format = "{} {icon}";
+            format-icons = {
+              notification = "󱅫";
+              none = "";
+              "dnd-notification" = " ";
+              "dnd-none" = "󰂛";
+              "inhibited-notification" = " ";
+              "inhibited-none" = "";
+              "dnd-inhibited-notification" = " ";
+              "dnd-inhibited-none" = " ";
+            };
+            return-type = "json";
+            exec = "${pkgs.swaynotificationcenter}/bin/swaync-client -swb";
+            on-click = "${pkgs.swaynotificationcenter}/bin/swaync-client -t -sw";
+            on-click-right = "${pkgs.swaynotificationcenter}/bin/swaync-client -d -sw";
+          };
+
+          "custom/xwayland" = {
+            format = "{}";
+            exec = "${pkgs.hyprland}/bin/hyprctl activewindow | grep -q 'xwayland: 1' && echo ''";
+            signal = 1;
+            tooltip-format = "XWayland";
+          };
+        };
+      };
+
+      style = ''
+        * {
+            font-family: "Ubuntu Nerd Font";
+            font-size: 12px;
+            border-radius: 6px;
+            padding: 1px 0;
+            margin: 0 3px;
+            transition: all 0.3s ease;
+        }
+
+        window#waybar {
+            background: transparent;
+            color: #ECEFF4;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.6);
+        }
+
+        #workspaces button {
+            background-color: transparent;
+            color: #81A1C1;
+            padding: 4px 8px;
+            border: 2px solid transparent;
+            font-weight: bold;
+            transition: color 0.3s, border-bottom 0.3s;
+        }
+
+        #workspaces button.focused {
+            color: #A3BE8C;
+            border-bottom: 2px solid #A3BE8C;
+        }
+
+        #workspaces button:hover {
+            color: #88C0D0;
+        }
+
+        #clock, #battery, #cpu, #memory, #network, #pulseaudio, #mpris, #tray, #mode {
+            background-color: rgba(46, 52, 64, 0.8);
+            color: #D8DEE9;
+            border-radius: 6px;
+            padding: 6px 10px;
+            margin: 0 6px;
+            box-shadow: inset 0px 0px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        #clock {
+            font-weight: bold;
+            background-color: #4C566A;
+            color: #EBCB8B;
+        }
+
+        #cpu, #memory {
+            background-color: #5E81AC;
+            color: #ECEFF4;
+        }
+
+        #cpu:hover, #memory:hover {
+            background-color: #88C0D0;
+            color: #2E3440;
+        }
+
+        #battery.charging {
+            background-color: #A3BE8C;
+            color: #2E3440;
+        }
+
+        #battery.discharging.critical {
+            background-color: #FF0000;
+        }
+
+        #network.disconnected {
+            background-color: #BF616A;
+            color: #ECEFF4;
+            font-weight: bold;
+        }
+
+        #pulseaudio {
+            background-color: #B48EAD;
+            color: #ECEFF4;
+        }
+
+        #pulseaudio:hover {
+            background-color: #D08770;
+            color: #2E3440;
+        }
+
+        #mpris {
+            background-color: #282E3A;
+        }
+
+        #mpris:hover {
+          opacity: 0.8;
+        }
+
+        #mpris.firefox {
+            background-color: #FF7731;
+        }
+
+        #mpris.spotify, #mpris.spotifyd, #mpris.spotify_player {
+            background-color: #18C16A;
+            color: black;
+        }
+
+        #mpris.chromium {
+            background-color: #588DE2;
+        }
+
+        #mpris.vlc {
+            background-color: #EB7000;
+        }
+
+        #mpris.mpv {
+            background-color: #400041;
+        }
+
+        #tray {
+            background-color: rgba(46, 52, 64, 0.8);
+            padding: 4px 6px;
+            border-radius: 6px;
+        }
+
+        #tray .icon:hover {
+            color: #88C0D0;
+        }
+
+        #custom-xwayland {
+          font-size: 16px;
+        }
+      '';
+    };
 
     thunderbird = {
       enable = true;
