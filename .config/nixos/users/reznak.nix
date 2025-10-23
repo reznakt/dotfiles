@@ -29,6 +29,7 @@ in
         home-assistant-cli
         inotify-tools
         insomnia
+        jq # for kill-active-window
         labymod-launcher
         libnotify
         libsForQt5.qt5ct
@@ -94,6 +95,7 @@ in
           "exec-once = ${lib.getExe pkgs.spotify}"
           "exec-once = ${lib.getExe pkgs.signal-desktop}"
           "exec-once = ${lib.getExe pkgs.teams-for-linux} --minimized"
+          "exec-once = while true; do ${lib.getExe pkgs.thunderbird}; done"
 
           "permission = ${lib.getExe pkgs.grim}, screencopy, allow"
           "permission = ${lib.escapeRegex (lib.getExe config.programs.hyprlock.package)}, screencopy, allow"
@@ -247,7 +249,7 @@ in
           ];
 
           bind = [
-            "${mainMod}, C, killactive,"
+            "${mainMod}, C, exec, kill-active-window"
             "${mainMod}, V, togglefloating,"
             "${mainMod}, R, exec, ${lib.getExe pkgs.walker} --modules=applications,calc"
             "${mainMod}, F, fullscreen,"
@@ -256,6 +258,7 @@ in
             "${mainMod} SHIFT, N, exec, ${pkgs.swaynotificationcenter}/bin/swaync-client --close-all && ${pkgs.swaynotificationcenter}/bin/swaync-client --close-panel"
             "${mainMod}, T, exec, toggle-lights"
             "${mainMod}, L, exec, ${lib.getExe pkgs.hyprlock}"
+            "${mainMod}, M, togglespecialworkspace, mail"
 
             "${mainMod}, left, movefocus, l"
             "${mainMod}, right, movefocus, r"
@@ -320,6 +323,7 @@ in
             "suppressevent maximize, class:.*"
             "tile, initialTitle:Visual Paradigm"
             "opaque, class:(mpv|firefox)"
+            "workspace special:mail silent, class:^(thunderbird)$"
           ];
 
           layerrule = [
