@@ -78,6 +78,20 @@
             }
           ];
         };
+
+        server = nixpkgs.lib.nixosSystem {
+          inherit system;
+
+          specialArgs = {
+            reznak = import ./users/reznak.nix;
+            isSpecialisation = false;
+          };
+
+          modules = sharedModules ++ [
+            ./machines/server.nix
+            ./specialisations/reznak.nix
+          ];
+        };
       };
     };
 }
