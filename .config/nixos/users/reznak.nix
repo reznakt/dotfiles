@@ -744,6 +744,7 @@ in
             jnoortheen.nix-ide
             k--kato.intellij-idea-keybindings
             kchusap.opl
+            mechatroner.rainbow-csv
             ms-python.debugpy
             ms-python.python
             ms-python.vscode-pylance
