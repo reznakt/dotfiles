@@ -178,17 +178,9 @@
       };
 
       services = {
-        login.u2fAuth = true;
-        polkit-1.u2fAuth = true;
-        su.u2fAuth = true;
-        sudo.u2fAuth = true;
-
         greetd.enableGnomeKeyring = true;
-
-        hyprlock = {
-          enableGnomeKeyring = true;
-          u2fAuth = true;
-        };
+        hyprlock.enableGnomeKeyring = true;
+        login.enableGnomeKeyring = true;
       };
     };
   };
