@@ -131,11 +131,12 @@ in
       };
 
       shellAliases = {
-        strace = "lurk";
-        ls = "lsd";
-        ll = "ls -l";
         la = "ls -A";
+        ll = "ls -l";
         lla = "ll -A";
+        ls = "lsd";
+        sops = "EDITOR=micro sops";
+        strace = "lurk";
       };
 
       histSize = 10000;

@@ -342,6 +342,7 @@ in
   programs = {
     fastfetch.enable = true;
     go.enable = true;
+    micro.enable = true;
 
     waybar = {
       enable = true;
