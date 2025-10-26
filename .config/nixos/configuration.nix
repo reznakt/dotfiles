@@ -223,6 +223,10 @@
       systemd-journald.serviceConfig.SystemMaxUse = "50M";
       NetworkManager-wait-online.enable = false;
     };
+
+    settings.Manager = {
+      DefaultTimeoutStopSec = "15s";
+    };
   };
 
   documentation = {
