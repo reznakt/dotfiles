@@ -5,12 +5,31 @@
   ...
 }:
 
+let
+  pamServicesWithFprint = [
+    "hyprlock"
+    "login"
+    "polkit-1"
+    "su"
+    "sudo"
+  ];
+
+  fprintdConfig = name: {
+    rules.auth.fprintd.settings = {
+      timeout = -1;
+      max-tries = -1;
+    };
+  };
+in
 {
   networking.hostName = "laptop";
 
   boot = {
-    initrd.luks.devices."luks-1953300c-4e53-4b52-a258-34d0b2b175bb".device =
-      "/dev/disk/by-uuid/1953300c-4e53-4b52-a258-34d0b2b175bb";
+    initrd = {
+      luks.devices."luks-1953300c-4e53-4b52-a258-34d0b2b175bb".device =
+        "/dev/disk/by-uuid/1953300c-4e53-4b52-a258-34d0b2b175bb";
+      availableKernelModules = [ "amdgpu" ];
+    };
 
     loader = {
       timeout = lib.mkForce (-1);
@@ -31,13 +50,9 @@
     })
   ];
 
-  security.pam.services = {
-    hyprlock.fprintAuth = true;
-    login.fprintAuth = lib.mkForce true;
-    polkit-1.fprintAuth = true;
-    su.fprintAuth = true;
-    sudo.fprintAuth = true;
-  };
+  security.pam.services = lib.mapAttrs' (name: _: lib.nameValuePair name (fprintdConfig name)) (
+    lib.genAttrs pamServicesWithFprint (name: { })
+  );
 
   systemd.services.fprintd = {
     wantedBy = [ "multi-user.target" ];
