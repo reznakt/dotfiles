@@ -11,12 +11,14 @@ in
 
     packages = with pkgs; [
       gnome-tweaks
+      nodejs_24
     ];
   };
 
   programs = {
     chromium.enable = true;
     onlyoffice.enable = true;
+    bun.enable = true;
 
     git = {
       enable = true;
