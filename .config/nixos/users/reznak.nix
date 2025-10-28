@@ -348,8 +348,8 @@ in
 
       matchBlocks = {
         "*" = {
-          forwardAgent = true;
-          addKeysToAgent = "yes";
+          forwardAgent = false;
+          addKeysToAgent = "no";
           compression = false;
           serverAliveInterval = 0;
           serverAliveCountMax = 3;
