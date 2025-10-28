@@ -991,7 +991,7 @@ in
       enable = true;
       settings = {
         program_options = {
-          file_manager = "${pkgs.yazi}/bin/yazi";
+          file_manager = lib.getExe pkgs.yazi;
         };
       };
     };
