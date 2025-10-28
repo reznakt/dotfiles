@@ -47,6 +47,7 @@ in
   programs = {
     adb.enable = true;
     gamescope.enable = true;
+    zsh.enable = true;
 
     gamemode = {
       enable = true;
@@ -89,65 +90,6 @@ in
       remotePlay.openFirewall = true;
       dedicatedServer.openFirewall = true;
       localNetworkGameTransfers.openFirewall = true;
-    };
-
-    zsh = {
-      enable = true;
-      enableCompletion = true;
-      enableBashCompletion = true;
-      syntaxHighlighting.enable = true;
-      vteIntegration = true;
-
-      autosuggestions = {
-        enable = true;
-        strategy = [
-          "history"
-          "completion"
-        ];
-      };
-
-      promptInit = ''
-        source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
-      '';
-
-      ohMyZsh = {
-        enable = true;
-        plugins = [
-          "bun"
-          "colored-man-pages"
-          "dirhistory"
-          "fancy-ctrl-z"
-          "git-auto-fetch"
-          "git"
-          "history"
-          "npm"
-          "pip"
-          "poetry-env"
-          "poetry"
-          "rust"
-          "safe-paste"
-          "zsh-interactive-cd"
-        ];
-      };
-
-      shellAliases = {
-        la = "ls -A";
-        ll = "ls -l";
-        lla = "ll -A";
-        ls = "lsd";
-        sops = "EDITOR=micro sops";
-        strace = "lurk";
-      };
-
-      histSize = 10000;
-      histFile = "$HOME/.zsh_history";
-      setOptions = [
-        "APPENDHISTORY"
-        "EXTENDED_HISTORY"
-        "HIST_IGNORE_ALL_DUPS"
-        "INC_APPEND_HISTORY"
-        "SHARE_HISTORY"
-      ];
     };
   };
 

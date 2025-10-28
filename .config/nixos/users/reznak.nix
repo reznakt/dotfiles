@@ -752,6 +752,7 @@ in
             ms-toolsai.jupyter-keymap
             ms-toolsai.jupyter-renderers
             ms-vscode-remote.remote-containers
+            ms-vscode-remote.remote-ssh
             pflannery.vscode-versionlens
             sanaajani.taskrunnercode
             t3dotgg.vsc-material-theme-but-i-wont-sue-you
@@ -898,6 +899,58 @@ in
       enableZshIntegration = true;
       installBatSyntax = true;
       installVimSyntax = true;
+    };
+
+    zsh = {
+      enable = true;
+      enableCompletion = true;
+      syntaxHighlighting.enable = true;
+
+      autosuggestion = {
+        enable = true;
+        strategy = [
+          "history"
+          "completion"
+        ];
+      };
+
+      initContent = ''
+        source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
+        [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
+      '';
+
+      oh-my-zsh = {
+        enable = true;
+        plugins = [
+          "bun"
+          "colored-man-pages"
+          "dirhistory"
+          "fancy-ctrl-z"
+          "git-auto-fetch"
+          "git"
+          "history"
+          "npm"
+          "pip"
+          "poetry-env"
+          "poetry"
+          "rust"
+          "safe-paste"
+          "zsh-interactive-cd"
+        ];
+      };
+
+      shellAliases = {
+        sops = "EDITOR=micro sops";
+        strace = "lurk";
+        nix-shell = "nix-shell --run zsh";
+      };
+
+      history = {
+        append = true;
+        extended = true;
+        ignoreAllDups = true;
+        share = true;
+      };
     };
   };
 
