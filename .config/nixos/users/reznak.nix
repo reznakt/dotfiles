@@ -869,8 +869,23 @@ in
 
     git = {
       enable = true;
+
       lfs.enable = true;
       diff-so-fancy.enable = true;
+
+      userName = "Tomáš Režňák";
+      userEmail = "tomas.reznak@volny.cz";
+
+      signing = {
+        signByDefault = true;
+        format = "ssh";
+        key = "~/.ssh/id_ed25519.pub";
+      };
+
+      extraConfig = {
+        pull.rebase = true;
+        push.autoSetupRemote = true;
+      };
     };
 
     neovim = {
