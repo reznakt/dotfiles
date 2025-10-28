@@ -342,6 +342,50 @@ in
     go.enable = true;
     micro.enable = true;
 
+    ssh = {
+      enable = true;
+      enableDefaultConfig = false;
+
+      matchBlocks = {
+        "*" = {
+          forwardAgent = true;
+          addKeysToAgent = "yes";
+          compression = false;
+          serverAliveInterval = 0;
+          serverAliveCountMax = 3;
+          hashKnownHosts = false;
+          userKnownHostsFile = "~/.ssh/known_hosts";
+          controlMaster = "no";
+          controlPath = "~/.ssh/master-%r@%n:%p";
+          controlPersist = "no";
+        };
+
+        server = {
+          hostname = "192.168.0.250";
+        };
+
+        aisa = {
+          hostname = "aisa.fi.muni.cz";
+          user = "xreznak";
+        };
+
+        anxur = {
+          hostname = "anxur.fi.muni.cz";
+          user = "xreznak";
+        };
+
+        apollo = {
+          proxyJump = "aisa";
+          user = "xreznak";
+        };
+
+        aura = {
+          proxyJump = "aisa";
+          user = "xreznak";
+        };
+      };
+    };
+
     waybar = {
       enable = true;
 
@@ -974,6 +1018,7 @@ in
     hyprpolkitagent.enable = true;
     playerctld.enable = true;
     syncthing.enable = true;
+    ssh-agent.enable = true;
 
     wluma = {
       enable = hostname == "laptop";
