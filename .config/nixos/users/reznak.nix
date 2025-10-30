@@ -76,6 +76,14 @@ in
           builtins.readFile (../scripts + "/${fileName}")
         )
       ) (builtins.attrNames (builtins.readDir ../scripts));
+
+    file = {
+      # https://github.com/nix-community/home-manager/issues/322
+      ".ssh/config" = {
+        target = ".ssh/.config_source";
+        onChange = ''cat ~/.ssh/.config_source > ~/.ssh/config && chmod 400 ~/.ssh/config'';
+      };
+    };
   };
 
   wayland.windowManager.hyprland = {
