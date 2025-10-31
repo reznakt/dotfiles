@@ -615,7 +615,7 @@ in
 
           "custom/vpn" = {
             format = "{}";
-            exec = "${pkgs.networkmanager}/bin/nmcli -t -f NAME,TYPE connection show --active | grep '^.*:vpn$' | cut -d: -f1 | head -n1 | xargs -I{} echo ' {}'";
+            exec = "${pkgs.networkmanager}/bin/nmcli -t -f NAME,TYPE connection show --active | grep -E '^.*:(wireguard|vpn)$' | cut -d: -f1 | head -n1 | xargs -I{} echo ' {}'";
             interval = 10;
             tooltip-format = "Connected to VPN";
           };
