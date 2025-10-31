@@ -800,6 +800,7 @@ in
             editorconfig.editorconfig
             github.copilot
             github.copilot-chat
+            hashicorp.terraform
             jnoortheen.nix-ide
             k--kato.intellij-idea-keybindings
             kchusap.opl
