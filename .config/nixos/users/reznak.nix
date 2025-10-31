@@ -413,6 +413,7 @@ in
             "gamemode"
             "privacy"
             "custom/xwayland"
+            "custom/vpn"
           ];
           modules-center = [ "hyprland/window" ];
           modules-right = [
@@ -610,6 +611,13 @@ in
             exec = "${pkgs.hyprland}/bin/hyprctl activewindow | grep -q 'xwayland: 1' && echo ''";
             signal = 1;
             tooltip-format = "XWayland";
+          };
+
+          "custom/vpn" = {
+            format = "{}";
+            exec = "${pkgs.networkmanager}/bin/nmcli -t -f NAME,TYPE connection show --active | grep '^.*:vpn$' | cut -d: -f1 | head -n1 | xargs -I{} echo ' {}'";
+            interval = 10;
+            tooltip-format = "Connected to VPN";
           };
         };
       };
