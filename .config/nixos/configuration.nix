@@ -123,9 +123,18 @@
     nix-ld.enable = true;
   };
 
-  virtualisation.docker = {
-    enable = true;
-    autoPrune.enable = true;
+  virtualisation = {
+    podman = {
+      enable = true;
+      dockerCompat = true;
+      dockerSocket.enable = true;
+      autoPrune.enable = true;
+      extraPackages = with pkgs; [ podman-compose ];
+    };
+
+    oci-containers = {
+      backend = "podman";
+    };
   };
 
   services = {
