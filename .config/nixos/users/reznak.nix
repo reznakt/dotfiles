@@ -797,7 +797,9 @@ in
             aaron-bond.better-comments
             arrterian.nix-env-selector
             charliermarsh.ruff
+            dbaeumer.vscode-eslint
             editorconfig.editorconfig
+            esbenp.prettier-vscode
             github.copilot
             github.copilot-chat
             hashicorp.terraform
