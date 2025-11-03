@@ -34,9 +34,9 @@ in
       extraGroups = [
         "adbusers"
         "audio"
+        "docker"
         "gamemode"
         "networkmanager"
-        "podman"
         "video"
         "wheel"
       ];
