@@ -1042,19 +1042,7 @@ in
     wluma = {
       enable = hostname == "laptop";
       settings = {
-        als = {
-          webcam = {
-            video = 0;
-            thresholds = {
-              "0" = "night";
-              "15" = "dark";
-              "30" = "dim";
-              "45" = "normal";
-              "60" = "bright";
-              "75" = "outdoors";
-            };
-          };
-        };
+        als.none = { };
 
         output.backlight = [
           {
