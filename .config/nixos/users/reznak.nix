@@ -350,6 +350,13 @@ in
     go.enable = true;
     micro.enable = true;
 
+    onlyoffice = {
+      enable = true;
+      settings = {
+        UITheme = "theme-night";
+      };
+    };
+
     ssh = {
       enable = true;
       enableDefaultConfig = false;
