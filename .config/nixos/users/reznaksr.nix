@@ -12,7 +12,7 @@ in
     packages = with pkgs; [
       gnome-tweaks
       nodejs_24
-      vscode-fhs
+      vscode
     ];
   };
 
