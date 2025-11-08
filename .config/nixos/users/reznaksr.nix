@@ -12,6 +12,7 @@ in
     packages = with pkgs; [
       gnome-tweaks
       nodejs_24
+      vscode-fhs
     ];
   };
 
@@ -23,15 +24,6 @@ in
     git = {
       enable = true;
       lfs.enable = true;
-    };
-
-    vscode = {
-      enable = true;
-      package = pkgs.vscode-fhs;
-      profiles.default = {
-        enableExtensionUpdateCheck = true;
-        enableUpdateCheck = false;
-      };
     };
   };
 

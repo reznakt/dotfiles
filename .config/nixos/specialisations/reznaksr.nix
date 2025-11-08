@@ -21,6 +21,7 @@ in
       hashedPasswordFile = config.sops.secrets."password-hash-${username}".path;
       extraGroups = [
         "audio"
+        "docker"
         "networkmanager"
         "video"
       ];
