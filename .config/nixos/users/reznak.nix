@@ -844,6 +844,7 @@ in
           "editor.smoothScrolling" = true;
           "explorer.sortOrder" = "type";
           "files.autoSave" = "afterDelay";
+          "git.autofetch" = true;
           "github.copilot.chat.agent.autoFix" = true;
           "github.copilot.nextEditSuggestions.enabled" = true;
           "python.analysis.typeCheckingMode" = "strict";
