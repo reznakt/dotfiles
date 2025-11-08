@@ -891,7 +891,10 @@ in
         "pdfjs.viewerCssTheme" = 2;
         "privacy.donottrackheader.enabled" = true;
         "privacy.fingerprintingProtection" = true;
-        "privacy.resistFingerprinting" = true;
+        "privacy.fingerprintingProtection.overrides" = "+AllTargets,-CSSPrefersColorScheme";
+        "privacy.fingerprintingProtection.pbmode" = true;
+        "privacy.resistFingerprinting" = false;
+        "privacy.resistFingerprinting.pbmode" = false;
         "security.OCSP.enable" = true;
         "webgl.disabled" = true;
       };
