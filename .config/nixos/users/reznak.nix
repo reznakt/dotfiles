@@ -801,6 +801,7 @@ in
           with pkgs.vscode-marketplace;
           with pkgs.vscode-extensions;
           [
+            lucasfa.octaveexecution
             aaron-bond.better-comments
             arrterian.nix-env-selector
             charliermarsh.ruff
@@ -823,9 +824,12 @@ in
             ms-toolsai.jupyter-renderers
             ms-vscode-remote.remote-containers
             ms-vscode-remote.remote-ssh
+            paulosilva.vsc-octave-debugger
             pflannery.vscode-versionlens
             sanaajani.taskrunnercode
             t3dotgg.vsc-material-theme-but-i-wont-sue-you
+            toasty-technologies.octave
+            tusindfryd.octave-formatter
             usernamehw.errorlens
             vscode-icons-team.vscode-icons
             yoavbls.pretty-ts-errors
