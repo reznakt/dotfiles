@@ -96,6 +96,7 @@ in
   services = {
     invidious.enable = true;
     tlp.enable = true;
+    tailscale.enable = true;
 
     # automounting of usb drives
     gvfs.enable = true;

@@ -1053,6 +1053,7 @@ in
     playerctld.enable = true;
     syncthing.enable = true;
     ssh-agent.enable = true;
+    trayscale.enable = true;
 
     wluma = {
       enable = hostname == "laptop";
