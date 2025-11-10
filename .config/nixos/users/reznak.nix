@@ -1035,7 +1035,8 @@ in
       shellAliases = {
         sops = "EDITOR=micro sops";
         strace = "lurk";
-        nix-shell = "nix-shell --run zsh";
+        nix-shell = "nix-shell --run $SHELL";
+        nix-develop = "nix develop -c $SHELL";
       };
 
       history = {
