@@ -44,7 +44,7 @@ in
         proton-pass
         protonvpn-gui
         pwvucontrol
-        qt6ct
+        qt6Packages.qt6ct
         signal-desktop
         socat # for hyprland-events
         sops
@@ -54,7 +54,6 @@ in
         tmux
         unzip
         virtualenv
-        webcord
         wl-clipboard
         yadm
         zsh-powerlevel10k
@@ -947,12 +946,7 @@ in
 
     git = {
       enable = true;
-
       lfs.enable = true;
-      diff-so-fancy.enable = true;
-
-      userName = "Tomáš Režňák";
-      userEmail = "tomas.reznak@volny.cz";
 
       signing = {
         signByDefault = true;
@@ -960,7 +954,12 @@ in
         key = "~/.ssh/id_ed25519.pub";
       };
 
-      extraConfig = {
+      settings = {
+        user = {
+          name = "Tomáš Režňák";
+          email = "tomas.reznak@volny.cz";
+        };
+
         pull.rebase = true;
         push.autoSetupRemote = true;
       };
