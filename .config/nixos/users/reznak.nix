@@ -42,6 +42,7 @@ in
         octaveFull
         pre-commit
         proton-pass
+        protonmail-desktop
         protonvpn-gui
         pwvucontrol
         qt6Packages.qt6ct
@@ -799,6 +800,11 @@ in
     syncthing.enable = true;
     ssh-agent.enable = true;
     trayscale.enable = true;
+
+    protonmail-bridge = {
+      enable = true;
+      extraPackages = with pkgs; [ gnome-keyring ];
+    };
 
     wluma = {
       enable = hostname == "laptop";
