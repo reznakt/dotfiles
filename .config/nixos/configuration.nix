@@ -169,14 +169,6 @@
     polkit.enable = true;
 
     pam = {
-      u2f = {
-        enable = true;
-        settings = {
-          authfile = "/etc/u2f-keys";
-          cue = true;
-        };
-      };
-
       services = {
         greetd.enableGnomeKeyring = true;
         hyprlock.enableGnomeKeyring = true;
