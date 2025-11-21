@@ -25,6 +25,7 @@ in
         bc
         caprine
         desktop-file-utils
+        gcr # for gnome-keyring
         gnome-themes-extra
         heroic
         home-assistant-cli
