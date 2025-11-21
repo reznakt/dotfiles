@@ -60,4 +60,10 @@ in
       variant = "";
     };
   };
+
+  security.pam.services = {
+    gdm-password.enableGnomeKeyring = true;
+    gdm.enableGnomeKeyring = true;
+    login.enableGnomeKeyring = true;
+  };
 }

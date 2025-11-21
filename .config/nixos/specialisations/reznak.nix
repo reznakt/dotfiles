@@ -137,4 +137,10 @@ in
     wantedBy = [ "default.target" ];
     serviceConfig.ExecStart = "${pkgs.bluez}/bin/mpris-proxy";
   };
+
+  security.pam.services = {
+    greetd.enableGnomeKeyring = true;
+    hyprlock.enableGnomeKeyring = true;
+    login.enableGnomeKeyring = true;
+  };
 }

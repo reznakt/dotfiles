@@ -87,6 +87,7 @@ in
 
   wayland.windowManager.hyprland = {
     enable = true;
+    systemd.variables = [ "--all" ];
 
     extraConfig = lib.concatStringsSep "\n" (
       [

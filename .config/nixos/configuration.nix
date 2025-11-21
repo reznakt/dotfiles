@@ -167,14 +167,6 @@
   security = {
     rtkit.enable = true;
     polkit.enable = true;
-
-    pam = {
-      services = {
-        greetd.enableGnomeKeyring = true;
-        hyprlock.enableGnomeKeyring = true;
-        login.enableGnomeKeyring = true;
-      };
-    };
   };
 
   nix = {
