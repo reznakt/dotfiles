@@ -91,7 +91,6 @@ in
     extraConfig = lib.concatStringsSep "\n" (
       [
         "exec-once = hyprland-events"
-        "exec-once = ${lib.getExe pkgs.swaynotificationcenter}"
         "exec-once = ${lib.getExe pkgs.walker} --gapplication-service"
         "exec-once = ${lib.getExe pkgs.steam} -silent"
         "exec-once = ${lib.getExe pkgs.webcord} --start-minimized"
@@ -257,10 +256,9 @@ in
           "${mainMod}, C, exec, kill-active-window"
           "${mainMod}, V, togglefloating,"
           "${mainMod}, R, exec, ${lib.getExe pkgs.walker} --modules=applications,calc"
+          "${mainMod}, N, exec, hyprpanel toggleWindow notificationsmenu"
           "${mainMod}, F, fullscreen,"
           "${mainMod}, B, exec, ${browser}"
-          "${mainMod}, N, exec, ${pkgs.swaynotificationcenter}/bin/swaync-client --toggle-panel --skip-wait"
-          "${mainMod} SHIFT, N, exec, ${pkgs.swaynotificationcenter}/bin/swaync-client --close-all && ${pkgs.swaynotificationcenter}/bin/swaync-client --close-panel"
           "${mainMod}, T, exec, toggle-lights"
           "${mainMod}, L, exec, ${lib.getExe pkgs.hyprlock}"
           "${mainMod}, M, togglespecialworkspace, mail"
@@ -330,17 +328,6 @@ in
           "opaque, class:(mpv|firefox)"
           "workspace special:mail silent, class:^(thunderbird)$"
         ];
-
-        layerrule = [
-          "blur, waybar"
-          "blur, swaync-control-center"
-          "ignorezero, swaync-notification-window"
-          "ignorezero, swaync"
-          "ignorezero, swaync-control-center"
-          "blur, swaync-notification-window"
-          "animation appleEase, swaync-control-center"
-          "blur, swaync"
-        ];
       };
   };
 
@@ -400,361 +387,118 @@ in
       };
     };
 
-    waybar = {
+    hyprpanel = {
       enable = true;
 
-      systemd = {
-        enable = true;
-        target = "graphical-session.target";
-      };
-
       settings = {
-        mainBar = {
-          layer = "top";
-          position = "top";
-          height = 24;
-          modules-left = [
-            "hyprland/workspaces"
-            "mpris"
-            "gamemode"
-            "privacy"
-            "custom/xwayland"
-            "custom/vpn"
-          ];
-          modules-center = [ "hyprland/window" ];
-          modules-right = [
-            "tray"
-            "backlight"
-            "pulseaudio"
-            "network"
-            "temperature"
-            "cpu"
-            "memory"
-            "custom/gpu-usage"
-            "battery"
-            "clock"
-            "custom/notification"
-          ];
+        bar = {
+          launcher.autoDetectIcon = true;
+          scalingPriority = "hyprland";
 
-          "hyprland/workspaces" = {
-            format = "{icon}";
-            on-scroll-up = "${pkgs.hyprland}/bin/hyprctl dispatch workspace e+1";
-            on-scroll-down = "${pkgs.hyprland}/bin/hyprctl dispatch workspace e-1";
-          };
+          layouts = {
+            "*" = {
+              left = [
+                "dashboard"
+                "workspaces"
+                "volume"
+                "network"
+              ]
+              ++ (lib.optionals osConfig.hardware.bluetooth.enable [ "bluetooth" ])
+              ++ [
+                "media"
+                "cava"
+              ];
 
-          tray = {
-            spacing = 10;
-          };
+              middle = [
+                "systray"
+              ];
 
-          gamemode = {
-            format-alt = "{glyph}";
-            icon-size = 16;
-          };
-
-          "hyprland/window" = {
-            icon = true;
-            icon-size = 16;
-            separate-outputs = true;
-            max-length = 45;
-          };
-
-          privacy = {
-            icon-spacing = 4;
-            icon-size = 14;
-            transition-duration = 250;
-            modules = [
-              {
-                type = "screenshare";
-                tooltip = true;
-                tooltip-icon-size = 24;
-              }
-              {
-                type = "audio-in";
-                tooltip = true;
-                tooltip-icon-size = 24;
-              }
-            ];
-          };
-
-          mpris = {
-            format = "{status_icon} {player_icon} {artist} – {title}";
-            player-icons = {
-              default = "🎵";
-              spotify = " ";
-              spotifyd = " ";
-              spotify_player = " ";
-              firefox = "󰈹";
-              vlc = "󰕼";
-              chromium = "";
-              mpv = "";
-            };
-            status-icons = {
-              playing = "";
-              paused = "";
-              stopped = "";
-            };
-            artist-len = 15;
-            title-len = 45;
-            on-scroll-up = "${lib.getExe pkgs.playerctl} next";
-            on-scroll-down = "${lib.getExe pkgs.playerctl} previous";
-          };
-
-          backlight = {
-            device = "intel_backlight";
-            format = "{percent}% 󰛨";
-          };
-
-          clock = {
-            interval = 1;
-            format = "{:%d/%m/%y %H:%M:%S}";
-            tooltip-format = "<tt>{calendar}</tt>";
-            calendar = {
-              mode = "month";
-              weeks-pos = "left";
-              format = {
-                months = "<span color='#ffead3'><b>{}</b></span>";
-                days = "<span color='#ecc6d9'><b>{}</b></span>";
-                weeks = "<span color='#99ffdd'><b>W{}</b></span>";
-                weekdays = "<span color='#ffcc66'><b>{}</b></span>";
-                today = "<span color='#ff6699'><b><u>{}</u></b></span>";
-              };
-            };
-          };
-
-          cpu = {
-            interval = 2;
-            format = "{avg_frequency} GHz ({usage}%) ";
-          };
-
-          memory = {
-            interval = 2;
-            format = "{used} GiB ({percentage}%) ";
-          };
-
-          battery = {
-            frequency = 10;
-            format = "{capacity}% ({time} @ {power:0.2f}W) {icon}";
-            format-icons = [
-              ""
-              ""
-              ""
-              ""
-              ""
-            ];
-            states = {
-              critical = 5;
-            };
-          };
-
-          network = {
-            interval = 5;
-            format-wifi = "{essid} {signalStrength}% {icon} ({bandwidthDownBytes} 󰇚 {bandwidthUpBytes} 󰕒)";
-            format-ethernet = "{ifname} {icon} ({bandwidthDownBytes} 󰇚 {bandwidthUpBytes} 󰕒)";
-            format-disconnected = "Disconnected {icon}";
-            format-icons = {
-              wifi = "";
-              ethernet = "󰈀";
-              disconnected = "";
-            };
-            tooltip-disconnected = " Disconnected";
-            tooltip-format = "{icon} {ifname}\n󰩟 address: {ipaddr}/{cidr}\n󰑩 gateway: {gwaddr}\n󰓅 bandwidth: {bandwidthDownBytes} 󰇚 {bandwidthUpBytes} 󰕒";
-          };
-
-          pulseaudio = {
-            format = "{volume}% {icon}";
-            format-bluetooth = "{volume}% {icon}";
-            format-muted = "";
-            format-icons = {
-              headphones = "";
-              handsfree = "";
-              headset = "";
-              phone = "";
-              portable = "";
-              car = "";
-              default = [
-                ""
-                ""
+              right = [
+                "netstat"
+                "ram"
+                "cpu"
+                "cputemp"
+              ]
+              ++ (lib.optionals (hostname == "laptop") [ "battery" ])
+              ++ [
+                "clock"
+                "notifications"
               ];
             };
-            on-click = "${pkgs.wireplumber}/bin/wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
           };
 
-          temperature = {
-            interval = 10;
-            thermal-zone = 0;
-            format = "{temperatureC}°C ";
-          };
+          clock.format = "%a %d. %m. %H:%M:%S";
 
-          "custom/gpu-usage" = {
-            exec = "cat /sys/class/drm/card*/device/gpu_busy_percent 2> /dev/null | head -n 1";
-            format = "GPU: {}%";
-            return-type = "";
-            interval = 2;
+          power = {
+            low_battery_threshold = 15;
+            low_battery_notification = true;
           };
+        };
 
-          "custom/notification" = {
-            tooltip = false;
-            escape = true;
-            format = "{} {icon}";
-            format-icons = {
-              notification = "󱅫";
-              none = "";
-              "dnd-notification" = " ";
-              "dnd-none" = "󰂛";
-              "inhibited-notification" = " ";
-              "inhibited-none" = "";
-              "dnd-inhibited-notification" = " ";
-              "dnd-inhibited-none" = " ";
+        notifications = {
+          position = "top right";
+          active_monitor = true;
+          show_total = true;
+        };
+
+        menus = {
+          dashboard = {
+            powermenu = {
+              avatar = {
+                image = "";
+                name = osConfig.users.users.${username}.description;
+              };
             };
-            return-type = "json";
-            exec = "${pkgs.swaynotificationcenter}/bin/swaync-client -swb";
-            on-click = "${pkgs.swaynotificationcenter}/bin/swaync-client -t -sw";
-            on-click-right = "${pkgs.swaynotificationcenter}/bin/swaync-client -d -sw";
+
+            directories.enabled = false;
+            shortcuts.enabled = false;
+
+            stats = {
+              enable_gpu = true;
+            };
+          };
+        };
+
+        theme = {
+          font.size = "0.85rem";
+
+          bar = {
+            menus.opacity = 95;
+            opacity = 85;
+
+            buttons = {
+              style = "wave";
+              spacing = "0.2em";
+            };
           };
 
-          "custom/xwayland" = {
-            format = "{}";
-            exec = "${pkgs.hyprland}/bin/hyprctl activewindow | grep -q 'xwayland: 1' && echo ''";
-            signal = 1;
-            tooltip-format = "XWayland";
+          ram = {
+            label = true;
+            icon = true;
+            memoryUnit = "GB";
           };
 
-          "custom/vpn" = {
-            format = "{}";
-            exec = "${pkgs.networkmanager}/bin/nmcli -t -f NAME,TYPE connection show --active | grep -E '^.*:(wireguard|vpn)$' | cut -d: -f1 | head -n1 | xargs -I{} echo ' {}'";
-            interval = 10;
-            tooltip-format = "Connected to VPN";
+          netstat = {
+            dynamic_icon = true;
+            truncation = 12;
+          };
+
+          notification = {
+            opacity = 95;
+          };
+
+          buttons = {
+            opacity = 85;
+          };
+
+          osd = {
+            orientation = "horizontal";
+            location = "bottom";
+            active_monitor = true;
+            margin_bottom = "2rem";
           };
         };
       };
-
-      style = ''
-        * {
-            font-family: "Ubuntu Nerd Font";
-            font-size: 12px;
-            border-radius: 6px;
-            padding: 1px 0;
-            margin: 0 3px;
-            transition: all 0.3s ease;
-        }
-
-        window#waybar {
-            background: transparent;
-            color: #ECEFF4;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.6);
-        }
-
-        #workspaces button {
-            background-color: transparent;
-            color: #81A1C1;
-            padding: 4px 8px;
-            border: 2px solid transparent;
-            font-weight: bold;
-            transition: color 0.3s, border-bottom 0.3s;
-        }
-
-        #workspaces button.focused {
-            color: #A3BE8C;
-            border-bottom: 2px solid #A3BE8C;
-        }
-
-        #workspaces button:hover {
-            color: #88C0D0;
-        }
-
-        #clock, #battery, #cpu, #memory, #network, #pulseaudio, #mpris, #tray, #mode {
-            background-color: rgba(46, 52, 64, 0.8);
-            color: #D8DEE9;
-            border-radius: 6px;
-            padding: 6px 10px;
-            margin: 0 6px;
-            box-shadow: inset 0px 0px 4px rgba(0, 0, 0, 0.3);
-        }
-
-        #clock {
-            font-weight: bold;
-            background-color: #4C566A;
-            color: #EBCB8B;
-        }
-
-        #cpu, #memory {
-            background-color: #5E81AC;
-            color: #ECEFF4;
-        }
-
-        #cpu:hover, #memory:hover {
-            background-color: #88C0D0;
-            color: #2E3440;
-        }
-
-        #battery.charging {
-            background-color: #A3BE8C;
-            color: #2E3440;
-        }
-
-        #battery.discharging.critical {
-            background-color: #FF0000;
-        }
-
-        #network.disconnected {
-            background-color: #BF616A;
-            color: #ECEFF4;
-            font-weight: bold;
-        }
-
-        #pulseaudio {
-            background-color: #B48EAD;
-            color: #ECEFF4;
-        }
-
-        #pulseaudio:hover {
-            background-color: #D08770;
-            color: #2E3440;
-        }
-
-        #mpris {
-            background-color: #282E3A;
-        }
-
-        #mpris:hover {
-          opacity: 0.8;
-        }
-
-        #mpris.firefox {
-            background-color: #FF7731;
-        }
-
-        #mpris.spotify, #mpris.spotifyd, #mpris.spotify_player {
-            background-color: #18C16A;
-            color: black;
-        }
-
-        #mpris.chromium {
-            background-color: #588DE2;
-        }
-
-        #mpris.vlc {
-            background-color: #EB7000;
-        }
-
-        #mpris.mpv {
-            background-color: #400041;
-        }
-
-        #tray {
-            background-color: rgba(46, 52, 64, 0.8);
-            padding: 4px 6px;
-            border-radius: 6px;
-        }
-
-        #tray .icon:hover {
-            color: #88C0D0;
-        }
-
-        #custom-xwayland {
-          font-size: 16px;
-        }
-      '';
     };
 
     thunderbird = {
