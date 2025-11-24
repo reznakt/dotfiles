@@ -106,7 +106,6 @@ in
         "permission = ${lib.getExe pkgs.grim}, screencopy, allow"
         "permission = ${lib.escapeRegex (lib.getExe config.programs.hyprlock.package)}, screencopy, allow"
         "permission = ${pkgs.xdg-desktop-portal-hyprland}/libexec/.xdg-desktop-portal-hyprland-wrapped, screencopy, allow"
-        "permission = ${pkgs.wluma}/bin/.wluma-wrapped, screencopy, allow"
 
         "gesture = 3, horizontal, workspace"
       ]
