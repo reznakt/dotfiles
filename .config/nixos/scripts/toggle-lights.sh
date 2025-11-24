@@ -1,6 +1,6 @@
 set -e
 
-SECRETS_FILE="${HOME}/.config/nixos/secrets.yaml"
+SECRETS_FILE="${HOME}/.config/nixos/secrets/home-assistant.yaml"
 HASS_TOKEN="$(sops --decrypt --extract '["hass-token"]' $SECRETS_FILE)"
 HASS_SERVER="$(sops --decrypt --extract '["hass-server"]' $SECRETS_FILE)"
 
