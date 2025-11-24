@@ -5,6 +5,6 @@ keys: &keys
   - age15cnz2zzya20ya8hejdakpem9vr59jvjzr880h68eta8366m8tg5sm2566k # desktop user
   - age19d0f7hqcjv7vz6qrs5txszfa6hnvhrt2q9za99ce6fu6rymcz5ysfuft03 # server system
 creation_rules:
-  - path_regex: ^secrets\.yaml$
+  - path_regex: ^secrets/.*\.(ya?ml|json|env)$
     key_groups:
       - age: *keys

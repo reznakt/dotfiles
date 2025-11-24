@@ -8,16 +8,21 @@
   imports = [ ./hardware-configuration.nix ];
 
   sops = {
-    defaultSopsFile = ./secrets.yaml;
-
     age = {
       keyFile = "/var/lib/sops-nix/key.txt";
       generateKey = true;
     };
 
     secrets = {
-      password-hash-reznak.neededForUsers = true;
-      password-hash-reznaksr.neededForUsers = true;
+      password-hash-reznak = {
+        neededForUsers = true;
+        sopsFile = ./secrets/users.yaml;
+      };
+
+      password-hash-reznaksr = {
+        neededForUsers = true;
+        sopsFile = ./secrets/users.yaml;
+      };
     };
   };
 
