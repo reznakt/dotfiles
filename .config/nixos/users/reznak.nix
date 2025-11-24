@@ -913,7 +913,7 @@ in
         font-size = 10;
 
         resize-overlay = "never";
-        scrollback-limit = 10 * 1000 ** 1000;
+        scrollback-limit = 10 * 1000 * 1000;
         shell-integration-features = "no-cursor";
 
         window-decoration = false;
