@@ -337,6 +337,7 @@ in
     fastfetch.enable = true;
     go.enable = true;
     micro.enable = true;
+    btop.enable = true;
 
     onlyoffice = {
       enable = true;
@@ -725,11 +726,6 @@ in
         jq
         ripgrep
       ];
-    };
-
-    btop = {
-      enable = true;
-      package = pkgs.btop-rocm;
     };
 
     ghostty = {
