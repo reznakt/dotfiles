@@ -106,6 +106,7 @@ in
     invidious.enable = true;
     tlp.enable = true;
     tailscale.enable = true;
+    upower.enable = true; # for hyprpanel
 
     # automounting of usb drives
     gvfs.enable = true;
