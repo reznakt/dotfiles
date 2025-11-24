@@ -489,6 +489,71 @@ in
       };
     };
 
+    hyprlock = {
+      enable = true;
+
+      settings =
+        let
+          fontColor = "rgb(255, 255, 255)";
+          backgroundColor = "rgba(0, 0, 0, 0.8)";
+          outlineColor = "rgb(42, 198, 227)";
+        in
+        {
+          general = {
+            hide_cursor = true;
+            ignore_empty_input = true;
+          };
+
+          auth = {
+            "fingerprint:enabled" = true;
+          };
+
+          input-field = {
+            monitor = "";
+            size = "200, 40";
+            fade_on_empty = true;
+            outline_thickness = 1;
+            outer_color = outlineColor;
+            inner_color = backgroundColor;
+            font_color = fontColor;
+            placeholder_text = "";
+            fail_text = "$PAMFAIL";
+            shadow_passes = 2;
+            shadow_size = 5;
+          };
+
+          label = [
+            {
+              monitor = "";
+              text = "cmd[update:1000] date +\"%H:%M:%S\"";
+              halign = "center";
+              valign = "center";
+              position = "0, 90";
+              font_size = 25;
+              color = fontColor;
+              shadow_passes = 2;
+              shadow_size = 5;
+            }
+            {
+              monitor = "";
+              text = "cmd[update:0] date +\"%A, %B %d\"";
+              halign = "center";
+              valign = "center";
+              position = "0, 50";
+              font_size = 15;
+              color = fontColor;
+              shadow_passes = 2;
+              shadow_size = 5;
+            }
+          ];
+
+          background = {
+            path = "screenshot";
+            blur_passes = 2;
+          };
+        };
+    };
+
     hyprpanel = {
       enable = true;
 
