@@ -14,6 +14,15 @@ in
   system.nixos.tags = [ username ];
   home-manager.users.${username} = homeManagerModule;
 
+  sops.secrets = {
+    "weatherapi.json" = {
+      sopsFile = ../secrets/weatherapi.json;
+      format = "json";
+      key = "";
+      owner = username;
+    };
+  };
+
   nixpkgs.config.permittedInsecurePackages = [
     "electron-36.9.5"
   ];

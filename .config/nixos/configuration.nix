@@ -15,13 +15,13 @@
 
     secrets = {
       password-hash-reznak = {
-        neededForUsers = true;
         sopsFile = ./secrets/users.yaml;
+        neededForUsers = true;
       };
 
       password-hash-reznaksr = {
-        neededForUsers = true;
         sopsFile = ./secrets/users.yaml;
+        neededForUsers = true;
       };
     };
   };

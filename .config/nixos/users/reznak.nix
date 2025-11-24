@@ -330,6 +330,10 @@ in
           "opaque, class:(mpv|firefox)"
           "workspace special:mail silent, class:^(thunderbird)$"
         ];
+
+        layerrule = [
+          "blur, ^bar-.*$"
+        ];
       };
   };
 
@@ -394,9 +398,11 @@ in
       enable = true;
 
       settings = {
+        scalingPriority = "hyprland";
+        tear = true;
+
         bar = {
-          launcher.autoDetectIcon = true;
-          scalingPriority = "hyprland";
+          autoHide = "fullscreen";
 
           layouts = {
             "*" = {
@@ -430,25 +436,80 @@ in
             };
           };
 
-          clock.format = "%a %d. %m. %H:%M:%S";
+          cava = {
+            showActiveOnly = true;
+            framerate = 180;
+          };
 
-          power = {
-            low_battery_threshold = 15;
-            low_battery_notification = true;
+          clock = {
+            format = "%a %d. %m. %H:%M:%S";
+          };
+
+          cpu = {
+            pollingInterval = 1000;
+          };
+
+          cpuPower = {
+            round = false;
+          };
+
+          launcher = {
+            autoDetection = true;
+          };
+
+          media = {
+            show_active_only = true;
+          };
+
+          netstat = {
+            dynamicIcon = true;
+            pollingInterval = 1000;
+          };
+
+          network = {
+            showWifiInfo = true;
+          };
+
+          notifications = {
+            show_total = true;
+            hideCountWhenZero = true;
+          };
+
+          ram = {
+            labelType = "used/total";
+          };
+
+          volume = {
+            rightClick = "${pkgs.wireplumber}/bin/wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
+          };
+
+          weather = {
+            unit = "metric";
+          };
+
+          workspaces = {
+            show_numbered = true;
+            numbered_active_indicator = "highlight";
           };
         };
 
-        notifications = {
-          position = "top right";
-          active_monitor = true;
-          show_total = true;
-        };
-
         menus = {
+          clock = {
+            time = {
+              military = true;
+            };
+
+            weather = {
+              interval = 15 * 60 * 1000; # 15 minutes
+              unit = "metric";
+              location = "Velke Mezirici, Czechia";
+              key = osConfig.sops.secrets."weatherapi.json".path;
+            };
+          };
+
           dashboard = {
             powermenu = {
               avatar = {
-                image = "";
                 name = osConfig.users.users.${username}.description;
               };
             };
@@ -460,45 +521,52 @@ in
               enable_gpu = true;
             };
           };
+
+          media = {
+            displayTime = true;
+            displayTimeTooltip = true;
+          };
+
+          power = {
+            lowBatteryNotification = true;
+            lowBatteryThreshold = 15;
+          };
+
+          volume = {
+            raiseMaximumVolume = true;
+          };
+        };
+
+        notifications = {
+          active_monitor = true;
         };
 
         theme = {
           font.size = "0.85rem";
 
           bar = {
-            menus.opacity = 95;
-            opacity = 85;
+            opacity = 50;
 
             buttons = {
               style = "wave";
               spacing = "0.2em";
             };
-          };
 
-          ram = {
-            label = true;
-            icon = true;
-            memoryUnit = "GB";
-          };
-
-          netstat = {
-            dynamic_icon = true;
-            truncation = 12;
-          };
-
-          notification = {
-            opacity = 95;
-          };
-
-          buttons = {
-            opacity = 85;
+            menus = {
+              enableShadow = true;
+            };
           };
 
           osd = {
             orientation = "horizontal";
             location = "bottom";
             active_monitor = true;
-            margin_bottom = "2rem";
+            margins = "5rem";
+            enableShadow = true;
+          };
+
+          notification = {
+            enableShadow = true;
           };
         };
       };
