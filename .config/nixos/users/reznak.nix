@@ -911,7 +911,56 @@ in
 
     lsd = {
       enable = true;
+
+      enableBashIntegration = true;
       enableZshIntegration = true;
+
+      settings = {
+        classic = false;
+        date = "date";
+        dereference = false;
+        header = false;
+        hyperlink = "never";
+        indicators = true;
+        layout = "grid";
+        literal = false;
+        no-symlink = false;
+        permission = "rwx";
+        recursion.enabled = false;
+        size = "default";
+        symlink-arrow = "->";
+        total-size = false;
+
+        blocks = [
+          "permission"
+          "user"
+          "size"
+          "date"
+          "name"
+        ];
+
+        color = {
+          when = "auto";
+          theme = "default";
+        };
+
+        icons = {
+          when = "auto";
+          theme = "fancy";
+          separator = " ";
+        };
+
+        sorting = {
+          column = "name";
+          reverse = false;
+          dir-grouping = "first";
+        };
+
+        truncate-owner = {
+          after = 15;
+          marker = "...";
+        };
+      };
     };
 
     mpv = {
