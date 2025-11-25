@@ -35,6 +35,7 @@ in
         labymod-launcher
         libnotify
         libsForQt5.qt5ct
+        luanti
         lunar-client
         lurk
         lutris
@@ -84,6 +85,43 @@ in
         target = ".ssh/.config_source";
         onChange = ''cat ~/.ssh/.config_source > ~/.ssh/config && chmod 400 ~/.ssh/config'';
       };
+
+      ".minetest/games/mineclone2" =
+        let
+          voxelibre = builtins.fetchGit {
+            url = "https://github.com/VoxeLibre/VoxeLibre.git";
+            rev = "6a9c0257a795e6786d94363cc6694c2b9c68cfd2";
+          };
+        in
+        {
+          source = voxelibre;
+        };
+
+      ".minetest/minetest.conf".text = ''
+        connected_glass = true
+        creative_mode = true
+        enable_build_where_you_stand = false
+        enable_damage = true
+        enable_fog = true
+        enable_waving_leaves = true
+        enable_waving_plants = true
+        enable_waving_water = true
+        fps_max = 180
+        fullscreen = true
+        keymap_aux1 = SYSTEM_SCANCODE_229
+        keymap_backward = SYSTEM_SCANCODE_81
+        keymap_forward = SYSTEM_SCANCODE_82
+        keymap_inventory = SYSTEM_SCANCODE_8
+        keymap_left = SYSTEM_SCANCODE_80
+        keymap_right = SYSTEM_SCANCODE_79
+        mainmenu_last_selected_world = 1
+        mcl_enable_hunger = true
+        menu_last_game = mineclone2
+        screen_h = 1080
+        screen_w = 1920
+        server_announce = false
+        vsync = true
+      '';
     };
   };
 
