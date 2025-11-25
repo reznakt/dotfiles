@@ -91,6 +91,10 @@ in
     enable = true;
     systemd.variables = [ "--all" ];
 
+    plugins = with pkgs.hyprlandPlugins; [
+      hyprspace
+    ];
+
     extraConfig = lib.concatStringsSep "\n" (
       [
         "exec-once = hyprland-events"
@@ -104,8 +108,10 @@ in
         "exec-once = while true; do ${lib.getExe pkgs.thunderbird}; done"
 
         "permission = ${lib.getExe pkgs.grim}, screencopy, allow"
+        "permission = ${lib.getExe pkgs.hyprpicker}, screencopy, allow"
         "permission = ${lib.escapeRegex (lib.getExe config.programs.hyprlock.package)}, screencopy, allow"
         "permission = ${pkgs.xdg-desktop-portal-hyprland}/libexec/.xdg-desktop-portal-hyprland-wrapped, screencopy, allow"
+        "permission = ${pkgs.hyprland}/bin/hyprctl, plugin, allow"
 
         "gesture = 3, horizontal, workspace"
       ]
@@ -255,6 +261,7 @@ in
         ];
 
         bind = [
+          "${mainMod}, SUPER_L, overview:toggle"
           "${mainMod}, C, exec, kill-active-window"
           "${mainMod}, V, togglefloating,"
           "${mainMod}, R, exec, ${lib.getExe pkgs.walker} --modules=applications,calc"
