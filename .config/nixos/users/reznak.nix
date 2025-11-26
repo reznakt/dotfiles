@@ -371,9 +371,9 @@ in
 
         windowrulev2 = [
           "suppressevent maximize, class:.*"
-          "tile, initialTitle:Visual Paradigm"
-          "opaque, class:(mpv|firefox)"
-          "workspace special:mail silent, class:^(thunderbird)$"
+          "opaque, class:^(mpv|firefox|librewolf)$"
+          "workspace special:mail silent, class:^thunderbird$"
+          "tile, class:steam"
         ];
 
         layerrule = [
