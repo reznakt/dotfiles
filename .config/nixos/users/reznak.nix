@@ -645,56 +645,28 @@ in
             };
           };
 
-          cava = {
-            showActiveOnly = true;
-            framerate = 180;
-          };
+          clock.format = "%a %d. %m. %H:%M:%S";
+          launcher.autoDetection = true;
+          media.show_active_only = true;
+          network.showWifiInfo = true;
+          notifications.show_total = true;
+          volume.rightClick = "${pkgs.wireplumber}/bin/wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
 
-          clock = {
-            format = "%a %d. %m. %H:%M:%S";
-          };
+          customModules =
+            let
+              pollingInterval = 1000;
+            in
+            {
+              cava.showActiveOnly = true;
+              cpu.pollingInterval = pollingInterval;
+              cpuTemp.pollingInterval = pollingInterval;
+              ram.labelType = "used/total";
 
-          cpu = {
-            pollingInterval = 1000;
-          };
-
-          cpuPower = {
-            round = false;
-          };
-
-          launcher = {
-            autoDetection = true;
-          };
-
-          media = {
-            show_active_only = true;
-          };
-
-          netstat = {
-            dynamicIcon = true;
-            pollingInterval = 1000;
-          };
-
-          network = {
-            showWifiInfo = true;
-          };
-
-          notifications = {
-            show_total = true;
-            hideCountWhenZero = true;
-          };
-
-          ram = {
-            labelType = "used/total";
-          };
-
-          volume = {
-            rightClick = "${pkgs.wireplumber}/bin/wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
-          };
-
-          weather = {
-            unit = "metric";
-          };
+              netstat = {
+                dynamicIcon = true;
+                pollingInterval = pollingInterval;
+              };
+            };
 
           workspaces = {
             show_numbered = true;
