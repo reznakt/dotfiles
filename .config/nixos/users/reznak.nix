@@ -133,10 +133,6 @@ in
     enable = true;
     systemd.variables = [ "--all" ];
 
-    plugins = with pkgs.hyprlandPlugins; [
-      hyprspace
-    ];
-
     extraConfig = lib.concatStringsSep "\n" (
       [
         "exec-once = hyprland-events"
@@ -303,7 +299,6 @@ in
         ];
 
         bind = [
-          "${mainMod}, SUPER_L, overview:toggle"
           "${mainMod}, C, exec, kill-active-window"
           "${mainMod}, V, togglefloating,"
           "${mainMod}, R, exec, ${lib.getExe pkgs.walker} --modules=applications,calc"
