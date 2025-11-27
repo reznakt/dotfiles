@@ -308,6 +308,7 @@ in
           "${mainMod}, V, togglefloating,"
           "${mainMod}, R, exec, ${lib.getExe pkgs.walker} --modules=applications,calc"
           "${mainMod}, N, exec, hyprpanel toggleWindow notificationsmenu"
+          "${mainMod} SHIFT, N, exec, hyprpanel clearNotifications; [ $(hyprpanel isWindowVisible notificationsmenu) = 'true' ] && hyprpanel toggleWindow notificationsmenu"
           "${mainMod}, F, fullscreen,"
           "${mainMod}, B, exec, ${browser}"
           "${mainMod}, T, exec, toggle-lights"
