@@ -59,10 +59,40 @@ in
     serviceConfig.Type = "simple";
   };
 
-  services.fprintd.enable = true;
   programs.hyprlock.enable = true;
 
+  services = {
+    fprintd.enable = true;
+    printing = {
+      enable = true;
+
+      drivers = with pkgs; [
+        foo2zjs
+        foomatic-db
+        foomatic-db-engine
+        foomatic-db-ppds
+        foomatic-filters
+      ];
+
+      extraConf = ''
+        DefaultPaperSize A4
+      '';
+    };
+  };
+
   hardware = {
+    printers = {
+      ensureDefaultPrinter = "Epson_AL-C1600";
+
+      ensurePrinters = [
+        {
+          name = "Epson_AL-C1600";
+          deviceUri = "usb://EPSON/AL-C1600?serial=08571";
+          model = "KONICA_MINOLTA-magicolor_1600W.ppd.gz";
+        }
+      ];
+    };
+
     bluetooth = {
       enable = true;
       powerOnBoot = true;
