@@ -73,10 +73,6 @@ in
         foomatic-db-ppds
         foomatic-filters
       ];
-
-      extraConf = ''
-        DefaultPaperSize A4
-      '';
     };
   };
 
@@ -89,6 +85,11 @@ in
           name = "Epson_AL-C1600";
           deviceUri = "usb://EPSON/AL-C1600?serial=08571";
           model = "KONICA_MINOLTA-magicolor_1600W.ppd.gz";
+          ppdOptions = {
+            PageSize = "A4";
+            ColorMode = "ICM";
+            Resolution = "1200x600dpi";
+          };
         }
       ];
     };
