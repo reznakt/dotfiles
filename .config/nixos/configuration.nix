@@ -122,7 +122,10 @@
   };
 
   nixpkgs.config.allowUnfree = true;
-  environment.systemPackages = with pkgs; [ kbd ];
+  environment.systemPackages = with pkgs; [
+    kbd
+    doas-sudo-shim
+  ];
 
   programs = {
     nix-ld.enable = true;
@@ -172,6 +175,17 @@
   security = {
     rtkit.enable = true;
     polkit.enable = true;
+    sudo.enable = false;
+    doas = {
+      enable = true;
+      extraRules = [
+        {
+          groups = [ "wheel" ];
+          keepEnv = true;
+          persist = true;
+        }
+      ];
+    };
   };
 
   nix = {
