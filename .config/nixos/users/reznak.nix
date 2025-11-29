@@ -57,6 +57,7 @@ in
         tmux
         unzip
         virtualenv
+        webcord
         wl-clipboard
         yadm
         zsh-powerlevel10k
