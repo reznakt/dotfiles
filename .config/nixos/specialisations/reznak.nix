@@ -123,12 +123,24 @@ in
 
     greetd = {
       enable = true;
-      settings = rec {
-        initial_session = {
-          command = "Hyprland";
-          user = username;
+      settings = {
+        default_session = {
+          command =
+            let
+              mkCmd = prog: args: "${lib.getExe prog} ${lib.concatStringsSep " " args}";
+            in
+            mkCmd pkgs.tuigreet [
+              "--time"
+              "--remember"
+              "--remember-user-session"
+              "--user-menu"
+              "--user-menu-min-uid 1000"
+              "--asterisks"
+              "--asterisks-char •"
+              "--greeting \"$(${lib.getExe pkgs.fortune})\""
+              "--cmd Hyprland"
+            ];
         };
-        default_session = initial_session;
       };
     };
 
