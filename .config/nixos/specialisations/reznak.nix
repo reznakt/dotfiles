@@ -137,7 +137,6 @@ in
               "--user-menu-min-uid 1000"
               "--asterisks"
               "--asterisks-char •"
-              "--greeting \"$(${lib.getExe pkgs.fortune})\""
               "--cmd Hyprland"
             ];
         };
