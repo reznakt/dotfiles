@@ -122,13 +122,21 @@
   };
 
   nixpkgs.config.allowUnfree = true;
-  environment.systemPackages = with pkgs; [
-    kbd
-    doas-sudo-shim
-  ];
+  environment = {
+    systemPackages = with pkgs; [
+      kbd
+      doas-sudo-shim
+    ];
+
+    variables = {
+      NIX_AUTO_RUN = "1";
+      NIX_AUTO_RUN_INTERACTIVE = "1";
+    };
+  };
 
   programs = {
     nix-ld.enable = true;
+    command-not-found.enable = true;
   };
 
   virtualisation.docker = {
