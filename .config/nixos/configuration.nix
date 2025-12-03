@@ -118,9 +118,12 @@
     useXkbConfig = true;
   };
 
-  users.mutableUsers = false;
-  nixpkgs.config.allowUnfree = true;
+  users = {
+    mutableUsers = false;
+    allowNoPasswordLogin = true;
+  };
 
+  nixpkgs.config.allowUnfree = true;
   environment = {
     systemPackages = with pkgs; [
       kbd
