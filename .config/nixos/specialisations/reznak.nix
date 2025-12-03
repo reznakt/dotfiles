@@ -92,10 +92,6 @@ in
     nh = {
       enable = true;
       flake = "/etc/nixos/";
-      clean = {
-        enable = true;
-        extraArgs = "--keep-since 30d";
-      };
     };
 
     git = {
