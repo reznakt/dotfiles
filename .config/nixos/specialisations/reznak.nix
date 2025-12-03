@@ -137,7 +137,7 @@ in
               "--user-menu-min-uid 1000"
               "--asterisks"
               "--asterisks-char •"
-              "--cmd Hyprland"
+              "--cmd ${lib.getExe pkgs.hyprland}"
             ];
         };
       };
