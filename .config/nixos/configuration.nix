@@ -78,6 +78,8 @@
         };
       };
     };
+
+    tmp.useTmpfs = true;
   };
 
   fileSystems."/".options = [
