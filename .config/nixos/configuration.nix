@@ -139,6 +139,10 @@
   programs = {
     nix-ld.enable = true;
     command-not-found.enable = true;
+    appimage = {
+      enable = true;
+      binfmt = true;
+    };
   };
 
   virtualisation.docker = {
