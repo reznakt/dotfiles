@@ -7,11 +7,11 @@
 
 let
   pamServicesWithFprint = [
+    "doas"
     "hyprlock"
     "login"
     "polkit-1"
     "su"
-    "sudo"
   ];
 
   fprintdConfig = name: {
