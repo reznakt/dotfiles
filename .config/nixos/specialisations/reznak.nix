@@ -109,7 +109,7 @@ in
 
   services = {
     invidious.enable = true;
-    tlp.enable = true;
+    power-profiles-daemon.enable = true;
     tailscale.enable = true;
     upower.enable = true; # for hyprpanel
 
