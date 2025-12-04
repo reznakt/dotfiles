@@ -31,6 +31,8 @@ in
       availableKernelModules = [ "amdgpu" ];
     };
 
+    kernelModules = [ "typec_displayport" ];
+
     loader = {
       timeout = lib.mkForce (-1);
       grub.default = 1;
