@@ -94,11 +94,6 @@ in
       flake = "/etc/nixos/";
     };
 
-    git = {
-      enable = true;
-      lfs.enable = true;
-    };
-
     steam = {
       enable = true;
       remotePlay.openFirewall = true;
