@@ -22,7 +22,6 @@ in
         adwaita-icon-theme
         age
         androidenv.androidPkgs.platform-tools
-        bc
         caprine
         desktop-file-utils
         gcr # for gnome-keyring
@@ -32,6 +31,7 @@ in
         inotify-tools
         insomnia
         jq # for kill-active-window
+        kalker
         labymod-launcher
         libnotify
         libsForQt5.qt5ct
