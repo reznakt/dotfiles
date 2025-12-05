@@ -23,10 +23,6 @@ in
     };
   };
 
-  nixpkgs.config.permittedInsecurePackages = [
-    "electron-36.9.5"
-  ];
-
   environment = {
     etc.specialisation = lib.mkIf (isSpecialisation) {
       text = username;
